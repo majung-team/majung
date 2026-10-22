@@ -98,7 +98,7 @@ function home() {
 }
 
 function createForm() {
-  return `<section class="intro small"><p class="eyebrow">운전자 · 개발 확인용</p><h1>만날 장소를<br />정해주세요.</h1><p>개발 확인을 위한 임시 입력 화면이에요.<br />실제 서비스는 내비게이션에서 선택한 장소를 가져올 예정이에요.</p></section>
+  return `<section class="intro small"><p class="eyebrow">운전자 · 개발 확인용</p><h1>만날 장소를<br />정해주세요.</h1><p>개발 확인을 위한 임시 입력 화면이에요.<br />차량 앱에서는 내비게이션에서 선택한 장소로 약속을 만들어요.</p></section>
     <form id="create-form" class="card"><label for="place-label">만날 장소<input id="place-label" name="label" required maxlength="120" value="${e(draft.label)}" placeholder="예: 역 앞 공영주차장" /></label>
     <div class="input-pair"><label for="latitude">위도<input id="latitude" name="latitude" type="number" min="-90" max="90" step="any" required value="${e(draft.latitude)}" placeholder="37.0" /></label>
     <label for="longitude">경도<input id="longitude" name="longitude" type="number" min="-180" max="180" step="any" required value="${e(draft.longitude)}" placeholder="127.0" /></label></div>
@@ -153,7 +153,7 @@ function driver() {
     content = `<span class="badge">${status === "ARRIVED" ? "도착 안내" : "약속 진행 중"}</span>
     <h1>${status === "ARRIVED" ? "함께 만났나요?" : "출발 준비를<br />확인해요."}</h1>
     <div class="readiness"><span>${e(guest.displayName)} 님</span><strong>${e(readinessText[guest.readiness])}</strong><small>${online ? "서버에 저장된 준비 상태예요." : "마지막으로 확인한 준비 상태예요."}</small></div>${placeCard()}
-    <p class="hint">차량 앱 연결 전이라 위치·도착 정보가 자동으로 전송되지는 않아요.</p>
+    <p class="hint">이 웹에서 만든 픽업에는 차량 앱이 연결되어 있지 않아요.</p>
     ${button(status === "ARRIVED" ? "탑승 확인 · 픽업 완료" : "도착 알리기", status === "ARRIVED" ? "complete" : "arrive", false, !online)}`;
   return `${connection()}<section class="card driver"><p class="eyebrow">운전자 확인 화면</p>${content}
     ${["INVITING", "WAITING_APPROVAL", "INVITE_EXPIRED"].includes(status) ? button("새 초대 만들기", "rotate", true, !online) : ""}

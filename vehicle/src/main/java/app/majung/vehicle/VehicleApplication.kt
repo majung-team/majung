@@ -12,5 +12,6 @@ class VehicleApplication : Application() {
         super.onCreate()
         destination = DestinationReader(this)
         pickup = PickupController()
+        destination.telemetryChanged = { pickup.syncVehicle(destination) }
     }
 }

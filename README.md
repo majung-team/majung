@@ -11,6 +11,7 @@
 
 ## 처음 보는 분께
 
+- [기여·커밋·PR 규칙](CONTRIBUTING.md): 커밋 형식과 개발 환경 최초 설정
 - [프로젝트 안내](docs/wiki/README.md): 서비스 목적, 구현 범위, 다음 작업
 - [실행 화면과 따라 하기](docs/demo-guide.md): 화면 캡처 6개와 조작 순서
 - [사용 흐름](docs/product-flow.md): 초대부터 공유 종료까지

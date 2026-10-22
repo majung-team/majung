@@ -1,0 +1,7 @@
+# type(scope): 변경 내용을 구체적으로 작성 (제목 72자 이내)
+# scope 생략 가능. 예: feat(server): 픽업 참여 승인 API 구현
+# type: feat fix refactor test docs style build ci chore revert
+# scope: vehicle web server prototype sdk repo ci deps
+#
+# 본문이 필요하면 제목 다음 한 줄을 비우고 변경 이유와 제약을 작성한다.
+# 관련 이슈는 본문 마지막에 Refs: #번호 또는 Closes: #번호로 작성한다.

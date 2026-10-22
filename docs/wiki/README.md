@@ -26,7 +26,7 @@
 1. [실행 화면과 따라 하기](../demo-guide.md)
 2. [사용 흐름과 예외 처리](../product-flow.md)
 3. [SDK 실행 확인 결과](../sdk-verification.md)
-4. [상태·권한·데이터 계약 초안](../state-and-data.md)
+4. [상태·권한·데이터 설계 초안](../state-and-data.md)
 5. [픽업 서버 API와 실행 방법](../server-api.md)
 
 처음 실행할 때는 저장소 루트의 [README](../../README.md)를 참고한다.

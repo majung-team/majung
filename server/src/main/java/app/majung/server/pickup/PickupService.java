@@ -239,14 +239,17 @@ class PickupService {
 
     private PickupApi.VehicleState toVehicleResponse(Pickup pickup) {
         if (pickup.vehicleSourceTime == null) {
-            return new PickupApi.VehicleState("WAITING", null, null, null, null, null, 0);
+            return new PickupApi.VehicleState("WAITING", null, null, null, null, null, 0, 0);
         }
-        boolean fresh = clock.instant().isBefore(pickup.vehicleSourceTime.plus(vehicleFreshness))
-                && clock.instant().isBefore(pickup.vehicleReceivedAt.plus(vehicleFreshness));
+        Instant sourceExpiry = pickup.vehicleSourceTime.plus(vehicleFreshness);
+        Instant receiptExpiry = pickup.vehicleReceivedAt.plus(vehicleFreshness);
+        Instant validUntil = sourceExpiry.isBefore(receiptExpiry) ? sourceExpiry : receiptExpiry;
+        long validForMillis = Math.max(0, Duration.between(clock.instant(), validUntil).toMillis());
+        boolean fresh = validForMillis > 0;
         return new PickupApi.VehicleState(fresh ? "FRESH" : "STALE",
                 fresh ? pickup.vehicleLatitude : null, fresh ? pickup.vehicleLongitude : null,
                 fresh ? pickup.durationSeconds : null, pickup.vehicleSourceTime,
-                pickup.vehicleReceivedAt, pickup.vehicleSequence);
+                pickup.vehicleReceivedAt, pickup.vehicleSequence, validForMillis);
     }
 
     private ApiException error(int status, String code, String message) {

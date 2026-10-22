@@ -20,6 +20,9 @@ class RequestSafetyFilter extends OncePerRequestFilter {
         response.setHeader("Cache-Control", "no-store");
         response.setHeader("Referrer-Policy", "no-referrer");
         response.setHeader("X-Content-Type-Options", "nosniff");
+        response.setHeader("Content-Security-Policy", "default-src 'self'; script-src 'self'; "
+                + "style-src 'self'; img-src 'self' data:; connect-src 'self'; "
+                + "base-uri 'none'; form-action 'self'; frame-ancestors 'none'");
         chain.doFilter(request, response);
     }
 }

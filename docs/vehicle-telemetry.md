@@ -103,7 +103,7 @@ adb shell am instrument --user "$VEHICLE_USER" -w -r \
 운전자·참여자 토큰은 캡처나 로그에 출력하지 않는다. 이 모드는 브라우저 참여·확인 단계가 없으면 시간 초과한다.
 
 실제 휴대전화·실차, 시스템 시계가 크게 어긋난 환경, 다양한 장소·지도 사업자, 장시간 통신 장애와 OS 종료 후 복구는 후속 검증이다.
-도착·탑승 완료와 지도 표시는 별도 기능으로 남아 있다.
+차량 화면의 도착·탑승 완료도 연결했다. [완료 처리와 검증](vehicle-completion.md)을 참고한다. 지도 표시는 아직 없다.
 
 SDK 근거: [공식 NaviHelper 자료형 안내](https://document.pleos.ai/api-reference/connect-sdk-pleos/NaviHelper/navi-helper/ai.pleos.playground.navi.data/driving-info/entry),
 로컬 공식 navi-data 3.0.4 소스의 `CurrentLocationInfo`·`DestinationInfo` 정의와 에뮬레이터 수신 결과.

@@ -46,6 +46,8 @@ class PickupController(private val api: PickupApiClient = PickupApiClient()) {
 
     val canCreate: Boolean get() = !busy && pickupId == null && !uncertainCreate
     val canApprove: Boolean get() = !busy && online && status == "WAITING_APPROVAL" && participantId != null
+    val canArrive: Boolean get() = !busy && online && status == "ACTIVE"
+    val canComplete: Boolean get() = !busy && online && status == "ARRIVED"
     val canCancel: Boolean get() = !busy && online && pickupId != null && status !in ended
 
     fun create(selectedPlace: PickupPlace) {
@@ -83,6 +85,20 @@ class PickupController(private val api: PickupApiClient = PickupApiClient()) {
     fun cancel() {
         if (!canCancel) return
         val path = "/$pickupId/cancellation"
+        val token = driverToken ?: return
+        runRequest({ api.request("POST", path, token) }, ::receiveSnapshot)
+    }
+
+    fun arrive() {
+        if (!canArrive) return
+        val path = "/$pickupId/arrival"
+        val token = driverToken ?: return
+        runRequest({ api.request("POST", path, token) }, ::receiveSnapshot)
+    }
+
+    fun complete() {
+        if (!canComplete) return
+        val path = "/$pickupId/completion"
         val token = driverToken ?: return
         runRequest({ api.request("POST", path, token) }, ::receiveSnapshot)
     }

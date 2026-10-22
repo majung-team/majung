@@ -25,6 +25,8 @@ class MainActivity : Activity() {
     private lateinit var createButton: Button
     private lateinit var approveButton: Button
     private lateinit var inviteButton: Button
+    private lateinit var arriveButton: Button
+    private lateinit var completeButton: Button
     private lateinit var cancelButton: Button
     private lateinit var nextButton: Button
     private var ticks = 0
@@ -79,6 +81,18 @@ class MainActivity : Activity() {
                 .setNegativeButton("돌아가기", null).show()
         }
         button(layout, "서버 상태 다시 확인") { app.pickup.refresh() }
+        arriveButton = button(layout, "도착 알리기 · 공유 유지") {
+            if (!app.pickup.canArrive) return@button
+            AlertDialog.Builder(this).setMessage("약속 장소에 도착했나요? 탑승을 확인하기 전까지 위치 공유는 유지돼요.")
+                .setPositiveButton("도착 알리기") { _, _ -> app.pickup.arrive() }
+                .setNegativeButton("돌아가기", null).show()
+        }.apply { id = R.id.arrive_pickup }
+        completeButton = button(layout, "탑승 확인 · 픽업 완료") {
+            if (!app.pickup.canComplete) return@button
+            AlertDialog.Builder(this).setMessage("탑승자가 차에 탔나요? 픽업을 완료하면 위치 공유가 종료돼요.")
+                .setPositiveButton("탑승 확인하고 완료") { _, _ -> app.pickup.complete() }
+                .setNegativeButton("돌아가기", null).show()
+        }.apply { id = R.id.complete_pickup }
         cancelButton = button(layout, "픽업 취소 · 공유 종료") {
             AlertDialog.Builder(this).setMessage("픽업을 취소하고 위치 공유를 종료할까요?")
                 .setPositiveButton("픽업 취소") { _, _ -> app.pickup.cancel() }
@@ -115,6 +129,8 @@ class MainActivity : Activity() {
         createButton.isEnabled = place != null && pickup.canCreate
         inviteButton.isEnabled = pickup.invitationForHostBrowser() != null
         approveButton.isEnabled = pickup.canApprove
+        arriveButton.isEnabled = pickup.canArrive
+        completeButton.isEnabled = pickup.canComplete
         cancelButton.isEnabled = pickup.canCancel
         nextButton.visibility = if (pickup.status in setOf("CANCELLED", "COMPLETED", "EXPIRED")) android.view.View.VISIBLE else android.view.View.GONE
         val readiness = when (pickup.readiness) {
@@ -126,8 +142,10 @@ class MainActivity : Activity() {
             "INVITING" -> "탑승자 참여를 기다리고 있어요"
             "WAITING_APPROVAL" -> "참여 요청을 확인해주세요"
             "ACTIVE" -> "픽업 진행 중"
+            "ARRIVED" -> "약속 장소에 도착했어요. 탑승 확인 전까지 위치 공유를 유지해요."
             "INVITE_EXPIRED" -> "초대가 만료됐어요. 픽업 취소 후 새 약속을 준비해주세요."
-            "CANCELLED", "COMPLETED", "EXPIRED" -> "위치 공유 종료"
+            "COMPLETED" -> "탑승 확인 완료 · 위치 공유 종료"
+            "CANCELLED", "EXPIRED" -> "위치 공유 종료"
             else -> "아직 만든 픽업이 없어요"
         }
         connectionText.updateText(when {

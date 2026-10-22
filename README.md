@@ -8,11 +8,28 @@
 ## 구성
 
 - `probe/`: NaviHelper 3.0.5 연결, 위치·목적지·경로 조회, 주행·도착 콜백 기록
+- `design/prototype/`: 차량·운전자 휴대전화·탑승자 웹의 조작 가능한 화면 초안. 예시 데이터만 사용
 - `docs/`: 실행 조건, 시험 기록
 - `tools/`: 로그 수집·요약 도구
 - `evidence/private/`: 로컬 실행 근거. 위치가 포함될 수 있어 Git에서 제외
 
 팀 기획·검증 현황: [마중 노션](https://app.notion.com/p/401de2e676c28037a1f0d1dbe6cf1288)
+
+## 화면 흐름 살펴보기
+
+프로젝트 루트에서 실행한 뒤 `http://127.0.0.1:4173/`을 연다.
+
+```sh
+python3 -m http.server 4173 --bind 127.0.0.1 --directory design/prototype
+```
+
+실제 SDK·서버·지도와 연결되지 않은 초안이다. 상단의 ‘장면 설정’으로 주행·연결·도착 상황을 바꿔볼 수 있다.
+휴대전화 영역은 ‘운전자 휴대전화’와 ‘탑승자’ 탭으로 구분했다.
+사용 흐름은 `docs/product-flow.md`, 상태·권한·데이터 초안은 `docs/state-and-data.md`를 참고한다.
+
+```sh
+node --test design/prototype/model.test.js
+```
 
 ## 개발 환경
 

@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>마중 · 화면 흐름 검토</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <header class="project-header">
+        <div class="brand">
+          <span class="brand-mark">M</span
+          ><span>마중 <small>화면 흐름 검토</small></span>
+        </div>
+        <button class="quiet" id="reset">처음부터 보기 ↺</button>
+      </header>
+      <section class="intro">
+        <p class="eyebrow">만나는 순간까지, 연락은 간단하게.</p>
+        <h1>차량과 기다리는 사람을<br />하나의 약속으로 연결해요.</h1>
+        <p class="description">
+          초대를 만들고, 오른쪽 휴대전화에서 참여해보세요.<br />준비 상태와 도착
+          안내가 양쪽 화면에 어떻게 전달되는지 볼 수 있어요.
+        </p>
+        <div class="prototype-label">
+          화면 검토용 · 예시 데이터 · 실제 차량·서버·지도 연결 없음
+        </div>
+      </section>
+
+      <nav class="journey" aria-label="픽업 진행 단계">
+        <span data-step="1"><b>01</b> 초대 준비</span><i>→</i>
+        <span data-step="2"><b>02</b> 참여 확인</span><i>→</i>
+        <span data-step="3"><b>03</b> 이동·준비</span><i>→</i>
+        <span data-step="4"><b>04</b> 도착·종료</span>
+      </nav>
+
+      <section class="scene-controls" aria-label="검토용 장면 설정">
+        <strong>장면 설정</strong>
+        <div class="control-group" aria-label="차량 상태">
+          <button data-motion="parked" aria-pressed="true">주차 중</button>
+          <button data-motion="driving" aria-pressed="false">주행 중</button>
+        </div>
+        <label
+          >차량 연결
+          <select id="connection">
+            <option value="online">정상</option>
+            <option value="stale">정보 갱신 지연</option>
+            <option value="offline">연결 끊김</option>
+          </select></label
+        >
+        <button id="arrive" class="quiet">도착 이벤트 재현</button>
+        <button id="expire" class="quiet">초대 만료 재현</button>
+        <button id="fresh-route" class="quiet">기존 경로 정보 다시 수신</button>
+      </section>
+
+      <div class="screens">
+        <section class="vehicle-column" aria-labelledby="vehicle-label">
+          <div class="device-label">
+            <h2 id="vehicle-label">차량 화면</h2>
+            <span>내비게이션 옆 한 개 창을 사용하는 안</span>
+          </div>
+          <div class="vehicle-shell">
+            <header class="car-top">
+              <span>12:30 <span class="car-divider">│</span> MAJUNG</span
+              ><span id="motion-label">P · 주차 중</span>
+            </header>
+            <div class="vehicle-content">
+              <aside
+                class="navigation-example"
+                aria-label="내비게이션 영역 예시"
+              >
+                <span class="nav-label">내비게이션 영역 예시</span>
+                <svg
+                  class="map"
+                  viewBox="0 0 280 440"
+                  role="img"
+                  aria-label="실제 지도와 무관한 예시 경로"
+                >
+                  <path
+                    class="street"
+                    d="M-20 50H310 M-20 165H310 M-20 280H310 M-20 390H310 M40 -20V470 M145 -20V470 M250 -20V470"
+                  />
+                  <path class="route" d="M145 360V165H250V78" />
+                  <circle class="destination-dot" cx="250" cy="78" r="9" />
+                  <path
+                    class="car-arrow"
+                    d="M145 345L131 373L145 367L159 373Z"
+                  />
+                  <text x="20" y="423">
+                    지도·경로는 이해를 위한 예시입니다.
+                  </text>
+                </svg>
+                <div class="nav-bottom">
+                  <small>설정된 목적지</small
+                  ><strong id="nav-place">중앙역 공영주차장</strong>
+                </div>
+              </aside>
+              <div class="car-app">
+                <div class="car-brand">
+                  마중 <span id="car-connection">공유 전</span>
+                </div>
+                <div id="vehicle" aria-live="polite"></div>
+              </div>
+            </div>
+            <footer class="car-bottom">
+              <span>◉</span><span>내비게이션</span
+              ><span class="selected">마중</span><span>앱</span>
+            </footer>
+          </div>
+          <p class="device-note">
+            주행 중 정보 표시의 허용 범위는 Pleos 정책·심사 확인이 필요해요. 이
+            초안이 허용된 UI를 뜻하지는 않아요.
+          </p>
+        </section>
+
+        <section class="phone-column" aria-labelledby="phone-label">
+          <div class="device-label">
+            <h2 id="phone-label">휴대전화 웹</h2>
+            <span>설치 없이 링크로 참여</span>
+          </div>
+          <div
+            class="phone-tabs"
+            role="tablist"
+            aria-label="휴대전화 사용자 바꾸기"
+          >
+            <button
+              id="driver-tab"
+              role="tab"
+              aria-selected="true"
+              aria-controls="phone-content"
+            >
+              운전자 휴대전화
+            </button>
+            <button
+              id="guest-tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="phone-content"
+            >
+              탑승자
+            </button>
+          </div>
+          <div class="phone-shell">
+            <div class="phone-status"><span>12:30</span><span>••• ▰</span></div>
+            <div class="browser-address">
+              <span>⌑</span> majung.example <span>↻</span>
+            </div>
+            <div class="phone-app">
+              <header>마중<span>함께 만날 약속</span></header>
+              <div id="phone-content" role="tabpanel" aria-live="polite"></div>
+            </div>
+          </div>
+          <p class="device-note">
+            잠금 화면 알림은 별도 조건이 필요해요. 이 초안은 웹을 열어둔 상태의
+            안내를 보여줘요.
+          </p>
+        </section>
+      </div>
+
+      <section id="route-controls" class="route-controls" hidden>
+        <div>
+          <strong>내비게이션 응답 재현</strong>
+          <p>
+            목적지 변경 요청 뒤 결과가 도착하는 장면이에요. 실제 SDK 요청은
+            보내지 않아요.
+          </p>
+        </div>
+        <button id="route-success">새 경로 반영 성공</button
+        ><button id="route-failure" class="quiet">새 경로 반영 실패</button>
+      </section>
+      <section class="review-record">
+        <h2>방금 확인한 흐름</h2>
+        <ol id="history">
+          <li>새 픽업을 준비하고 있어요.</li>
+        </ol>
+      </section>
+      <footer class="page-footer">
+        <span>마중 · 기획 초안 v0.1</span
+        ><span>사용자·장소·시간은 모두 예시입니다.</span>
+      </footer>
+    </main>
+    <dialog id="end-dialog">
+      <h2 id="end-title"></h2>
+      <p>종료하면 탑승자는 차량 위치를 더 이상 볼 수 없어요.</p>
+      <div class="dialog-actions">
+        <button id="keep-session" class="quiet">계속 유지</button
+        ><button id="confirm-end">공유 종료</button>
+      </div>
+    </dialog>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>

@@ -83,6 +83,7 @@ class PickupApiTest {
         Response shared = call("GET", session.path() + "/vehicle-state", guest.token(), null);
         assertEquals("FRESH", shared.body().path("freshness").asText());
         assertEquals(300, shared.body().path("durationSeconds").asInt());
+        assertEquals(30000, shared.body().path("validForMillis").asLong());
         assertEquals("no-store", shared.cacheControl());
         assertEquals(200, ready(session, guest, "READY", 1).status());
         assertEquals("READY", call("GET", session.path(), session.owner(), null)
@@ -194,6 +195,7 @@ class PickupApiTest {
         Response replay = vehicle(session, 2, 300, source);
         assertEquals(200, replay.status());
         assertEquals("STALE", replay.body().path("freshness").asText());
+        assertEquals(0, replay.body().path("validForMillis").asLong());
         assertTrue(replay.body().path("latitude").isNull());
         assertTrue(replay.body().path("durationSeconds").isNull());
         assertError(vehicle(session, 3, 200, source.minusSeconds(1)), 409, "STALE_EVENT");

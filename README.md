@@ -4,14 +4,15 @@
 
 차량 화면에서는 탑승자의 준비 상태를 보고, 탑승자는 휴대전화로 약속 장소와 도착 예정 시간을 확인하는 서비스를 만들고 있다.
 
-현재는 **Pleos SDK 확인용 Android 앱**, **조작 가능한 화면 초안**, **픽업 기본 API 서버**를 구현했다.
-화면·차량 SDK와 서버 연결, 외부 배포, 탑승자용 앱은 아직 구현하지 않았다.
+현재는 **Pleos SDK 확인용 Android 앱**, **조작 가능한 화면 초안**, **픽업 기본 API 서버**, **API와 연결한 탑승자 웹**을 구현했다.
+차량 SDK와 서버 연결, 외부 배포, 탑승자용 네이티브 앱은 아직 구현하지 않았다.
 
 ![차량과 탑승자의 준비 완료 화면 — 예시 데이터](docs/media/03-ready.png)
 
 ## 처음 보는 분께
 
 - [기여·커밋·PR 규칙](CONTRIBUTING.md): 커밋 형식과 개발 환경 최초 설정
+- [탑승자 웹 연결](docs/web-integration.md): 참여·승인·준비 상태·종료와 개발용 운전자 화면
 - [픽업 서버 API](docs/server-api.md): 로컬 실행, 권한, 요청·응답과 검증 결과
 - [프로젝트 안내](docs/wiki/README.md): 서비스 목적, 구현 범위, 다음 작업
 - [실행 화면과 따라 하기](docs/demo-guide.md): 화면 캡처 6개와 조작 순서
@@ -22,6 +23,7 @@
 ## 구성
 
 - `probe/`: NaviHelper 3.0.5 연결, 위치·목적지·경로 조회, 주행·도착 콜백 기록
+- `web/`: 실제 픽업 API를 사용하는 탑승자 웹·개발용 운전자 확인 화면
 - `server/`: 별도 Gradle 프로젝트. Java + Spring Boot 픽업 API, JPA·로컬 H2 저장
 - `design/prototype/`: 차량·운전자 휴대전화·탑승자 웹의 조작 가능한 화면 초안. 예시 데이터만 사용
 - `docs/`: 실행 조건, 시험 기록
@@ -54,7 +56,8 @@ node --test design/prototype/model.test.js
 
 기본 주소는 `http://127.0.0.1:8080`이다. 다른 터미널에서 `python3 tools/smoke_pickup_server.py`를 실행하면
 예시 데이터로 픽업 생성부터 공유 종료까지 확인할 수 있다. 토큰은 출력하지 않는다.
-Android·화면 초안과는 아직 연결되지 않은 로컬 API이며, 자세한 실행·시험 방법은 [서버 안내](docs/server-api.md)에 있다.
+같은 주소에서 API에 연결된 웹을 열 수 있다. Android·기존 화면 초안은 아직 연결하지 않았다.
+자세한 사용 순서는 [웹 안내](docs/web-integration.md), 실행·시험 방법은 [서버 안내](docs/server-api.md)에 있다.
 
 ## 개발 환경
 

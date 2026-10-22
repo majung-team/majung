@@ -4,7 +4,7 @@
   "scripts": {
     "prepare": "husky",
     "lint:commit": "commitlint",
-    "test": "node --test design/prototype/model.test.js"
+    "test": "node --test design/prototype/model.test.js web/model.test.js"
   },
   "devDependencies": {
     "@commitlint/cli": "21.2.4",

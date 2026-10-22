@@ -1,6 +1,6 @@
 # 내비게이션에서 선택한 장소로 픽업 만들기
 
-2026-10-23. #5의 첫 단계다. `vehicle` 모듈을 새로 만들었고 기존 `probe`는 SDK 진단용으로 유지한다.
+2026-10-23. #5의 장소 생성 단계다. 위치·ETA 전송은 [차량 정보 연동](vehicle-telemetry.md)에서 이어서 확인했다. `vehicle` 모듈을 새로 만들었고 기존 `probe`는 SDK 진단용으로 유지한다.
 
 ## 이번에 연결한 부분
 
@@ -88,12 +88,11 @@ adb shell am instrument --user "$VEHICLE_USER" -w -r \
 
 ## 아직 남은 연결
 
-- SDK 위치·ETA를 서버에 자동 전송하고, 탑승자 웹에 표시
 - 차량에서 도착·탑승 완료 처리, 지도 표시
 - 실제 휴대전화·외부 HTTPS 연결 및 시연 영상
 - 목적지 변경·다중 기기·계정 인증·프로세스 종료 후 복원
 
-탑승자 웹의 차량 정보는 아직 대기 상태다. 이번 작업으로 위치·ETA 자동 전송까지 완료됐다고 표기하지 않는다.
+이 문서의 첫 장소 연결 이후 SDK 위치·ETA 전송을 추가했다. 현재 검증 범위와 실행 캡처는 [차량 정보 연동](vehicle-telemetry.md)을 참고한다.
 
 근거: [Pleos 목적지 설정·조회 공식 안내](https://document.pleos.ai/api-reference/connect-sdk-pleos/NaviHelper/destinations),
 로컬 캐시의 NaviHelper 3.0.5·navi-data 3.0.4 공식 소스. 요청 성공과 경로 탐색 완료는 서로 구분한다.

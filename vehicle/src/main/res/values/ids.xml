@@ -1,0 +1,5 @@
+<resources>
+    <item name="pickup_details" type="id" />
+    <item name="connection_status" type="id" />
+    <item name="cancel_pickup" type="id" />
+</resources>

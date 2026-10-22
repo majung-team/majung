@@ -204,6 +204,27 @@ class PickupApiTest {
     }
 
     @Test
+    void invalidationKeepsSequenceAndRejectsLateTelemetry() throws Exception {
+        Session session = create();
+        Guest guest = join(session);
+        assertError(call("DELETE", session.path() + "/vehicle-state", session.owner(), Map.of("sequence", 1)), 403, "APPROVAL_REQUIRED");
+        approve(session, guest);
+        vehicle(session, 1, 300, clock.instant());
+        assertError(call("DELETE", session.path() + "/vehicle-state", guest.token(), Map.of("sequence", 2)), 403, "FORBIDDEN");
+        Response cleared = call("DELETE", session.path() + "/vehicle-state", session.owner(), Map.of("sequence", 2));
+        assertEquals(200, cleared.status());
+        assertEquals(2, cleared.body().path("sequence").asLong());
+        assertEquals(0, cleared.body().path("validForMillis").asLong());
+        assertTrue(cleared.body().path("latitude").isNull());
+        assertTrue(cleared.body().path("durationSeconds").isNull());
+        assertEquals(200, call("DELETE", session.path() + "/vehicle-state", session.owner(), Map.of("sequence", 2)).status());
+        assertError(vehicle(session, 1, 300, clock.instant()), 409, "STALE_EVENT");
+        vehicle(session, 3, 200, clock.instant());
+        assertError(call("DELETE", session.path() + "/vehicle-state", session.owner(), Map.of("sequence", 2)), 409, "STALE_EVENT");
+        assertEquals("FRESH", call("GET", session.path() + "/vehicle-state", guest.token(), null).body().path("freshness").asText());
+    }
+
+    @Test
     void cancellationStopsTelemetryAndCannotBeReopened() throws Exception {
         Session session = create();
         Guest guest = join(session);

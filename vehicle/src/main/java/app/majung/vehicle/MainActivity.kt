@@ -21,6 +21,7 @@ class MainActivity : Activity() {
     private val handler = Handler(Looper.getMainLooper())
     private lateinit var destinationText: TextView
     private lateinit var pickupText: TextView
+    private lateinit var connectionText: TextView
     private lateinit var createButton: Button
     private lateinit var approveButton: Button
     private lateinit var inviteButton: Button
@@ -31,6 +32,10 @@ class MainActivity : Activity() {
         override fun run() {
             render()
             if (++ticks % 3 == 0) app.pickup.refresh()
+            if (app.pickup.status in setOf("ACTIVE", "ARRIVED")) {
+                if (ticks % 5 == 0) app.destination.pollTelemetry()
+                app.pickup.syncVehicle(app.destination)
+            }
             handler.postDelayed(this, 1000)
         }
     }
@@ -52,7 +57,13 @@ class MainActivity : Activity() {
             val selected = app.destination.selection.current(SystemClock.elapsedRealtime()) ?: return@button
             app.pickup.create(selected)
         }
-        pickupText = label("", 18f)
+        connectionText = label("", 14f).apply {
+            id = R.id.connection_status
+            setLines(1)
+            ellipsize = android.text.TextUtils.TruncateAt.END
+        }
+        layout.addView(connectionText)
+        pickupText = label("", 18f).apply { id = R.id.pickup_details }
         layout.addView(pickupText)
         inviteButton = button(layout, "개발용 초대 링크 복사") {
             app.pickup.invitationForHostBrowser()?.let { link ->
@@ -73,18 +84,20 @@ class MainActivity : Activity() {
                 .setPositiveButton("픽업 취소") { _, _ -> app.pickup.cancel() }
                 .setNegativeButton("돌아가기", null).show()
         }
+        cancelButton.id = R.id.cancel_pickup
         nextButton = button(layout, "새 픽업 준비") {
             app.pickup.prepareNextPickup()
             app.destination.query()
         }
-        layout.addView(label("좌표를 입력할 필요가 없어요.\n위치·ETA 자동 전송과 장소 변경은 다음 단계에서 연결해요.\n앱 프로세스가 종료되면 초대·운전자 접근 정보는 복원되지 않아요.", 14f))
+        layout.addView(label("좌표를 입력할 필요가 없어요.\n승인 후 SDK 위치·남은 시간을 서버로 전달해요.\n화면을 떠나면 공유를 멈춰요. 장소 변경은 아직 지원하지 않아요.\n앱 프로세스가 종료되면 초대·운전자 접근 정보는 복원되지 않아요.", 14f))
         setContentView(ScrollView(this).apply { addView(layout) })
     }
 
     override fun onStart() {
         super.onStart()
         app.pickup.changed = ::render
-        handler.post(tick)
+        render()
+        handler.postDelayed(tick, 1000)
     }
 
     override fun onStop() {
@@ -98,7 +111,7 @@ class MainActivity : Activity() {
     private fun render() {
         val place = app.destination.selection.current(SystemClock.elapsedRealtime())
         val pickup = app.pickup
-        destinationText.text = "${app.destination.status}\n\n${place?.label ?: "확인된 목적지가 없어요. 목적지를 다시 확인해주세요."}"
+        destinationText.updateText("${app.destination.status}\n\n${place?.label ?: "확인된 목적지가 없어요. 목적지를 다시 확인해주세요."}")
         createButton.isEnabled = place != null && pickup.canCreate
         inviteButton.isEnabled = pickup.invitationForHostBrowser() != null
         approveButton.isEnabled = pickup.canApprove
@@ -117,11 +130,21 @@ class MainActivity : Activity() {
             "CANCELLED", "COMPLETED", "EXPIRED" -> "위치 공유 종료"
             else -> "아직 만든 픽업이 없어요"
         }
-        pickupText.text = listOfNotNull(
-            if (pickup.busy) "서버 확인 중…" else if (pickup.pickupId != null && !pickup.online) "서버 연결 확인 필요" else null,
+        connectionText.updateText(when {
+            pickup.busy -> "요청 처리 중…"
+            pickup.pickupId == null -> "픽업을 만들면 서버와 연결해요"
+            pickup.online -> "서버 연결됨"
+            else -> "서버 연결 확인 필요"
+        })
+        pickupText.updateText(listOfNotNull(
             pickup.place?.let { "이번 픽업 장소: ${it.label}" }, phase,
+            if (pickup.status in setOf("ACTIVE", "ARRIVED")) pickup.vehicleMessage else null,
             pickup.participantName?.let { "$it 님 · $readiness" }, pickup.message.takeIf { it.isNotBlank() }
-        ).joinToString("\n\n")
+        ).joinToString("\n\n"))
+    }
+
+    private fun TextView.updateText(value: String) {
+        if (text.toString() != value) text = value
     }
 
     private fun label(value: String, size: Float): TextView = TextView(this).apply {

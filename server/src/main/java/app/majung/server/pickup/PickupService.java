@@ -159,6 +159,20 @@ class PickupService {
         return toVehicleResponse(pickup);
     }
 
+    PickupApi.VehicleState invalidateVehicle(UUID id, String auth, long sequence) {
+        Pickup pickup = owner(id, auth);
+        requireSharing(pickup);
+        if (sequence == pickup.vehicleSequence && pickup.vehicleSourceTime == null) {
+            return toVehicleResponse(pickup);
+        }
+        if (sequence <= pickup.vehicleSequence) {
+            throw error(409, "STALE_EVENT", "이전 요청으로 차량 상태를 바꿀 수 없습니다.");
+        }
+        pickup.vehicleSequence = sequence;
+        pickup.clearVehicle();
+        return toVehicleResponse(pickup);
+    }
+
     PickupApi.VehicleState getVehicle(UUID id, String auth) {
         String token = tokenService.bearer(auth);
         Pickup pickup = locked(id);
@@ -239,7 +253,7 @@ class PickupService {
 
     private PickupApi.VehicleState toVehicleResponse(Pickup pickup) {
         if (pickup.vehicleSourceTime == null) {
-            return new PickupApi.VehicleState("WAITING", null, null, null, null, null, 0, 0);
+            return new PickupApi.VehicleState("WAITING", null, null, null, null, null, pickup.vehicleSequence, 0);
         }
         Instant sourceExpiry = pickup.vehicleSourceTime.plus(vehicleFreshness);
         Instant receiptExpiry = pickup.vehicleReceivedAt.plus(vehicleFreshness);

@@ -1,7 +1,9 @@
 package app.majung.vehicle
 
 import android.os.Build
+import android.graphics.Bitmap
 import android.os.SystemClock
+import android.view.accessibility.AccessibilityNodeInfo
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.core.app.ActivityScenario
 import android.widget.Button
@@ -17,6 +19,124 @@ import java.io.File
 
 /** Real emulator NaviHelper callback -> real local HTTP server. No fake SDK callback. */
 class VehiclePickupTest {
+    @Test fun arriveAndCompletePickupFromVehicleScreen() {
+        assertTrue("Run only on the official emulator", Build.MODEL.contains("emulator", true))
+        val instrumentation = InstrumentationRegistry.getInstrumentation()
+        val app = ApplicationProvider.getApplicationContext<VehicleApplication>()
+        val controller = app.pickup
+        val api = PickupApiClient()
+        var selected: PickupPlace? = null
+        instrumentation.runOnMainSync { controller.prepareNextPickup(); app.destination.connect() }
+        assertTrue("Set a navigation route before this test", await(20_000) {
+            selected = app.destination.selection.current(SystemClock.elapsedRealtime())
+            selected != null
+        })
+        try {
+            instrumentation.runOnMainSync { controller.create(selected!!) }
+            assertTrue("Pickup creation failed", await(15_000) { controller.pickupId != null && !controller.busy })
+            var invitation: String? = null
+            instrumentation.runOnMainSync {
+                assertTrue(!controller.canArrive && !controller.canComplete)
+                controller.complete()
+                invitation = controller.invitationForHostBrowser()
+            }
+            val parts = URI(invitation!!).fragment.split('/')
+            val id = parts[1]
+            val guest = api.request("POST", "/$id/participants", body = JSONObject()
+                .put("inviteToken", parts[2]).put("displayName", "시연 탑승자"))
+            val token = guest.getString("participantToken")
+            instrumentation.runOnMainSync { controller.refresh() }
+            assertTrue("Participant not found", await(10_000) { controller.canApprove })
+            instrumentation.runOnMainSync { controller.approve() }
+            assertTrue("Approval failed", await(10_000) { controller.canArrive })
+            api.request("PUT", "/$id/readiness", token, JSONObject().put("readiness", "READY").put("sequence", 1))
+
+            ActivityScenario.launch(MainActivity::class.java).use { scenario ->
+                instrumentation.runOnMainSync { app.destination.pollTelemetry(); controller.refresh() }
+                awaitVehicle(api, id, token) { it.optString("freshness") == "FRESH" }
+                scenario.onActivity { activity ->
+                    assertTrue(!activity.findViewById<Button>(R.id.complete_pickup).isEnabled)
+                    controller.complete()
+                    activity.findViewById<Button>(R.id.arrive_pickup).performClick()
+                }
+                clickDialogButton("돌아가기")
+                assertEquals("ACTIVE", api.request("GET", "/$id", token).getString("status"))
+                scenario.onActivity { it.findViewById<Button>(R.id.arrive_pickup).performClick() }
+                clickDialogButton("도착 알리기")
+                assertTrue("Arrival failed", await(10_000) { controller.status == "ARRIVED" && !controller.busy })
+                assertEquals("ARRIVED", api.request("GET", "/$id", token).getString("status"))
+                val stillSharing = awaitVehicle(api, id, token) { it.optString("freshness") == "FRESH" }
+                assertTrue(!stillSharing.isNull("latitude"))
+                scenario.onActivity { activity ->
+                    assertTrue(!activity.findViewById<Button>(R.id.arrive_pickup).isEnabled)
+                    assertTrue(activity.findViewById<Button>(R.id.complete_pickup).isEnabled)
+                    activity.findViewById<Button>(R.id.complete_pickup).requestRectangleOnScreen(
+                        android.graphics.Rect(0, 0, activity.findViewById<Button>(R.id.complete_pickup).width, 60), true)
+                }
+                saveEvidence(app, "vehicle-arrived.png")
+                scenario.onActivity { it.findViewById<Button>(R.id.complete_pickup).performClick() }
+                clickDialogButton("돌아가기")
+                assertEquals("ARRIVED", api.request("GET", "/$id", token).getString("status"))
+                scenario.onActivity { it.findViewById<Button>(R.id.complete_pickup).performClick() }
+                clickDialogButton("탑승 확인하고 완료")
+                assertTrue("Completion failed", await(10_000) { controller.status == "COMPLETED" && !controller.busy })
+                val completed = api.request("GET", "/$id", token)
+                assertTrue("Completion must hide place", completed.isNull("place"))
+                assertRejected(410) { api.request("GET", "/$id/vehicle-state", token) }
+                assertRejected(410) {
+                    api.request("PUT", "/$id/readiness", token,
+                        JSONObject().put("readiness", "PREPARING").put("sequence", 2))
+                }
+                instrumentation.runOnMainSync {
+                    assertTrue(controller.place == null && controller.participantName == null)
+                    assertTrue(!controller.canArrive && !controller.canComplete && !controller.canCancel)
+                    assertTrue(controller.invitationForHostBrowser() == null)
+                    controller.complete()
+                    controller.arrive()
+                    controller.syncVehicle(app.destination)
+                }
+                assertEquals("COMPLETED", api.request("GET", "/$id", token).getString("status"))
+                saveEvidence(app, "vehicle-completed.png")
+                instrumentation.runOnMainSync { controller.prepareNextPickup() }
+                assertTrue("New pickup preparation failed", await(5000) { controller.canCreate && controller.pickupId == null })
+            }
+        } finally {
+            instrumentation.runOnMainSync { if (controller.canCancel) controller.cancel(); app.destination.disconnect() }
+        }
+    }
+
+    private fun clickDialogButton(text: String) {
+        val instrumentation = InstrumentationRegistry.getInstrumentation()
+        instrumentation.waitForIdleSync()
+        val root = instrumentation.uiAutomation.rootInActiveWindow
+        val button = root?.findAccessibilityNodeInfosByText(text)?.firstOrNull {
+            it.text?.toString() == text && it.isClickable
+        }
+        assertNotNull("Confirmation button missing", button)
+        assertTrue(button!!.performAction(AccessibilityNodeInfo.ACTION_CLICK))
+        instrumentation.waitForIdleSync()
+    }
+
+    private fun assertRejected(status: Int, request: () -> Unit) {
+        try {
+            request()
+            throw AssertionError("Expected request rejection")
+        } catch (error: ApiRejected) {
+            assertEquals(status, error.status)
+        }
+    }
+
+    /** Opt-in screenshots contain emulator UI only, never invitation or credential screens. */
+    private fun saveEvidence(app: VehicleApplication, name: String) {
+        if (InstrumentationRegistry.getArguments().getString("captureEvidence") != "true") return
+        val instrumentation = InstrumentationRegistry.getInstrumentation()
+        instrumentation.waitForIdleSync()
+        SystemClock.sleep(300)
+        val bitmap = instrumentation.uiAutomation.takeScreenshot() ?: throw AssertionError("Screenshot failed")
+        File(app.filesDir, name).outputStream().use { bitmap.compress(Bitmap.CompressFormat.PNG, 100, it) }
+        bitmap.recycle()
+    }
+
     @Test fun createPickupFromNavigationAndApprovePassenger() {
         assertTrue("Run only on the official emulator", Build.MODEL.contains("emulator", true))
         val instrumentation = InstrumentationRegistry.getInstrumentation()
@@ -24,7 +144,7 @@ class VehiclePickupTest {
         val controller = app.pickup
         val api = PickupApiClient()
         var selected: PickupPlace? = null
-        instrumentation.runOnMainSync { app.destination.connect() }
+        instrumentation.runOnMainSync { controller.prepareNextPickup(); app.destination.connect() }
         assertTrue("No selected navigation destination; set a route before this test", await(20_000) {
             selected = app.destination.selection.current(SystemClock.elapsedRealtime())
             selected != null

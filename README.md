@@ -2,8 +2,20 @@
 
 가족·지인 픽업에서 만날 장소와 준비 상태를 맞추는 차량용 앱 프로젝트.
 
-현재 `probe` 모듈은 서비스 앱이 아니라 **NaviHelper 실행 확인용 Android 앱**이다.
-위치·예상 시간이 실제로 들어오는지부터 확인한다. 서버·탑승자 웹은 아직 만들지 않았다.
+차량 화면에서는 탑승자의 준비 상태를 보고, 탑승자는 휴대전화로 약속 장소와 도착 예정 시간을 확인하는 서비스를 만들고 있다.
+
+현재는 **Pleos SDK 확인용 Android 앱**과 **조작 가능한 화면 초안**까지 구현했다.
+서버를 통한 실제 위치 공유와 탑승자용 앱은 아직 구현하지 않았다.
+
+![차량과 탑승자의 준비 완료 화면 — 예시 데이터](docs/media/03-ready.png)
+
+## 처음 보는 분께
+
+- [프로젝트 안내](docs/wiki/README.md): 서비스 목적, 구현 범위, 다음 작업
+- [실행 화면과 따라 하기](docs/demo-guide.md): 화면 캡처 6개와 조작 순서
+- [사용 흐름](docs/product-flow.md): 초대부터 공유 종료까지
+- [SDK 확인 결과](docs/sdk-verification.md): 에뮬레이터에서 확인한 내용과 남은 시험
+- [상태·권한·데이터 초안](docs/state-and-data.md): 다음 서버 구현의 기준
 
 ## 구성
 
@@ -25,7 +37,7 @@ python3 -m http.server 4173 --bind 127.0.0.1 --directory design/prototype
 
 실제 SDK·서버·지도와 연결되지 않은 초안이다. 상단의 ‘장면 설정’으로 주행·연결·도착 상황을 바꿔볼 수 있다.
 휴대전화 영역은 ‘운전자 휴대전화’와 ‘탑승자’ 탭으로 구분했다.
-사용 흐름은 `docs/product-flow.md`, 상태·권한·데이터 초안은 `docs/state-and-data.md`를 참고한다.
+사용 흐름은 [product-flow.md](docs/product-flow.md), 상태·권한·데이터 초안은 [state-and-data.md](docs/state-and-data.md)를 참고한다.
 
 ```sh
 node --test design/prototype/model.test.js

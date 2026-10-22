@@ -1,0 +1,134 @@
+# 마중 기여 가이드
+
+코드와 문서를 수정할 때 함께 사용하는 기준이다. 새로 참여했다면 아래 설정부터 한 번 실행한다.
+커밋 메시지의 형식은 자동으로 검사하고, 내용이 실제 변경을 설명하는지는 리뷰에서 확인한다.
+
+## 1. 처음 한 번 설정
+
+Node.js 22 이상과 npm이 필요하다. 프로젝트 루트에서 실행한다.
+
+```sh
+npm ci
+git config --local commit.template .gitmessage
+```
+
+`npm ci`의 prepare 단계에서 Husky가 이 저장소의 `commit-msg` 훅을 설치한다.
+이후 터미널과 Git 훅을 실행하는 IDE에서 커밋 메시지를 검사한다. 새로 clone한 사람도 각자 실행해야 한다.
+`design/prototype` 안에서만 설치하면 루트 훅이 준비되지 않는다.
+
+GUI에서 Node를 찾지 못하면 Node 버전 관리 도구의 PATH를 확인한다. 기존에 별도 Git 훅을 사용한다면
+`git config --get core.hooksPath`를 확인하고 통합한 뒤 설정한다. 훅을 끄는 것으로 해결하지 않는다.
+
+## 2. 커밋 메시지
+
+```text
+type(scope): 변경 내용
+
+필요한 경우 변경 이유와 제약을 설명한다.
+
+Refs: #12
+```
+
+scope와 본문은 생략할 수 있다. 제목은 72자 이내로 쓰고 끝에 마침표를 붙이지 않는다.
+한국어 설명을 기본으로 하되 API·클래스·SDK 이름은 원래 표기를 유지한다.
+
+### type 선택
+
+| type | 사용하는 경우 | 예시 |
+| --- | --- | --- |
+| `feat` | 사용자·호출자가 사용할 새 기능 | `feat(server): 픽업 참여 승인 API 구현` |
+| `fix` | 잘못된 동작 수정 | `fix(vehicle): 연결 해제 후 위치 조회 요청 중단` |
+| `refactor` | 동작을 유지하는 구조 개선 | `refactor(prototype): 픽업 상태 전이 로직 분리` |
+| `test` | 테스트 추가·수정 | `test(server): 만료된 초대의 참여 거절 검증` |
+| `docs` | 문서 변경 | `docs: 로컬 실행 방법 보완` |
+| `style` | 동작 변화 없는 정렬·공백 변경 | `style(web): 들여쓰기와 줄바꿈 정리` |
+| `build` | 빌드 설정·의존성 변경 | `build(deps): NaviHelper 의존성 버전 변경` |
+| `ci` | GitHub Actions 등 자동화 변경 | `ci: PR 제목 검사 추가` |
+| `chore` | 위 항목에 속하지 않는 유지보수 | `chore(repo): 커밋 메시지 검사 도구 설정` |
+| `revert` | 이전 변경 되돌리기 | `revert(server): 초대 만료 정책 변경 되돌리기` |
+
+화면 배치·색상 변경은 단순 코드 정렬을 뜻하는 `style`과 다르다. 기능 추가인지 오류 수정인지에 따라 `feat` 또는 `fix`를 고른다.
+성능 개선도 동작 오류를 고치면 `fix`, 기존 동작을 유지하며 구조를 개선하면 `refactor`로 구분한다.
+
+### scope 선택
+
+| scope | 대상 |
+| --- | --- |
+| `vehicle` | 차량 앱 |
+| `web` | 탑승자·운전자 휴대전화 웹 |
+| `server` | 서버 API·인증·데이터 처리 |
+| `prototype` | 예시 데이터로 동작하는 화면 초안 |
+| `sdk` | SDK 확인용 앱과 연동 시험 |
+| `repo` | 저장소 공통 개발 설정 |
+| `ci` | 자동화 구성 |
+| `deps` | 의존성 관리 |
+
+공통 문서나 여러 영역을 함께 바꾸면 scope를 생략한다. scope는 한 개만 쓴다.
+새 scope가 필요하면 이 문서와 `commitlint.config.cjs`를 함께 수정한다.
+
+### 제목과 커밋 나누기
+
+- `수정`, `작업 완료`, `업데이트`, `wip`만 적지 않는다. 무엇이 달라졌는지 적는다.
+- `fix: 수정`처럼 형식만 맞춘 메시지도 리뷰에서 수정한다.
+- 관련 없는 기능·문서·의존성 변경을 한 커밋에 섞지 않는다.
+- 이슈 번호는 제목에 넣지 않고 본문에 `Refs: #12`로 연결한다. 완료 조건을 전부 충족했을 때만 `Closes: #12`를 쓴다.
+- 호환성이 깨지는 변경은 `feat(server)!: ...`처럼 `!`를 쓰고 본문에 `BREAKING CHANGE: ...`로 영향과 대응 방법을 적는다.
+
+### 검사에 실패했을 때
+
+오류에 표시된 type·scope·길이·빈 설명·마침표를 수정하고 다시 커밋한다.
+공유하지 않은 마지막 커밋은 `git commit --amend`로 수정할 수 있다.
+이미 공유한 커밋을 바꾸기 위한 강제 푸시는 함께 작업하는 사람과 먼저 합의한다.
+
+```sh
+# 커밋을 만들지 않고 메시지만 검사
+echo 'feat(server): 픽업 참여 승인 API 구현' | npm run lint:commit -- --verbose
+
+# 마지막 커밋 검사
+npm run lint:commit -- --from HEAD~1 --to HEAD --verbose
+```
+
+## 3. 브랜치와 PR
+
+`main`에서 작업 브랜치를 만들고 PR로 반영한다. 현재는 별도 `develop` 브랜치를 두지 않는다.
+
+```text
+feat/12-pickup-session
+fix/18-invite-expiration
+docs/contributing-guide
+```
+
+브랜치는 `작업종류/영문-주제`로 쓰고, 이슈가 있으면 주제 앞에 번호를 붙인다.
+PR 제목도 커밋과 같은 형식을 쓴다. 한 PR에는 하나의 목적을 담고 `.github/pull_request_template.md`에 맞춰
+변경 이유·바뀐 동작·확인 방법을 적는다. 화면을 바꾸면 캡처를 첨부한다.
+
+작성자 외 한 명의 검토를 요청하는 것을 기본으로 한다. 리뷰어가 아직 없는 초기 작업은 본인이 확인한 범위를 기록한다.
+Squash merge를 기본으로 하고, 병합 직전에 최종 제목·본문을 다시 확인한다.
+이 규칙을 처음 도입하는 커밋 이전의 이력은 소급해서 바꾸지 않는다.
+
+## 4. 코드·API·시험
+
+- 기존 인접 코드의 작성 방식을 먼저 따른다. 클래스·타입은 `PascalCase`, 변수·함수는 `camelCase`, 상수는 `UPPER_SNAKE_CASE`를 쓴다.
+- 함수는 `approveParticipant`, `completePickup`처럼 동작과 대상을 드러낸다. 픽업 진행·준비 상태·연결 상태를 하나로 합치지 않는다.
+- Kotlin은 공식 스타일을 기준으로 한다. 웹은 Prettier 기준으로 작성하되 저장소 전체 포맷 검사는 아직 자동화하지 않았다.
+- API는 `/api/v1/pickups` 형태의 복수 명사 경로와 `camelCase` 필드를 기준으로 설계한다. 오류는 `code`, `message`, `requestId`를 기본으로 한다.
+- 전송 시각은 UTC ISO 8601, 시간은 초, 거리는 미터로 정하고 `durationSeconds`처럼 단위를 드러낸다. 현재 서버는 미구현이므로 API 항목은 구현 시 적용할 설계 기준이다.
+- 승인 전·다른 픽업·종료된 픽업 접근, 초대 만료, 중복·역순 이벤트를 우선 시험한다. 코드 정렬·문구 수정에 동작을 그대로 옮긴 테스트를 추가하지 않는다.
+- 토큰·초대 링크 원문·실제 위치·개인정보는 커밋·로그·시연 캡처에 넣지 않는다. 문서는 구현 완료·확인됨·미확인·제안을 구분한다.
+
+## 5. 현재 자동 적용 범위
+
+| 항목 | 상태 |
+| --- | --- |
+| type·scope·제목 길이·빈 설명·끝 마침표 검사 | commitlint 설정 적용 |
+| 로컬 커밋 생성 차단 | `npm ci` 후 Husky 훅에서 적용 |
+| PR 설명 작성 안내 | PR 템플릿 적용 |
+| 제목이 변경 내용을 구체적으로 설명하는지 | 사람이 리뷰 |
+| GitHub PR 제목·커밋 CI 검사 | 아직 미적용 |
+| main 직접 푸시·검사 실패 병합 차단 | 아직 미적용 |
+
+로컬 훅만으로 GitHub 업로드나 병합을 강제로 막지는 못한다. 최종 병합 차단에는 GitHub 검사와 브랜치 보호가 필요하다.
+현재 유료 플랜이나 저장소 공개 범위를 바꾸지 않았으며, 적용되지 않은 보호를 적용된 것으로 안내하지 않는다.
+
+공식 문서: [Conventional Commits](https://www.conventionalcommits.org/ko/v1.0.0/),
+[commitlint 로컬 설정](https://commitlint.js.org/guides/local-setup.html), [Husky](https://typicode.github.io/husky/get-started.html).

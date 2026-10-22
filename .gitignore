@@ -8,3 +8,5 @@ evidence/private/
 *.jks
 *.keystore
 .DS_Store
+node_modules/
+.husky/_/

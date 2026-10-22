@@ -21,6 +21,8 @@
 
 ## 문서 안내
 
+작업을 시작하기 전에 [기여·커밋·PR 규칙](../../CONTRIBUTING.md)을 읽고 루트에서 `npm ci`를 실행한다.
+
 1. [실행 화면과 따라 하기](../demo-guide.md)
 2. [사용 흐름과 예외 처리](../product-flow.md)
 3. [SDK 실행 확인 결과](../sdk-verification.md)

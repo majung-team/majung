@@ -10,3 +10,4 @@ evidence/private/
 .DS_Store
 node_modules/
 .husky/_/
+server/data/

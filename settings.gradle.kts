@@ -19,3 +19,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Majung"
 include(":probe")
+include(":vehicle")

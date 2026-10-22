@@ -16,7 +16,8 @@
 
 ## 개발 환경
 
-Android Studio와 Android SDK API 34, Build Tools 36.0.0, Java 17 이상.
+Android Studio와 Android SDK API 34, Build Tools 36.0.0, JDK 25.
+프로젝트의 Gradle daemon JVM은 25로 고정하고 앱의 Java 바이트코드 대상은 17로 설정했다.
 Gradle 9.6.0 / Android Gradle Plugin 9.4.1. AGP의 내장 Kotlin 지원을 사용한다.
 Pleos Connect 2.1.0 ARM64 에뮬레이터를 실행 대상으로 사용한다.
 

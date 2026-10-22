@@ -11,6 +11,7 @@ import jakarta.validation.constraints.Size;
 import java.time.Instant;
 import java.util.UUID;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,6 +32,7 @@ class PickupApi {
     record JoinRequest(@NotBlank @Size(min = 43, max = 43) String inviteToken,
                        @NotBlank @Size(max = 12) String displayName) { }
     record ReadinessRequest(@NotNull Pickup.Readiness readiness, @Positive long sequence) { }
+    record VehicleInvalidation(@Positive long sequence) { }
     record VehicleRequest(@NotNull @DecimalMin("-90") @DecimalMax("90") Double latitude,
                           @NotNull @DecimalMin("-180") @DecimalMax("180") Double longitude,
                           @NotNull @PositiveOrZero Long durationSeconds,
@@ -90,6 +92,13 @@ class PickupApi {
     VehicleState vehicle(@PathVariable UUID id, @RequestHeader(value = "Authorization", required = false) String auth,
                          @Valid @RequestBody VehicleRequest request) {
         return pickupService.updateVehicle(id, auth, request);
+    }
+
+    @DeleteMapping(value = "/{id}/vehicle-state", consumes = "application/json")
+    VehicleState invalidateVehicle(@PathVariable UUID id,
+                                  @RequestHeader(value = "Authorization", required = false) String auth,
+                                  @Valid @RequestBody VehicleInvalidation request) {
+        return pickupService.invalidateVehicle(id, auth, request.sequence());
     }
 
     @GetMapping("/{id}/vehicle-state")

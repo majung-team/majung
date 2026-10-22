@@ -49,6 +49,26 @@ SDK의 에뮬레이터 콜백을 받은 사실과 실제 도로에서 ETA 정확
 
 ## 재현
 
+### 진단 앱을 직접 실행할 때
+
+`probe`는 SDK 응답을 살펴보는 진단 앱이다. 픽업 서비스를 연결하려면 [차량 앱 실행 안내](vehicle-pickup.md)를 따른다.
+
+```sh
+./gradlew :probe:assembleDebug
+adb install -r probe/build/outputs/apk/debug/probe-debug.apk
+adb shell am start -n app.majung.probe/.MainActivity
+```
+
+공식 Pleos AVD를 실행한 뒤 앱에서 `SDK 연결`, `현재 위치·목적지·경로 조회`를 차례로 누른다.
+초기 조회는 연결 직후에도 한 번 실행한다. 에뮬레이터에서 예제 목적지로 경로를 설정한 뒤 위치와 ETA 응답을 확인한다.
+`connected`, `location`, `driving`은 별개의 성공 조건이다. 빌드·연결 성공을 데이터 수신 성공으로 기록하지 않는다.
+
+화면을 내려도 Application 리스너는 유지하지만 화면 갱신 타이머는 멈춘다.
+이 앱은 조회를 자동 반복하지 않으며 OS 프로세스 종료 이후의 수신을 보장하지 않는다.
+주기적으로 SDK·서버를 조회하는 `vehicle` 앱과 동작을 구분한다.
+
+### 자동 시험
+
 ```sh
 ./gradlew :probe:assembleDebug :probe:assembleDebugAndroidTest
 adb install -r probe/build/outputs/apk/debug/probe-debug.apk
@@ -62,6 +82,21 @@ adb shell am instrument --user "$PROBE_USER" -w -r \
 `receiveEtaForOfficialExampleRoute`는 공개된 예제 목적지로 내비게이션 경로를 바꾼다. 에뮬레이터에서만 실행하도록 제한했다.
 같은 시험에 `-e poiMode empty`를 추가하면 빈 POI ID 요청을 확인한다.
 백그라운드 조회 시험 이름은 `receiveLocationAfterActivityStops`다.
+
+### 로그 추출
+
+이벤트는 기기 내부 `files/navi-events.jsonl`에 기록한다. 2MB를 넘으면 이전 파일 하나를 남기고 새로 기록한다.
+`probe`는 로그를 별도 서버로 보내지 않는다. `vehicle`의 승인 후 전송은 [차량 정보 연동](vehicle-telemetry.md)에 설명했다.
+
+```sh
+mkdir -p evidence/private
+PROBE_USER=$(adb shell am get-current-user | tr -d '\r')
+adb exec-out run-as app.majung.probe --user "$PROBE_USER" cat files/navi-events.jsonl > evidence/private/navi-events.jsonl
+python3 tools/summarize_events.py evidence/private/navi-events.jsonl
+```
+
+좌표·주소가 들어갈 수 있으므로 원본 로그는 Git·노션·시연 자료에 올리지 않는다.
+수동 조회 결과도 위치 이벤트 간격에 포함되므로 요약 값을 SDK 자동 갱신 주기로 해석하지 않는다.
 
 ## 원본 근거
 

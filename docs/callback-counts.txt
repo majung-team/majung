@@ -1,0 +1,10 @@
+Records: 60
+Gaps include manual query responses; they are not a guaranteed automatic update cadence.
+connected: 4
+connection_failed: 0
+location: 8
+driving: 3
+route_state: 11
+navi_error: 0
+location gaps (ms): min=72, median=3875.5, max=8576
+driving gaps (ms): min=6908, median=6908, max=6908

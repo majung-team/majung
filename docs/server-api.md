@@ -196,3 +196,10 @@ H2와 Hibernate 자동 스키마 갱신은 로컬 개발용이다. 외부 배포
 `GET /api/v1/pickups/{id}/vehicle-state` 응답에는 `validForMillis`가 포함된다.
 서버에서 계산한 남은 유효 시간(ms)이며, 정보가 없거나 만료됐다면 0이다. 웹은 왕복 시간을 차감하고 이 시간이 지나면 위치·ETA를 숨긴다.
 서버와 함께 제공하는 웹의 사용 방법은 [탑승자 웹 연결](web-integration.md)을 참고한다.
+
+## 차량 정보 무효화
+
+`DELETE /api/v1/pickups/{id}/vehicle-state`에 운전자 토큰과 `{"sequence": 2}`처럼 증가 순서를 보낸다.
+승인된 픽업의 차량 위치·ETA를 지우되 마지막 순서는 유지한다. 이전 위치 전송·이전 삭제 요청은 409로 거절하며 종료·만료 뒤에는 410을 반환한다.
+삭제 응답은 `freshness=WAITING`, 위치·ETA null, `validForMillis=0`이며 사용된 순서를 반환한다. 같은 순서 재요청은 이미 삭제된 경우에만 허용한다.
+앱은 SDK 해제·경로 변경·수신 정보 만료 때 이 요청을 사용한다. 실제 동작·통신 단절 시 한계는 [차량 정보 연동](vehicle-telemetry.md)에 정리했다.

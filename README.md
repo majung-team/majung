@@ -1,121 +1,85 @@
 # 마중
 
-가족·지인 픽업에서 만날 장소와 준비 상태를 맞추는 차량용 앱 프로젝트.
+가족·지인을 데리러 갈 때 반복하는 “어디야?”, “지금 내려갈까?” 같은 연락을 줄이기 위한 차량용 앱이다.
+운전자는 차량에서 탑승자의 준비 상태를 보고, 탑승자는 초대 링크로 약속 장소와 도착까지 남은 시간을 확인한다.
 
-차량 화면에서는 탑승자의 준비 상태를 보고, 탑승자는 휴대전화로 약속 장소와 도착 예정 시간을 확인하는 서비스를 만들고 있다.
+현재 **차량 앱 → 로컬 서버 → 탑승자 웹**을 연결했다. 차량 내비게이션에서 선택한 목적지로 픽업을 만들고,
+운전자가 참여자를 승인하면 SDK에서 받은 위치·예상 시간을 웹에 표시한다. 탑승자는 이름으로 참여하며 좌표를 입력하지 않는다.
 
-현재는 **Pleos SDK 확인용 Android 앱**, **조작 가능한 화면 초안**, **픽업 기본 API 서버**, **API와 연결한 탑승자 웹**을 구현했다.
-차량 내비게이션의 선택 장소로 픽업을 만드는 기능도 로컬에서 연결했다.
-차량 위치·ETA를 서버로 전송해 탑승자 웹에 표시하는 흐름도 에뮬레이터에서 확인했다.
-외부 배포·실제 휴대전화 검증·탑승자용 네이티브 앱은 아직 진행하지 않았다.
+## 실제 연결 화면
 
-![차량과 탑승자의 준비 완료 화면 — 예시 데이터](docs/media/03-ready.png)
+![SDK 정보 수신과 연결 해제 후 이전 정보 숨김](docs/media/sdk-web-flow.gif)
 
-## 처음 보는 분께
+공식 Pleos 에뮬레이터와 로컬 서버를 연결한 시험 화면이다. 정상 수신 시 위치·예상 시간을 표시하고,
+SDK 연결을 해제하면 웹의 다음 조회에서 이전 정보를 숨긴다.
+GIF는 **실제 캡처 2장을 4초 간격으로 반복**한 자료다. 연속 녹화나 실차 주행 영상은 아니다.
 
-- [기여·커밋·PR 규칙](CONTRIBUTING.md): 커밋 형식과 개발 환경 최초 설정
-- [차량 위치·ETA 연동](docs/vehicle-telemetry.md): 전송·무효화·재연결과 실제 SDK 연동 캡처
-- [차량에서 픽업 만들기](docs/vehicle-pickup.md): 내비게이션 장소 조회·생성·참여 승인과 에뮬레이터 시험
-- [탑승자 웹 연결](docs/web-integration.md): 참여·승인·준비 상태·종료와 개발용 운전자 화면
-- [픽업 서버 API](docs/server-api.md): 로컬 실행, 권한, 요청·응답과 검증 결과
-- [프로젝트 안내](docs/wiki/README.md): 서비스 목적, 구현 범위, 다음 작업
-- [실행 화면과 따라 하기](docs/demo-guide.md): 화면 캡처 6개와 조작 순서
-- [사용 흐름](docs/product-flow.md): 초대부터 공유 종료까지
-- [SDK 확인 결과](docs/sdk-verification.md): 에뮬레이터에서 확인한 내용과 남은 시험
-- [상태·권한·데이터 초안](docs/state-and-data.md): 다음 서버 구현의 기준
+<details>
+<summary>원본 캡처 보기</summary>
 
-## 구성
+승인 후 SDK 위치·예상 시간 표시, 탑승자 준비 완료 저장:
 
-- `vehicle/`: 내비게이션 선택 장소로 픽업 생성·참여 승인·준비 상태 조회·취소를 확인하는 개발용 차량 앱
-- `probe/`: NaviHelper 3.0.5 연결, 위치·목적지·경로 조회, 주행·도착 콜백 기록
-- `web/`: 실제 픽업 API를 사용하는 탑승자 웹·개발용 운전자 확인 화면
-- `server/`: 별도 Gradle 프로젝트. Java + Spring Boot 픽업 API, JPA·로컬 H2 저장
-- `design/prototype/`: 차량·운전자 휴대전화·탑승자 웹의 조작 가능한 화면 초안. 예시 데이터만 사용
-- `docs/`: 실행 조건, 시험 기록
-- `tools/`: 로그 수집·요약 도구
-- `evidence/private/`: 로컬 실행 근거. 위치가 포함될 수 있어 Git에서 제외
+![SDK 정보를 표시하는 탑승자 웹](docs/media/sdk-web-live.png)
 
-팀 기획·검증 현황: [마중 노션](https://app.notion.com/p/401de2e676c28037a1f0d1dbe6cf1288)
+SDK 연결 해제 후 이전 위치·예상 시간 숨김:
 
-## 화면 흐름 살펴보기
+![SDK 연결 해제 후 탑승자 웹](docs/media/sdk-web-hidden.png)
 
-프로젝트 루트에서 실행한 뒤 `http://127.0.0.1:4173/`을 연다.
+</details>
 
-```sh
-python3 -m http.server 4173 --bind 127.0.0.1 --directory design/prototype
-```
+## 현재 되는 것과 남은 것
 
-실제 SDK·서버·지도와 연결되지 않은 초안이다. 상단의 ‘장면 설정’으로 주행·연결·도착 상황을 바꿔볼 수 있다.
-휴대전화 영역은 ‘운전자 휴대전화’와 ‘탑승자’ 탭으로 구분했다.
-사용 흐름은 [product-flow.md](docs/product-flow.md), 상태·권한·데이터 초안은 [state-and-data.md](docs/state-and-data.md)를 참고한다.
+| 구분 | 현재 상태 |
+| --- | --- |
+| 차량 앱 | 내비게이션 목적지로 픽업 생성, 참여 승인, SDK 위치·예상 시간 전송, 준비 상태 조회, 취소 |
+| 탑승자 웹 | 링크 참여, 승인 후 장소·차량 정보 확인, 준비 상태 변경, 공유 종료 안내 |
+| 서버 | 픽업별 토큰 권한, 초대 만료·철회, 오래된 정보 숨김, 종료 후 접근 차단. 도착·완료 API도 구현 |
+| 차량 화면의 도착·탑승 완료 | 아직 연결 전. 개발용 운전자 웹에서는 API 흐름 확인 가능 |
+| 외부 HTTPS·실제 휴대전화 | 아직 배포·시험 전 |
+| 지도·장소 변경·탑승자 앱 | 후속 개발 |
 
-```sh
-node --test design/prototype/model.test.js
-```
+현재 범위는 차량 1대·픽업 1건·탑승자 1명이다. 위치·예상 시간은 에뮬레이터 SDK 응답이며 실제 도로에서 정확도를 검증하지 않았다.
+차량 앱은 주차 상태에서 연결을 시험하는 개발 화면이다. 주행 중 UI 허용 여부·실차·장시간 백그라운드 공유도 검증 전이다.
 
-## 픽업 서버 실행
+최근 검증은 서버 HTTP 14개, 차량 단위 8개, 웹·초안 모델 13개 테스트 통과다.
+실제 SDK·로컬 API·브라우저를 연결해 값 일치, 해제·재연결, 준비 상태 전달과 취소를 확인했다.
+상세 조건과 재현 방법은 [차량 정보 연동 기록](docs/vehicle-telemetry.md)에 있다.
+
+## 로컬에서 실행하기
+
+처음 참여했다면 [기여 가이드](CONTRIBUTING.md)에 따라 Node.js 22 이상과 커밋 훅을 준비한다.
+Android·서버 빌드에는 JDK 25를 사용하며 Java 바이트코드 대상은 17이다.
+Android Studio, SDK API 34, Build Tools 36.0.0과 공식 Pleos Connect 2.1.0 ARM64 에뮬레이터가 필요하다.
+개인 SDK 경로는 커밋하지 않는 `local.properties`의 `sdk.dir`에 설정한다.
 
 ```sh
+npm ci
 ./gradlew -p server bootRun
 ```
 
-기본 주소는 `http://127.0.0.1:8080`이다. 다른 터미널에서 `python3 tools/smoke_pickup_server.py`를 실행하면
-예시 데이터로 픽업 생성부터 공유 종료까지 확인할 수 있다. 토큰은 출력하지 않는다.
-같은 주소에서 API에 연결된 웹을 열 수 있다. 차량 앱도 SDK 위치·ETA를 같은 API로 전송한다. 기존 예시 화면 초안은 별도로 유지한다.
-자세한 사용 순서는 [웹 안내](docs/web-integration.md), 실행·시험 방법은 [서버 안내](docs/server-api.md)에 있다.
+`http://127.0.0.1:8080/`에서 API에 연결한 웹을 연다.
+차량 없이 웹 흐름만 확인하려면 ‘운전자 확인 화면’에서 픽업을 만들고 초대를 새 탭으로 연다.
+실제 SDK 연결은 에뮬레이터에서 내비게이션 목적지를 선택한 뒤 [차량 앱 실행 안내](docs/vehicle-pickup.md)를 따른다.
 
-## 개발 환경
+현재 서버·초대 주소는 **같은 Mac에서 시험하는 로컬 설정**이다. 실제 휴대전화로 접속할 외부 주소는 아직 없다.
+개발용 생성 화면에는 계정 인증·요청 제한이 없으므로 외부 공개 전 HTTPS·인증·저장소·삭제 정책을 준비해야 한다.
 
-Android Studio와 Android SDK API 34, Build Tools 36.0.0, JDK 25.
-프로젝트의 Gradle daemon JVM은 25로 고정하고 앱의 Java 바이트코드 대상은 17로 설정했다.
-Gradle 9.6.0 / Android Gradle Plugin 9.4.1. AGP의 내장 Kotlin 지원을 사용한다.
-Pleos Connect 2.1.0 ARM64 에뮬레이터를 실행 대상으로 사용한다.
+## 개발 문서
 
-`local.properties`에는 각 개발자의 `sdk.dir`을 설정한다. 이 파일은 커밋하지 않는다.
+| 문서 | 내용 |
+| --- | --- |
+| [차량 앱 실행](docs/vehicle-pickup.md) | APK 설치, 내비게이션 장소 조회, 픽업 생성·승인 |
+| [SDK 위치·예상 시간 연동](docs/vehicle-telemetry.md) | 전송·무효화·재연결, 화면 갱신 수정, 시험 결과 |
+| [탑승자 웹](docs/web-integration.md) | 참여·준비 상태·세션 처리, 개발용 운전자 화면 |
+| [서버 API](docs/server-api.md) | 실행·권한·요청·응답·만료·오류 처리 |
+| [전체 개발 문서](docs/wiki/README.md) | 기획, 예시 화면, SDK 진단 기록과 상세 설계 목차 |
+| [기여 가이드](CONTRIBUTING.md) | 이슈·브랜치·커밋·PR 규칙 |
 
-```sh
-./gradlew :probe:assembleDebug
-adb install -r probe/build/outputs/apk/debug/probe-debug.apk
-adb shell am start -n app.majung.probe/.MainActivity
-```
+`vehicle/`은 차량 앱, `server/`는 Spring Boot·JPA·로컬 H2 서버, `web/`은 API와 연결한 웹이다.
+`probe/`는 SDK 진단용 앱으로 따로 유지한다. `design/prototype/`은 예시 데이터만 사용하는 초기 화면이며 실제 연동 화면과 구분한다.
 
-Android Studio에서 이 폴더를 열어도 된다. SDK는 공식 Pleos Maven 저장소에서 받으며 저장소에 SDK 바이너리를 복사해 배포하지 않는다.
+토큰·초대 링크 원문·개인 위치·원본 로그는 커밋하거나 시연 캡처에 넣지 않는다.
+로컬 원본 근거는 Git에서 제외한 `evidence/private/`에 보관한다. SDK·에뮬레이터 바이너리도 저장소에 포함하지 않는다.
 
-## 확인 순서
-
-1. Pleos AVD를 cold boot로 실행한다. 일반 휴대전화 에뮬레이터와 구분한다.
-2. 확인용 앱에서 `SDK 연결`을 누르고 성공·실패를 확인한다.
-3. `현재 위치·목적지·경로 조회`를 한 번 누른다. 초기 요청도 연결 직후 한 번 실행된다.
-4. 차량 내비게이션에서 경로 안내를 시작한다. 에뮬레이터로 식별되는 환경에는 공식 문서의 예제 목적지를 요청하는 버튼도 표시된다.
-5. `driving` 이벤트의 `destination.duration`과 위치 수신 간격을 기록한다.
-6. 내비게이션과 화면을 나눠 쓰거나 앱을 백그라운드로 보낸 후 이벤트가 계속 오는지 확인한다.
-7. 경로 변경·취소·연결 해제를 확인한다. `SDK 연결`은 자동으로 누르지 않는다.
-
-앱이 화면에서 사라져도 Application의 리스너는 유지하되, 화면 갱신용 타이머는 멈춘다.
-OS가 프로세스를 종료했을 때까지 수신을 보장하는 구현은 아니다. 이 조건 자체가 검증 대상이다.
-조회 요청을 자동으로 반복하지 않으므로 자동 수신 간격과 수동 조회 결과를 구분할 수 있다.
-
-## 기록과 개인정보
-
-이벤트는 기기 내부 `files/navi-events.jsonl`에 저장한다. 2MB를 넘으면 이전 파일 하나를 보관하고 새 파일에 기록한다.
-좌표·주소가 포함될 수 있어 실제 사용자 위치로 시험한 로그는 공개하지 않는다. `probe` 앱은 별도 서버로 전송하지 않는다. `vehicle` 앱의 승인 후 전송은 [차량 정보 연동](docs/vehicle-telemetry.md)에서 구분해 설명한다.
-
-```sh
-mkdir -p evidence/private
-PROBE_USER=$(adb shell am get-current-user | tr -d '\r')
-adb exec-out run-as app.majung.probe --user "$PROBE_USER" cat files/navi-events.jsonl > evidence/private/navi-events.jsonl
-python3 tools/summarize_events.py evidence/private/navi-events.jsonl
-```
-
-`connected`, `location`, `driving`은 서로 다른 성공 조건이다. 연결 성공이나 빌드 성공을 위치·예상 시간 수신 성공으로 기록하지 않는다.
-에뮬레이터의 실제 SDK 콜백도 실제 도로에서 검증했다는 의미는 아니다.
-조회 요청으로 받은 위치 이벤트도 간격 요약에 포함된다. 이 값을 자동 위치 스트림의 갱신 주기라고 해석하지 않는다.
-
-## 공식 자료
-
-- [SDK 의존성](https://document.pleos.ai/docs/pleos-only/connect-sdk-pleos/NaviHelper/importing-sdk)
-- [SDK 초기화](https://document.pleos.ai/docs/pleos-only/connect-sdk-pleos/NaviHelper/initialization-and-release)
-- [이벤트 리스너](https://document.pleos.ai/docs/pleos-only/connect-sdk-pleos/NaviHelper/event-listeners)
-- [에뮬레이터 설치](https://document.pleos.ai/docs/connect/guide/getting-started/application-development/setup-connect-sdk-emulator)
-
-실행 결과는 `docs/sdk-verification.md`와 노션의 `03 SDK 검증과 실행 결과`에 남긴다.
+팀 기획과 진행 현황은 [마중 노션](https://app.notion.com/p/401de2e676c28037a1f0d1dbe6cf1288)에 정리한다.
+다음 작업은 차량 화면의 도착·탑승 완료 연결, 전체 흐름 녹화, [외부 HTTPS·실제 휴대전화 검증](https://github.com/majung-team/majung/issues/7)이다.

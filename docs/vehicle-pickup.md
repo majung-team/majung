@@ -28,6 +28,19 @@ adb install -r vehicle/build/outputs/apk/androidTest/debug/vehicle-debug-android
 
 공식 Pleos 에뮬레이터에서 ‘마중 차량 개발’을 연다.
 
+### Android Studio 밖의 별도 창으로 실행
+
+macOS에서는 **Android Studio → Settings → Tools → Emulator**에서
+**Launch in the Running Devices tool window**를 해제한다.
+실행 중인 에뮬레이터를 종료한 뒤 Device Manager에서 Pleos AVD를 다시 실행하면 별도 창으로 열린다.
+화면을 어디에 띄우는지 정하는 설정이며, 앱 빌드 설정은 아니다.
+[Android 공식 안내](https://developer.android.com/studio/run/emulator-launch-separate-window)
+
+APK 빌드만으로 에뮬레이터와 앱이 실행되지는 않는다. AVD를 켠 뒤 Android Studio의 실행 모듈을 `vehicle`로 선택하고 Run하거나,
+위 명령으로 설치한 뒤 에뮬레이터의 앱 목록에서 ‘마중 차량 개발’을 연다.
+
+### 픽업 한 건 확인
+
 1. 내비게이션에서 목적지를 고른다.
 2. 마중에서 ‘내비게이션 연결’을 누르고 장소 이름을 확인한다.
 3. 조회 후 30초가 지나거나 화면을 떠났다면 목적지를 다시 확인한다.

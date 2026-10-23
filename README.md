@@ -8,14 +8,20 @@
 
 ## 실제 연결 화면
 
+[![픽업 전체 흐름 시연 영상 미리보기](docs/media/pickup-demo-poster.png)](docs/media/pickup-demo.mp4)
+
+**[전체 흐름 시연 영상 · MP4](docs/media/pickup-demo.mp4)** — 생성 → 참여 → 승인 → 준비 완료 → 도착 → 탑승 완료·공유 종료.
+공식 에뮬레이터의 차량 녹화와 탑승자 웹 화면을 함께 편집한 약 45초의 무음 영상이다.
+실제 주행이나 외부 HTTPS·휴대전화 시험은 아니다. [촬영 범위와 재현 방법](docs/pickup-demo.md)을 함께 확인한다.
+
+<details>
+<summary>연결 해제 비교 GIF와 원본 캡처</summary>
+
 ![SDK 정보 수신과 연결 해제 후 이전 정보 숨김](docs/media/sdk-web-flow.gif)
 
 공식 Pleos 에뮬레이터와 로컬 서버를 연결한 시험 화면이다. 정상 수신 시 위치·예상 시간을 표시하고,
 SDK 연결을 해제하면 웹의 다음 조회에서 이전 정보를 숨긴다.
 GIF는 **실제 캡처 2장을 4초 간격으로 반복**한 자료다. 연속 녹화나 실차 주행 영상은 아니다.
-
-<details>
-<summary>원본 캡처 보기</summary>
 
 승인 후 SDK 위치·예상 시간 표시, 탑승자 준비 완료 저장:
 
@@ -70,6 +76,7 @@ npm ci
 | --- | --- |
 | [차량 앱 실행](docs/vehicle-pickup.md) | APK 설치, 내비게이션 장소 조회, 픽업 생성·승인 |
 | [차량 도착·탑승 완료](docs/vehicle-completion.md) | 확인 창, 공유 유지·종료, 전체 흐름 검증과 캡처 |
+| [전체 흐름 시연](docs/pickup-demo.md) | 영상, 촬영 범위·한계, 다시 촬영하는 방법 |
 | [SDK 위치·예상 시간 연동](docs/vehicle-telemetry.md) | 전송·무효화·재연결, 화면 갱신 수정, 시험 결과 |
 | [탑승자 웹](docs/web-integration.md) | 참여·준비 상태·세션 처리, 개발용 운전자 화면 |
 | [서버 API](docs/server-api.md) | 실행·권한·요청·응답·만료·오류 처리 |
@@ -83,4 +90,4 @@ npm ci
 로컬 원본 근거는 Git에서 제외한 `evidence/private/`에 보관한다. SDK·에뮬레이터 바이너리도 저장소에 포함하지 않는다.
 
 팀 기획과 진행 현황은 [마중 노션](https://app.notion.com/p/401de2e676c28037a1f0d1dbe6cf1288)에 정리한다.
-다음 작업은 전체 흐름 녹화와 [외부 HTTPS·실제 휴대전화 검증](https://github.com/majung-team/majung/issues/7)이다.
+다음 작업은 배포에 필요한 접근 제한·저장소 준비와 [외부 HTTPS·실제 휴대전화 검증](https://github.com/majung-team/majung/issues/7)이다.

@@ -65,4 +65,4 @@ adb shell am instrument --user "$VEHICLE_USER" -w -r \
 
 `arriveAndCompletePickupFromVehicleScreen`은 차량 버튼·확인 창을 통해 진행하고, `createPickupFromNavigationAndApprovePassenger`는 기존 SDK·취소 흐름을 확인한다.
 공개 예제만 사용하는 로컬 시험에서 `-e captureEvidence true`를 추가하면 앱 내부에 `vehicle-arrived.png`·`vehicle-completed.png`를 저장한다.
-기본 시험은 이미지를 남기지 않는다. 자동 화면 캡처는 연속 시연 영상과 다르며, 전체 흐름 녹화와 HTTPS·실제 휴대전화 시험은 다음 단계다.
+기본 시험은 이미지를 남기지 않는다. 이 페이지의 자동 캡처와 별도로 [전체 흐름 시연 영상](pickup-demo.md)을 촬영했다. HTTPS·실제 휴대전화 시험은 다음 단계다.

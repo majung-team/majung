@@ -181,6 +181,9 @@ HTTP는 `PickupController`의 단일 worker에서 실행하고 결과를 메인 
 | [pickup/ApiException.java](../server/src/main/java/app/majung/server/pickup/ApiException.java), [ApiErrorHandler.java](../server/src/main/java/app/majung/server/pickup/ApiErrorHandler.java) | 오류를 code·message·requestId 형식으로 반환 |
 | [application.properties](../server/src/main/resources/application.properties) | 로컬 바인딩, H2 연결, 초대·픽업·차량 값 유효 시간 |
 
+배포 준비 코드도 같은 pickup 패키지에 있다. `DeploymentPolicy`는 생성 키와 시작 설정, `ClientConfigurationApi`는 개발 도구 허용 여부,
+`ApiRateLimitFilter`는 실제 접속 IP별 요청 제한, `PickupRetentionJob`은 보관 기간이 지난 행의 삭제를 맡는다.
+
 작은 첫 버전이라 참여자와 최신 차량 값을 별도 테이블로 나누지 않고 픽업 한 행에 묶었다.
 `PickupService`의 트랜잭션과 `findLockedById()`의 행 잠금으로 같은 픽업 변경을 직렬화한다.
 `@Version`도 있지만 Redis 분산 락을 사용하는 구조는 아니다. 여러 서버·다중 탑승자 확장은 별도 검증이 필요하다.
@@ -214,8 +217,9 @@ HTTP는 `PickupController`의 단일 worker에서 실행하고 결과를 메인 
 DB에는 토큰 원문 대신 해시를 저장한다. 이 방식만으로 차량·사람의 신원이 검증되는 것은 아니다.
 
 **공유 종료와 DB 행 삭제는 다르다.** 완료·취소 시 최신 차량 값과 초대 해시는 지우고 장소는 응답에서 숨기지만,
-DB의 장소·참여자·기록 전체를 삭제하는 작업은 아직 없다. 보관 기간·정리 작업은 외부 배포 전 결정해야 한다.
-현재는 HTTPS·계정/차량 인증·요청 제한·운영 DB·백그라운드 공유를 갖춘 서비스 배포 상태가 아니다.
+로컬 기본 실행은 행을 계속 보관한다. deploy 프로필은 종료·만료 후 기본 24시간이 지난 행 전체를 5분마다 정리한다.
+보관 기간은 초기 시험 기준이며 백업 보관은 별도다. 생성 키·요청 제한과 PostgreSQL 배포 설정도 [서버 배포 준비](server-deployment.md)에 정리했다.
+GCP·HTTPS·계정/차량 인증·실제 운영 DB·백그라운드 공유까지 검증된 배포 상태는 아니다.
 
 ## 7. 읽는 순서와 수정할 위치
 

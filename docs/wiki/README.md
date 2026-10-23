@@ -39,6 +39,7 @@
 8. [상태·권한·데이터 설계 초안](../state-and-data.md)
 9. [차량 도착·탑승 완료와 검증](../vehicle-completion.md)
 10. [전체 픽업 흐름 시연 영상과 촬영 범위](../pickup-demo.md)
+11. [외부 접속 전 서버 배포 준비](../server-deployment.md): 생성 키·요청 제한·보관 정리·DB·백업
 
 처음 실행할 때는 저장소 루트의 [README](../../README.md)를 참고한다.
 팀에서 논의할 범위·결정·공식 근거는 [마중 노션](https://app.notion.com/p/401de2e676c28037a1f0d1dbe6cf1288)에 모아둔다.

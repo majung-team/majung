@@ -49,14 +49,18 @@ class PickupApi {
                         Instant sourceTime, Instant receivedAt, long sequence, long validForMillis) { }
 
     private final PickupService pickupService;
+    private final DeploymentPolicy deploymentPolicy;
 
-    PickupApi(PickupService pickupService) {
+    PickupApi(PickupService pickupService, DeploymentPolicy deploymentPolicy) {
         this.pickupService = pickupService;
+        this.deploymentPolicy = deploymentPolicy;
     }
 
     @PostMapping(consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
-    Created create(@Valid @RequestBody CreateRequest request) {
+    Created create(@Valid @RequestBody CreateRequest request,
+                   @RequestHeader(value = "X-Majung-Creation-Key", required = false) String creationKey) {
+        deploymentPolicy.requireCreationKey(creationKey);
         return pickupService.createPickup(request.place());
     }
 

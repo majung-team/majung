@@ -2,7 +2,7 @@
 
 https://github.com/user-attachments/assets/3090606c-4212-4439-8da4-d6c45c02e819
 
-[MP4 원본 다운로드](media/pickup-demo.mp4)
+[MP4 원본 다운로드](https://github.com/majung-team/majung/raw/refs/heads/main/docs/media/pickup-demo.mp4)
 
 차량에서 픽업을 만들고 탑승자가 참여한 뒤, 승인·준비 완료·도착·탑승 완료까지 진행한 약 45초의 무음 편집본이다.
 실제 앱의 버튼·확인 창과 실제 SDK·로컬 서버를 사용했다. 예전의 캡처 2장 반복 GIF와는 다른 자료다.

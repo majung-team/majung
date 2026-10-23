@@ -36,7 +36,7 @@ https://github.com/user-attachments/assets/3090606c-4212-4439-8da4-d6c45c02e819
 
 약 45초, 무음. 생성 → 참여 → 승인 → 준비 완료 → 도착 → 탑승 확인까지 담았습니다.
 공식 Pleos 에뮬레이터·로컬 API·웹으로 촬영한 분리 전 영상입니다. 이후 추가한 재실행 복구·화면 밖 공유는 영상에 없습니다.
-[촬영 환경](docs/pickup-demo.md) · [MP4 원본 다운로드](docs/media/pickup-demo.mp4)
+[촬영 환경](docs/pickup-demo.md) · [MP4 원본 다운로드](https://github.com/majung-team/majung/raw/refs/heads/main/docs/media/pickup-demo.mp4)
 
 <details>
 <summary>SDK 연결 중단 전·후 화면 보기</summary>

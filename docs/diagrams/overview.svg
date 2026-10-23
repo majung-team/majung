@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1320" height="570" viewBox="0 0 1320 570" role="img" aria-labelledby="title desc">
+<title id="title">마중 · 서비스 구성</title><desc id="desc">차량 SDK의 정보와 탑승자 준비 상태를 서버 API로 전달</desc>
+<defs><marker id="arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0 0 L10 4 L0 8 Z" fill="#526673"/></marker></defs>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<g font-family="'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif">
+<text x="44" y="48" font-size="25" font-weight="700" fill="#173d35">마중 · 서비스 구성</text>
+<text x="44" y="79" font-size="15" fill="#546570">차량 SDK의 정보와 탑승자 준비 상태를 서버 API로 전달</text>
+<path d="M280 260 H365" fill="none" stroke="#526673" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="322" y="241" text-anchor="middle" font-size="14" fill="#3e535f" stroke="#ffffff" stroke-width="6" paint-order="stroke">SDK</text>
+<path d="M605 235 H700" fill="none" stroke="#526673" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="652" y="213" text-anchor="middle" font-size="14" fill="#3e535f" stroke="#ffffff" stroke-width="6" paint-order="stroke">차량 정보</text>
+<path d="M700 290 H605" fill="none" stroke="#526673" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="652" y="341" text-anchor="middle" font-size="14" fill="#3e535f" stroke="#ffffff" stroke-width="6" paint-order="stroke">준비 상태</text>
+<path d="M940 235 H1035" fill="none" stroke="#526673" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="987" y="213" text-anchor="middle" font-size="14" fill="#3e535f" stroke="#ffffff" stroke-width="6" paint-order="stroke">조회 응답</text>
+<path d="M1035 290 H940" fill="none" stroke="#526673" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="987" y="341" text-anchor="middle" font-size="14" fill="#3e535f" stroke="#ffffff" stroke-width="6" paint-order="stroke">참여 · 준비</text>
+<path d="M820 320 V440" fill="none" stroke="#526673" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="880" y="391" text-anchor="middle" font-size="14" fill="#3e535f" stroke="#ffffff" stroke-width="6" paint-order="stroke">JPA 저장·조회</text>
+<rect x="40" y="200" width="240" height="120" rx="12" fill="#f3f8f5" stroke="#afc9be" stroke-width="1.5"/>
+<text x="160.0" y="232" text-anchor="middle" font-size="19" font-weight="700" fill="#173d35">Pleos NaviHelper</text>
+<text x="160.0" y="260" text-anchor="middle" font-size="14" fill="#3e535f">목적지 · 현재 위치</text>
+<text x="160.0" y="283" text-anchor="middle" font-size="14" fill="#3e535f">도착까지 남은 시간</text>
+<rect x="365" y="200" width="240" height="120" rx="12" fill="#f3f8f5" stroke="#afc9be" stroke-width="1.5"/>
+<text x="485.0" y="232" text-anchor="middle" font-size="19" font-weight="700" fill="#173d35">차량 앱</text>
+<text x="485.0" y="260" text-anchor="middle" font-size="14" fill="#3e535f">Android Automotive</text>
+<text x="485.0" y="283" text-anchor="middle" font-size="14" fill="#3e535f">픽업 생성 · 승인 · 공유</text>
+<rect x="700" y="200" width="240" height="120" rx="12" fill="#f3f8f5" stroke="#afc9be" stroke-width="1.5"/>
+<text x="820.0" y="232" text-anchor="middle" font-size="19" font-weight="700" fill="#173d35">백엔드 API</text>
+<text x="820.0" y="260" text-anchor="middle" font-size="14" fill="#3e535f">Spring Boot · HTTP</text>
+<text x="820.0" y="283" text-anchor="middle" font-size="14" fill="#3e535f">권한 · 상태 · 순번 검사</text>
+<rect x="1035" y="200" width="245" height="120" rx="12" fill="#f3f8f5" stroke="#afc9be" stroke-width="1.5"/>
+<text x="1157.5" y="232" text-anchor="middle" font-size="19" font-weight="700" fill="#173d35">탑승자 웹</text>
+<text x="1157.5" y="260" text-anchor="middle" font-size="14" fill="#3e535f">휴대전화 브라우저</text>
+<text x="1157.5" y="283" text-anchor="middle" font-size="14" fill="#3e535f">참여 · 조회 · 준비 상태</text>
+<rect x="700" y="440" width="240" height="90" rx="12" fill="#f3f8f5" stroke="#afc9be" stroke-width="1.5"/>
+<text x="820.0" y="472" text-anchor="middle" font-size="19" font-weight="700" fill="#173d35">DB</text>
+<text x="820.0" y="500" text-anchor="middle" font-size="14" fill="#3e535f">로컬 H2 / 배포 PostgreSQL</text>
+</g></svg>

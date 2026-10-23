@@ -4,15 +4,7 @@
 
 ## 서비스 구성
 
-```mermaid
-flowchart LR
-    SDK["Pleos NaviHelper"] -->|"목적지 · 위치 · 남은 시간"| Car["차량 앱 · Android Automotive"]
-    Car -->|"픽업 생성 · 승인 · 차량 정보 · 종료"| API["백엔드 · Spring Boot"]
-    API -->|"참여 요청 · 준비 상태"| Car
-    Web["탑승자 웹"] -->|"참여 · 준비 상태 변경"| API
-    API -->|"픽업 상태 · 장소 · 차량 정보"| Web
-    API <-->|"JPA"| DB[("DB")]
-```
+![서비스 구성](diagrams/overview.svg)
 
 차량과 웹은 API를 거쳐 상태를 주고받는다. WebSocket·SSE·Redis는 사용하지 않는다.
 위치와 ETA는 차량 SDK에서 받고 서버는 권한·순번·유효 시간을 검사해 저장한다. 서버가 경로나 ETA를 다시 계산하지는 않는다.
@@ -22,22 +14,7 @@ flowchart LR
 
 ## 차량 앱 내부
 
-```mermaid
-flowchart TB
-    App["VehicleApplication · 공통 객체 보유"] --> UI["MainActivity · 화면 생명주기 · 권한"]
-    App --> Reader["DestinationReader · NaviHelper 연결"]
-    App --> Controller["PickupController · 상태 · API 요청"]
-    UI --> Sections["생성 · 참여 · 상태 · 완료 화면"]
-    UI -->|"진행 중 픽업 · 위치 권한 허용"| FGS["PickupSharingService · location FGS"]
-    FGS -->|"5초 조회"| Reader
-    Reader --> Telemetry["VehicleTelemetry · 최신 위치와 ETA 묶기"]
-    Telemetry --> Controller
-    FGS -->|"서버 상태 조회 · heartbeat"| Controller
-    Controller --> Store["EncryptedPickupSessionStore · 암호화 파일"]
-    Store --> Key["Android Keystore · 암호화 키"]
-    Controller --> Client["PickupApiClient · HTTP worker"]
-    Controller -->|"화면 콜백 · 서비스 관찰자"| UI
-```
+![차량 앱 내부 구조](diagrams/vehicle.svg)
 
 ### 화면을 내렸을 때
 
@@ -51,16 +28,11 @@ flowchart TB
 
 ### 앱 프로세스가 종료됐을 때
 
-```mermaid
-flowchart TD
-    Open["앱 다시 실행"] --> Load["암호화된 픽업 접근 정보 읽기"]
-    Load --> Check["운전자 토큰으로 서버 상태 확인"]
-    Check -->|"ACTIVE · ARRIVED"| Ask["이전 픽업 계속하기 / 픽업 취소"]
-    Ask -->|"계속하기"| Fresh["SDK 재연결 · 새 자료 수신 후 전송"]
-    Ask -->|"취소"| End["서버 픽업 종료"]
-    Check -->|"종료 · 접근 거절"| Clear["접근 정보 삭제 · 재개 안 함"]
-    Check -->|"일시적 통신 오류"| Retry["저장 유지 · 상태 조회 재시도"]
-```
+1. 앱을 다시 실행하면 암호화된 접근 정보로 서버 상태를 확인한다.
+2. 진행 중이면 ‘이전 픽업 계속하기’ 또는 ‘픽업 취소’를 선택한다.
+3. 계속하기를 누른 뒤 SDK에 다시 연결하고 새 자료로 전송한다.
+4. 이미 종료됐거나 접근을 거절당하면 저장 정보를 삭제한다.
+5. 일시적인 통신 오류면 저장 정보를 유지하고 상태 조회를 재시도한다.
 
 저장하는 값은 픽업 ID·운전자 토큰·유효한 초대 토큰·마지막 전송 순번이다. 위치·ETA는 파일에 저장하지 않는다.
 AES-GCM으로 암호화해 백업 제외 경로에 쓰고 키는 Android Keystore에서 관리한다. 다음 순번은 HTTP 요청 전에 저장한다.
@@ -133,12 +105,10 @@ Spring Boot JAR에서 웹 파일을 함께 제공하던 통합 버전과 달리,
 별도 VM 시험 구성에는 저장소에 아직 반영하지 않은 파일도 있다. 준비된 VM과 분리 저장소 main의 배포 완성을 같은 상태로 보지 않는다.
 공개할 때는 HTTPS로 웹과 API를 연결해야 한다. 아래는 현재 배포가 아니라 남은 연결 구성이다.
 
-```mermaid
-flowchart LR
-    Browser["휴대전화 브라우저"] -.->|"미연결 · HTTPS"| Proxy["웹 · reverse proxy"]
-    Car["차량 앱"] -.->|"미연결 · HTTPS API"| Proxy
-    Proxy -.->|"내부 API"| API["백엔드"]
-    API --> DB[("PostgreSQL")]
+```text
+휴대전화 웹·차량 앱 ── HTTPS ── 웹·reverse proxy ── 내부 API ── PostgreSQL
+                         ↑
+                  도메인·HTTPS 연결 전
 ```
 
 ## 현재 검증과 남은 범위
@@ -149,3 +119,5 @@ flowchart LR
 - 실차 주행·시동 OFF/ON·플랫폼 심사·공개 HTTPS·실제 휴대전화 시험은 남아 있다.
 
 [분리 전 아키텍처](archive/integrated-architecture.md)는 이전 폴더·실행 구조를 확인하는 기록이다.
+
+그림은 `tools/render_architecture.py`로 다시 생성할 수 있다.

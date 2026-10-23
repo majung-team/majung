@@ -6,7 +6,7 @@
 | 기록 | 내용 |
 | --- | --- |
 | [당시 README와 실행 안내](integrated-readme.md) | 통합 버전의 구성, 실행 명령, 확인했던 시험 |
-| [당시 작동 원리와 코드 구조](../architecture.md) | 통합 폴더 구조와 주요 파일·API 흐름 |
+| [당시 작동 원리와 코드 구조](integrated-architecture.md) | 통합 폴더 구조와 주요 파일·API 흐름 |
 | [차량 SDK 연동 기록](../vehicle-telemetry.md) | 목적지·위치·ETA, 해제·재연결 검증 |
 | [도착·탑승 완료](../vehicle-completion.md) | 수동 확인 흐름과 캡처 |
 | [이전 상세 문서 목차](../wiki/README.md) | 초기 기획·예시 화면·SDK 진단 |

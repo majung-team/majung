@@ -3,9 +3,11 @@
 ## 서비스와 시연을 먼저 보려면
 
 - [서비스 소개·사용 흐름·전체 구조](../README.md)
-- [전체 흐름 시연 영상](media/pickup-demo.mp4)
+- [시연 영상 재생](pickup-demo.md)
 - [영상 촬영 조건과 재현 방법](pickup-demo.md)
 - [제출 자료 안내](submission-guide.md)
+
+- [상세 아키텍처](architecture.md): 차량 서비스·복구·암호화 저장, 서버·웹 구조와 배포 준비
 
 ## 개발에 참여하려면
 

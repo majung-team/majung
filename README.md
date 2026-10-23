@@ -1,5 +1,12 @@
 # 마중
 
+> **개발 저장소 분리 안내**
+> 차량 앱은 [majung-vehicle-app](https://github.com/majung-team/majung-vehicle-app), 서버는 [majung-backend](https://github.com/majung-team/majung-backend), 휴대전화 웹은 [majung-web](https://github.com/majung-team/majung-web)에서 작업한다.
+> 독립 실행 설정은 각 저장소의 분리 PR을 병합한 뒤 사용한다. 이 저장소의 코드는 이전 통합 시연과 커밋 이력을 확인하기 위해 보존한다.
+> [개정 명세 분석·기능별 차이·역할과 작업 순서](docs/revised-plan.md)를 기준으로 다음 작업을 진행한다. 아래 실행 안내와 영상은 분리 전 통합 버전의 기록이다.
+
+
+
 가족·지인을 데리러 갈 때 반복하는 “어디야?”, “지금 내려갈까?” 같은 연락을 줄이기 위한 차량용 앱이다.
 운전자는 차량에서 탑승자의 준비 상태를 보고, 탑승자는 초대 링크로 약속 장소와 도착까지 남은 시간을 확인한다.
 

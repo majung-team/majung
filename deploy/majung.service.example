@@ -1,0 +1,22 @@
+[Unit]
+Description=Majung pickup API
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=majung
+Group=majung
+WorkingDirectory=/opt/majung
+EnvironmentFile=/etc/majung/server.env
+ExecStart=/usr/bin/java -jar /opt/majung/majung-server.jar
+Restart=on-failure
+RestartSec=5
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+
+[Install]
+WantedBy=multi-user.target

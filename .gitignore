@@ -11,3 +11,7 @@ evidence/private/
 node_modules/
 .husky/_/
 server/data/
+.env
+deploy/*.env
+backups/
+*.dump

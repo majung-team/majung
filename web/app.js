@@ -43,6 +43,7 @@ let pendingReadiness = null;
 let manualLink = false;
 let showedVehicle = false;
 let renderedMarkup = "";
+let developmentToolsEnabled = false;
 const draft = { name: "", label: "", latitude: "", longitude: "" };
 const readinessText = {
   WAITING: "아직 준비 중이에요",
@@ -93,11 +94,12 @@ function home() {
     <h1>기다림을<br />같은 약속으로.</h1><p>초대 링크를 열면 만날 장소와 도착 정보를 확인하고,<br class="desktop" /> 준비 상태를 운전자에게 전할 수 있어요.</p></section>
     <section class="card"><span class="badge">탑승자 안내</span><h2>초대 링크로 참여해요.</h2>
     <p>운전자에게 받은 링크를 열어주세요.<br />참여 요청을 확인한 뒤 위치 공유가 시작돼요.</p></section>
-    <section class="dev-card"><h2>운전자 확인 화면</h2><p>현재는 차량 앱 연결을 준비하는 개발 단계예요.<br />이 브라우저에서 약속을 만들고 탑승자 참여를 확인할 수 있어요.</p>
-    ${button("픽업 준비하기", "prepare", true)}</section>`;
+    ${developmentToolsEnabled ? `<section class="dev-card"><h2>운전자 확인 화면</h2><p>차량 없이 API를 확인하는 개발용 화면이에요.<br />이 브라우저에서 약속을 만들고 탑승자 참여를 확인할 수 있어요.</p>
+    ${button("픽업 준비하기", "prepare", true)}</section>` : ""}`;
 }
 
 function createForm() {
+  if (!developmentToolsEnabled) return home();
   return `<section class="intro small"><p class="eyebrow">운전자 · 개발 확인용</p><h1>만날 장소를<br />정해주세요.</h1><p>개발 확인을 위한 임시 입력 화면이에요.<br />차량 앱에서는 내비게이션에서 선택한 장소로 약속을 만들어요.</p></section>
     <form id="create-form" class="card"><label for="place-label">만날 장소<input id="place-label" name="label" required maxlength="120" value="${e(draft.label)}" placeholder="예: 역 앞 공영주차장" /></label>
     <div class="input-pair"><label for="latitude">위도<input id="latitude" name="latitude" type="number" min="-90" max="90" step="any" required value="${e(draft.latitude)}" placeholder="37.0" /></label>
@@ -328,6 +330,7 @@ root.addEventListener("submit", async (event) => {
   if (!form.reportValidity() || busy) return;
   const fields = new FormData(form);
   if (form.id === "create-form") {
+    if (!developmentToolsEnabled) return;
     draft.label = fields.get("label").trim();
     draft.latitude = fields.get("latitude");
     draft.longitude = fields.get("longitude");
@@ -404,6 +407,7 @@ root.addEventListener("click", async (event) => {
   const target = event.target.closest("[data-action]");
   if (!target || busy || target.disabled) return;
   const action = target.dataset.action;
+  if (action === "prepare" && !developmentToolsEnabled) return;
   if (["home", "prepare"].includes(action)) {
     finished = null;
     message = "";
@@ -524,3 +528,17 @@ setInterval(() => {
 }, 3000);
 render();
 if (session) void refresh();
+// Start closed: a failed configuration read must not expose the development form.
+void fetch("/api/v1/config", {
+  cache: "no-store",
+  credentials: "omit",
+  redirect: "error",
+  referrerPolicy: "no-referrer",
+  signal: AbortSignal.timeout(8000),
+}).then(async (response) => {
+  if (response.ok) {
+    const configuration = await response.json();
+    developmentToolsEnabled = configuration.developmentToolsEnabled === true;
+    render();
+  }
+}).catch(() => { /* Invitation access remains available without development tools. */ });

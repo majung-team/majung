@@ -9,6 +9,10 @@
 
 - [상세 아키텍처](architecture.md): 차량 서비스·복구·암호화 저장, 서버·웹 구조와 배포 준비
 
+## 이번에 정한 사용 흐름
+
+[픽업 시작 방식과 대기 요청](pickup-request-flow.md): 운전자 초대·탑승자 요청, 30분 미응답 만료, 순서 대기, 본인 ETA 표시와 알림 검증 범위.
+
 ## 개발에 참여하려면
 
 - [차량 앱](https://github.com/majung-team/majung-vehicle-app): 실행·SDK·화면 구조·토큰 복구·서비스 시험

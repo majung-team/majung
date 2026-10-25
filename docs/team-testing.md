@@ -11,6 +11,8 @@
 | https://majung.cloud/api/v1/health | 서버 상태. `status`가 `UP`인지 확인한다. `revision`은 배포된 서버 커밋이다. |
 | https://majung.cloud/release.json | 배포된 웹 커밋 확인. 서버와 별도 저장소라 커밋 값이 다른 게 정상이다. |
 
+Swagger 화면은 아직 붙이지 않았다. 요청 주소와 입력값은 맨 아래 서버 API 문서를 참고한다.
+
 서버에 SSH로 접속하지 않아도 기능을 시험할 수 있다. GCP 권한이나 관리자 키는 탑승자·운전자 테스트에 필요 없다. 관리자 키는 서버에만 둔다. 위 주소는 마중 전용이며 플리플리 주소와 다르다.
 
 ## 지금 되는 것과 새 버전에서 확인할 것
@@ -60,9 +62,17 @@ sdk.dir=/각자/설치한/Android/sdk
 ./gradlew :vehicle:assembleDebug -PpickupApi=https://majung.cloud
 adb devices
 adb install -r vehicle/build/outputs/apk/debug/vehicle-debug.apk
+adb shell am start --user current -n app.majung.vehicle/.MainActivity
 ```
 
 `adb`를 찾지 못하면 Android SDK의 `platform-tools` 경로를 PATH에 추가한다. 장치가 둘 이상이면 `adb -s 장치이름 install -r ...`처럼 시험할 장치를 지정한다. 처음부터 앱 데이터 삭제나 에뮬레이터 초기화를 하지 않는다.
+
+Android Studio 밖에서 에뮬레이터를 띄우려면 SDK의 `emulator` 명령으로 설치된 AVD를 확인한 뒤 해당 이름으로 실행한다. Android Studio의 Device Manager에서 실행해도 같은 장치다.
+
+```sh
+emulator -list-avds
+emulator -avd "확인한 Pleos AVD 이름" -no-snapshot-save
+```
 
 공개 서버 시험에서는 `-PpickupApi=https://majung.cloud`를 빼지 않는다. 기본 debug 빌드는 개발 PC의 로컬 서버를 가리킨다. 휴대전화의 `localhost`는 개발 PC나 GCP 서버가 아니다.
 

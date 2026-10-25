@@ -1,6 +1,6 @@
 # 팀 테스트 안내
 
-회의 때 이 문서를 열어두고 위에서부터 확인하면 된다. 2026년 10월 25일 기준이며, 새 기능 코드는 main에 반영됐다. 시험 전에 아래 서버·웹 배포가 끝났는지 확인한다.
+회의 때 이 문서를 열어두고 위에서부터 확인하면 된다. 2026년 10월 25일 기준이며, 새 기능 코드는 main에 반영됐다. 서버·웹 배포 성공과 공개 health·로그인 전 접근 차단을 확인했다. 시험할 때도 아래 배포 커밋을 먼저 확인한다.
 
 ## 먼저 열어볼 주소
 
@@ -134,6 +134,7 @@ emulator -avd "확인한 Pleos AVD 이름" -no-snapshot-save
 | 사이트가 열리지 않음 | 휴대전화 데이터 연결, 정확한 HTTPS 주소, health 응답 |
 | health는 UP인데 새 버튼이 없음 | 웹 PR의 배포 성공과 release.json 확인, 새로고침 |
 | 웹은 바뀌었는데 요청이 404·준비 중으로 나옴 | 서버 PR이 먼저 배포됐는지 확인 |
+| 서버 배포 뒤 로그인이 풀림 | 다시 로그인. 저장된 차량 등록을 지우거나 새 코드를 입력할 필요는 없음 |
 | 차량 앱만 연결 안 됨 | 공개 서버 주소로 빌드했는지, 차량 등록 상태, 인터넷 연결 |
 | 차량 미연결이라 요청 불가 | 운전자가 카카오 계정 연결을 차량에서 승인했는지 확인 |
 | 같은 이름이 여러 명 | 닉네임만 보고 누르지 말고 마중 ID 확인 |
@@ -168,3 +169,5 @@ emulator -avd "확인한 Pleos AVD 이름" -no-snapshot-save
 실제 휴대전화의 QR 스캔·GPS·브라우저 권한, 새 요청 장소를 SDK 경로에 반영하는 전체 흐름, 실제 두 카카오 계정의 새 요청 흐름은 회의에서 확인할 항목이다. 로컬·에뮬레이터 결과가 실차 검증을 대신하지는 않는다.
 
 [서버 API와 상태](https://github.com/majung-team/majung-backend/blob/main/docs/ride-requests.md) · [차량 사용 방법](https://github.com/majung-team/majung-vehicle-app/blob/main/docs/vehicle-account-requests.md) · [휴대전화 화면](https://github.com/majung-team/majung-web/blob/main/docs/account-connections.md)
+
+[공개 주소·배포 커밋·로그인 전 접근 차단 확인 기록](evidence/requests-deploy-2026-10-25.json). 이 확인만으로 실제 휴대전화의 전체 픽업 시험까지 완료했다고 보지는 않는다.

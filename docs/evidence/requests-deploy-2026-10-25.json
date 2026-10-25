@@ -1,0 +1,16 @@
+{
+  "checkedOn": "2026-10-25",
+  "origin": "https://majung.cloud",
+  "backendRevision": "91c0ca8e9d47b618c122dab9ad01be85cbe7bd6d",
+  "webRevision": "d5002096ec93a64c1c4e92da5723bf6af365ee40",
+  "httpStatus": {
+    "/account": 200,
+    "/api/v1/health": 200,
+    "/release.json": 200,
+    "/api/v1/ride-requests": 401,
+    "/api/v1/vehicle-links": 401,
+    "/api/v1/vehicles/account-link": 401,
+    "/api/v1/admin/vehicle-registration-codes": 404
+  },
+  "scope": "Public health, static page and unauthenticated access boundaries only. New pickup with real accounts and phone GPS not tested here."
+}

@@ -12,7 +12,7 @@
 <path d="M700 290 H605" fill="none" stroke="#526673" stroke-width="2" marker-end="url(#arrow)"/>
 <text x="652" y="341" text-anchor="middle" font-size="14" fill="#3e535f" stroke="#ffffff" stroke-width="6" paint-order="stroke">준비 상태</text>
 <path d="M940 235 H1035" fill="none" stroke="#526673" stroke-width="2" marker-end="url(#arrow)"/>
-<text x="987" y="213" text-anchor="middle" font-size="14" fill="#3e535f" stroke="#ffffff" stroke-width="6" paint-order="stroke">조회 응답</text>
+<text x="987" y="213" text-anchor="middle" font-size="14" fill="#3e535f" stroke="#ffffff" stroke-width="6" paint-order="stroke">SSE · 재조회</text>
 <path d="M1035 290 H940" fill="none" stroke="#526673" stroke-width="2" marker-end="url(#arrow)"/>
 <text x="987" y="341" text-anchor="middle" font-size="14" fill="#3e535f" stroke="#ffffff" stroke-width="6" paint-order="stroke">참여 · 준비</text>
 <path d="M820 320 V440" fill="none" stroke="#526673" stroke-width="2" marker-end="url(#arrow)"/>

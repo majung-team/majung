@@ -6,7 +6,7 @@
 
 ![서비스 구성](diagrams/overview.svg)
 
-차량과 웹은 API를 거쳐 상태를 주고받는다. WebSocket·SSE·Redis는 사용하지 않는다.
+차량과 웹은 API를 거쳐 상태를 주고받는다. 웹은 SSE로 변경 신호를 받고 최신 상태를 다시 조회한다. WebSocket·Kafka·Redis는 사용하지 않는다.
 위치와 ETA는 차량 SDK에서 받고 서버는 권한·순번·유효 시간을 검사해 저장한다. 서버가 경로나 ETA를 다시 계산하지는 않는다.
 
 기존 초대는 차량 QR → 운전자 휴대전화 공유 → 탑승자 참여 순서다. 링크의 첫 참여자는 별도 승인 없이 연결되고 차량에서 연결을 끊을 수 있다. 새 방식에서는 로그인한 탑승자가 운전자를 검색해 장소와 함께 요청하고 차량에서 수락한다. 운전자 계정은 최초 한 번 차량에 연결하며, 탑승자는 차량 QR이 없어도 요청한다. 별도 탑승자 네이티브 앱은 아직 개발하지 않는다.
@@ -70,6 +70,7 @@ majung-backend/
     MajungServerApplication.java
     pickup/
       PickupApi.java              HTTP 경로·입력·응답
+      PickupEventsApi.java / PickupEventStreams.java  인증된 SSE 변경 신호
       PickupService.java          권한·상태·순번·시각 검사
       Pickup.java                 픽업·참여자·최신 차량 정보
       PickupRepository.java       저장·조회·행 잠금
@@ -83,7 +84,8 @@ majung-backend/
 
 majung-web/
   index.html / style.css          화면·스타일
-  app.js                         참여·준비 상태·주기 조회
+  app.js                         참여·준비 상태·픽업 화면
+  stream.js                      SSE 변경 신호·재연결·조회 복구
   model.js                       화면 상태·만료 판단
   api.js                         API 요청
   account.html / account.js      로그인·검색·차량 연결·마중 요청
@@ -134,3 +136,9 @@ DB·카카오 키·관리자 권한은 서버 환경변수로 관리한다. Acti
 [분리 전 아키텍처](archive/integrated-architecture.md)는 이전 폴더·실행 구조를 확인하는 기록이다.
 
 그림은 `tools/render_architecture.py`로 다시 생성할 수 있다.
+
+## 실시간 갱신과 장소 변경
+
+웹은 SSE 변경 신호를 받으면 기존 인증 API로 최신 상태를 읽는다. 스트림에 좌표나 토큰을 넣지 않는다. 서버는 현재 DB를 약 1초마다 비교한다. 이벤트 브로커를 사용하는 구조는 아니다. 연결 중에도 참여 권한과 로그인 세션을 확인하며, 종료·연결 해제 시 스트림을 닫는다. 웹은 연결이 끊기면 기존 조회 방식으로 복귀한다.
+
+장소는 제안과 확정을 구분한다. 차량이 새 경로의 장소와 ETA를 확인하고 확정하면 서버가 장소 버전을 올리고 이전 차량 정보를 지운다. 새 버전과 맞지 않는 위치·ETA·도착 요청은 거절한다. 웹도 장소와 차량 정보의 버전이 다르면 표시하지 않는다.

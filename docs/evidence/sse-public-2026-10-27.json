@@ -1,0 +1,10 @@
+{
+  "result": "passed",
+  "revision": "93e59f6917e94fb9721e359724787549dcebe9b7",
+  "publicHttpsSse": true,
+  "readinessChanged": true,
+  "endedAccessClosed": true,
+  "syntheticFixture": true,
+  "fixturePickupCancelled": true,
+  "fixtureVehicleRevoked": true
+}

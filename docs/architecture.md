@@ -13,7 +13,7 @@
 
 공개 웹과 API는 `https://majung.cloud`를 사용한다. Caddy가 정적 웹을 제공하고 `/api/`를 Spring Boot로 전달한다. 웹·서버 main은 각각 Actions로 배포하고, 차량 APK는 따로 빌드·설치한다.
 
-새 요청은 `RideRequest`에 저장한다. 차량이 수락한 순서대로 대기에 넣고, 자기 차례에 기존 `Pickup`으로 연결해 준비 상태·SDK 공유·도착·완료를 사용한다. 차량 한 대에 한 운전자 계정이라는 기준과 여러 탑승자의 요청 수는 별개다.
+직접 초대는 차량이 연결된 사람에게 보내며, 탑승자가 웹에서 수락해야 대기열에 들어간다. 새 초대·요청은 `RideRequest`에 저장한다. 상대가 수락한 순서대로 대기에 넣고, 자기 차례에 기존 `Pickup`으로 연결해 준비 상태·SDK 공유·도착·완료를 사용한다. 차량 한 대에 한 운전자 계정이라는 기준과 여러 탑승자의 요청 수는 별개다.
 
 [서버 요청 구조](https://github.com/majung-team/majung-backend/blob/main/docs/ride-requests.md) · [차량 계정·요청 화면](https://github.com/majung-team/majung-vehicle-app/blob/main/docs/vehicle-account-requests.md) · [팀 테스트 안내](team-testing.md)
 

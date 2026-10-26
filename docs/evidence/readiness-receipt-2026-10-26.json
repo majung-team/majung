@@ -1,0 +1,15 @@
+{
+  "publicHttps": true,
+  "vehicleController": true,
+  "readyReceived": true,
+  "physicalCar": false,
+  "driverRead": false,
+  "result": "passed",
+  "date": "2026-10-26",
+  "serverRevision": "a1762584144642f81a35a36cf2845e24d375c305",
+  "webRevision": "77643c29a5755626afbbe97e6c0ed9906f43e0b4",
+  "webConfirmedReceived": true,
+  "newReadinessReturnedToPending": true,
+  "fixtureCancelled": true,
+  "fixtureVehicleRevoked": true
+}

@@ -171,3 +171,15 @@ emulator -avd "확인한 Pleos AVD 이름" -no-snapshot-save
 [서버 API와 상태](https://github.com/majung-team/majung-backend/blob/main/docs/ride-requests.md) · [차량 사용 방법](https://github.com/majung-team/majung-vehicle-app/blob/main/docs/vehicle-account-requests.md) · [휴대전화 화면](https://github.com/majung-team/majung-web/blob/main/docs/account-connections.md)
 
 [공개 주소·배포 커밋·로그인 전 접근 차단 확인 기록](evidence/requests-deploy-2026-10-25.json). 이 확인만으로 실제 휴대전화의 전체 픽업 시험까지 완료했다고 보지는 않는다.
+
+## 연결된 탑승자 직접 초대 시험
+
+서버 PR #18 → 웹 PR #17 → 차량 PR #29를 반영한 뒤 확인한다. 서버 배포 전 DB 컬럼 적용 여부를 확인한다.
+
+1. 두 사람이 `/account`에서 로그인하고 서로 연결 요청·수락을 마친다. 운전자만 차량 계정을 연결한다.
+2. 차량에서 내비 장소를 확인하고 ‘연결된 탑승자에게 초대 보내기’로 상대를 선택한다.
+3. 탑승자는 같은 `/account`의 받은 초대에서 장소를 확인하고 수락한다. 수락 전 차량 위치가 보이지 않아야 한다.
+4. 차량에서 대기 목록을 확인한다. 다른 픽업이 진행 중이면 기존 픽업 뒤에 들어가야 한다.
+5. 앞선 픽업을 마친 뒤 초대한 사람의 픽업을 시작하고 공유를 확인한다.
+
+QR을 다시 찍지 않는 흐름이다. 웹을 닫아둔 동안에는 초대 알림이 오지 않는다. 아직 공개 서버에서 이 새 흐름을 시험한 상태는 아니다.

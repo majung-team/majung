@@ -23,3 +23,11 @@
 [웹 PR #30](https://github.com/majung-team/majung-web/pull/30) · [화면과 사용 방법](https://github.com/majung-team/majung-web/blob/main/docs/pickup-place-selection.md)
 
 실제 카카오 SDK와 로컬 가상 계정에서 선택 전 전송 차단·핀 표시·설명 입력을 확인했다. 웹 자동 시험 36건을 통과했다. 장소 키워드 검색, 진행 중 픽업의 장소 변경, 실차 주행 검증까지 끝낸 것은 아니다.
+
+## 장소명·주소로 찾기
+
+장소명·주소를 적고 검색한 뒤 이름과 주소를 확인해 선택한다. 선택하면 지도 핀이 이동하고 장소 이름이 설명란에 들어간다. 정문·주차장 입구 등의 설명을 보완하고 별도 요청 버튼을 누른다. 첫 결과를 자동으로 고르거나 검색만으로 요청을 보내지 않는다.
+
+[웹 PR #32](https://github.com/majung-team/majung-web/pull/32) · [화면과 사용 방법](https://github.com/majung-team/majung-web/blob/main/docs/pickup-place-selection.md)
+
+실제 카카오 SDK의 장소명·도로명 주소 결과와 선택을 확인했다. 검색 요청은 입력 중이 아니라 검색 버튼을 눌렀을 때만 보낸다. 검색 결과 없음·서비스 실패·8초 초과·폼을 닫은 뒤 도착한 응답을 처리했다. 자동 시험은 41건 통과했다. 운영 보안 정책에 검색 API의 실제 호스트를 추가해 지도만 보이고 검색은 실패하는 문제도 확인했다.

@@ -24,7 +24,7 @@
 
 응답 대기는 30분이다. 수락하면 기존 순차 픽업 대기열에 들어가며, 내 픽업이 시작되기 전까지 위치는 공개하지 않는다. 현재 픽업이 끝나도 다음 픽업을 자동 시작하지 않는다. 사람 연결·차량 계정 연결이 해제된 대기 초대는 사용할 수 없다.
 
-2026년 10월 26일 서버 [PR #18](https://github.com/majung-team/majung-backend/pull/18)·웹 [PR #17](https://github.com/majung-team/majung-web/pull/17)·차량 [PR #29](https://github.com/majung-team/majung-vehicle-app/pull/29)로 구현·검증했다. 아직 병합·배포 전이다. 서버 배포 전 추가 컬럼 적용이 필요하다.
+2026년 10월 26일 서버 [PR #18](https://github.com/majung-team/majung-backend/pull/18)·웹 [PR #17](https://github.com/majung-team/majung-web/pull/17)·차량 [PR #29](https://github.com/majung-team/majung-vehicle-app/pull/29)로 구현·검증했다. 세 구현 PR은 main에 반영됐고 서버·웹 배포를 확인했다. 마중 DB의 추가 컬럼도 적용했다. 차량은 새 APK를 설치해야 한다.
 
 탑승자 웹을 닫아둔 동안의 푸시 알림은 아직 없다. 화면을 열어두면 10초마다 초대 상태를 확인한다.
 

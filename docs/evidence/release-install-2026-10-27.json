@@ -1,0 +1,15 @@
+{
+  "version": "0.2.0-preview",
+  "versionCode": 2,
+  "sourceRevision": "72c5c3eedd5d7b345f03ae9c3da87e3a2fd9250f",
+  "apkSha256": "89eeac82429d0d6e1df8532a1766a5d218f07e41e88857665147698e81235700",
+  "signatureV2Verified": true,
+  "debuggable": false,
+  "cleartextTraffic": false,
+  "freshPleosAvd": true,
+  "installResult": "Success",
+  "coldLaunchStatus": "ok",
+  "existingDevelopmentAvdModified": false,
+  "registeredWithProduction": false,
+  "realVehicleTested": false
+}

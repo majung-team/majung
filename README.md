@@ -94,5 +94,6 @@ SDK 정상 연결 상태와 연결 해제 후 이전 정보가 숨겨지는 화�
 두 명의 엔지니어가 차량·웹·서버 전 영역을 기능별로 분담하여 애자일하게 개발하고 있습니다.
 
 - [기능별 개발 계획 및 역할 분담](docs/revised-plan.md)
+- [담당별 남은 개발·실기기 검증](docs/remaining-work.md)
 - [기여 가이드 (CONTRIBUTING.md)](CONTRIBUTING.md)
 - [제출 자료 종합 안내](docs/submission-guide.md)

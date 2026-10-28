@@ -44,7 +44,7 @@ DB는 마중 전용 서버에서 백업 후 새 테이블 3개와 실행 권한�
 
 ## 차량 앱 설치
 
-바로 시험하려면 [서명된 차량 APK](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.11-preview.20261028)를 받는다. [설치와 최초 설정](wiki/차량-앱-설치.md)에 따라 설치한다. 직접 빌드하려는 경우 아래 방법을 사용한다.
+바로 시험하려면 [서명된 차량 APK](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.12-preview.20261029)를 받는다. [설치와 최초 설정](wiki/차량-앱-설치.md)에 따라 설치한다. 직접 빌드하려는 경우 아래 방법을 사용한다.
 
 Android Studio가 필요한 건 빌드·에뮬레이터 준비 단계다. 설치한 앱은 에뮬레이터의 앱 목록에서 직접 실행할 수 있다.
 

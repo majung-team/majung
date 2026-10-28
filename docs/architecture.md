@@ -1,6 +1,6 @@
 # 마중 아키텍처
 
-기본 픽업 공유 구조는 유지한다. 2026-10-25 추가한 계정 연결·마중 요청은 아래 구성과 각 개발 저장소의 문서를 함께 본다.
+2026-10-28 기준. 계정·QR 최초 연결·요청 대기·직접 초대·장소 변경·SSE를 포함한다. 반영 근거는 [개발 현황](development-status.md)에 정리했다.
 
 ## 서비스 구성
 
@@ -50,7 +50,10 @@ AES-GCM으로 암호화해 백업 제외 경로에 쓰고 키는 Android Keystor
 | 파일 | 역할 |
 | --- | --- |
 | `VehicleApplication.kt` | reader·controller 생성, 암호화 저장소 연결과 최초 복구 |
-| `MainActivity.kt` | 화면 생명주기, 권한 요청, 서비스 시작과 복구 확인 |
+| `MainActivity.kt` | 화면 생명주기·메뉴 전환·권한·복구. 계정 조회 시 해당 영역만 갱신 |
+| `VehicleViews.kt` | 버튼·입력·팝업 공통 표시와 조작 제한 |
+| `VehicleAccountController.kt` / `VehicleAccountSection.kt` | 운전자 계정·요청·사람 연결·새로고침 |
+| `RequestPickupFlow.kt` | 요청 장소 경로 준비·검증·시작 확인 |
 | `PickupCreationSection.kt` / `PickupParticipantSection.kt` | 생성·초대·참여 승인 |
 | `PickupStatusSection.kt` / `PickupCompletionSection.kt` | 상태 표시·도착·완료·취소 |
 | `PickupSharingService.kt` | 화면 밖 SDK 조회·전송·종료 감지 |

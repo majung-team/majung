@@ -28,7 +28,7 @@ PR 작성자가 승준이라는 이유만으로 포함된 성모 코드를 승�
 | 주행 제한·음성 | 승준 | [vehicle-app #19](https://github.com/majung-team/majung-vehicle-app/pull/19) · [vehicle-app #30](https://github.com/majung-team/majung-vehicle-app/pull/30) · [vehicle-app #32](https://github.com/majung-team/majung-vehicle-app/pull/32) | 에뮬레이터 제한 전환 확인. 실제 스피커·통화 우선순위·실차 미확인 |
 | 자동 종료·파기 | 승준 | [backend #21](https://github.com/majung-team/majung-backend/pull/21) | 도착/무활동 30분·12시간 상한, 종료 7일 뒤 파기. 익명 집계 별도 |
 | GCP·자동 배포 | 초기 성모 분담, 실제 운영 승준 | [backend #9](https://github.com/majung-team/majung-backend/pull/9) · [web #7](https://github.com/majung-team/majung-web/pull/7) | 전용 VM·PostgreSQL·Caddy. 재시작 배포이며 무중단 아님 |
-| 화면·팝업·새로고침 | 승준 | [vehicle-app #54](https://github.com/majung-team/majung-vehicle-app/pull/54) · [vehicle-app #61](https://github.com/majung-team/majung-vehicle-app/pull/61) · [vehicle-app #63](https://github.com/majung-team/majung-vehicle-app/pull/63) · [vehicle-app #65](https://github.com/majung-team/majung-vehicle-app/pull/65) · [web #61](https://github.com/majung-team/majung-web/pull/61) | 0.2.10-preview. 시험 서버·에뮬레이터 UI 결과와 실기기 구분 |
+| 화면·팝업·새로고침 | 승준 | [vehicle-app #54](https://github.com/majung-team/majung-vehicle-app/pull/54) · [vehicle-app #61](https://github.com/majung-team/majung-vehicle-app/pull/61) · [vehicle-app #63](https://github.com/majung-team/majung-vehicle-app/pull/63) · [vehicle-app #65](https://github.com/majung-team/majung-vehicle-app/pull/65) · [vehicle-app #69](https://github.com/majung-team/majung-vehicle-app/pull/69) · [web #61](https://github.com/majung-team/majung-web/pull/61) | 0.2.11-preview. 시험 서버·에뮬레이터 UI 결과와 실기기 구분 |
 
 ## 지금 남은 것
 

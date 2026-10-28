@@ -8,7 +8,7 @@
 ## 먼저 사용해 보려면
 
 - 휴대전화: [majung.cloud/account](https://majung.cloud/account)에서 카카오 로그인
-- 차량: [서명 APK 0.2.12-preview](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.12-preview.20261029)를 공식 Pleos 에뮬레이터에 설치
+- 차량: [최근 서명 APK](https://github.com/majung-team/majung-vehicle-app/releases)를 공식 Pleos 에뮬레이터에 설치
 - 처음 한 번 차량 QR을 운전자 휴대전화로 열고, 차량에서 본인 계정을 확인
 - 탑승자는 별도 앱을 설치하지 않는다. 마중 SDK 확인 앱은 개발 진단용이며 일반 이용에 필요 없다.
 

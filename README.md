@@ -67,12 +67,13 @@ SDK 내비 취소 후 안내가 유지되는 [차량 이슈 #56](https://github.
 현재는 송승준이 개발·검증·배포를 이어간다. 초기 성모·승준 분담과 성모가 작성한 코드는
 [개발 현황](docs/development-status.md)에 기여 이력으로 남겼다.
 
-## 이전 시연 기록
+## 시연 영상 · 10월 29일
 
-https://github.com/user-attachments/assets/3090606c-4212-4439-8da4-d6c45c02e819
+https://github.com/user-attachments/assets/7f3cfe17-2eab-4dba-a717-89d402aa45bb
 
-약 45초의 초기 로컬 시연이다. 현재 차량 UI·자동 참여·사람 검색·대기열 전체를 보여주는 최신 영상은 아니다.
-[촬영 환경](docs/pickup-demo.md) · [최신 흐름 촬영 순서](docs/demo-script.md)
+링크 참여 → SDK ETA → 준비 완료 → 수동 도착 → 탑승 완료를 약 41초로 담았다.
+시험용 픽업을 로컬 API로 미리 만든 영상이며, 실차·실제 휴대전화 시연은 아니다.
+[촬영 조건과 재현 방법](docs/pickup-demo.md) · [추가 촬영 순서](docs/demo-script.md)
 
 [남은 작업](docs/remaining-work.md) · [기여 규칙](CONTRIBUTING.md) · [제출 안내](docs/submission-guide.md)
 

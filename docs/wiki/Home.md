@@ -18,3 +18,7 @@
 코드 구조와 운영 확인은 [아키텍처](../architecture.md), [배포 확인](../runtime-2026-10-29.md), [개발 규칙](../../CONTRIBUTING.md)을 참고한다.
 
 현재 개발은 승준이 혼자 이어간다. 초기 기여와 실제 반영은 [개발 현황과 PR 근거](../development-status.md)를 본다.
+
+## 최신 시연
+
+[10월 29일 영상과 촬영 조건](https://github.com/majung-team/majung/blob/main/docs/pickup-demo.md): 링크 참여·SDK ETA·준비 완료·수동 도착·탑승 완료, 약 41초. 로컬 시험이며 실제 휴대전화 시연은 아니다.

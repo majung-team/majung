@@ -1,75 +1,78 @@
-# 픽업 전체 흐름 시연 · 2026-10-23
+# 픽업 시연 · 2026-10-29
 
-https://github.com/user-attachments/assets/3090606c-4212-4439-8da4-d6c45c02e819
+https://github.com/user-attachments/assets/7f3cfe17-2eab-4dba-a717-89d402aa45bb
 
-[MP4 원본 다운로드](https://github.com/majung-team/majung/raw/refs/heads/main/docs/media/pickup-demo.mp4)
+약 41초의 무음 영상이다. GitHub에서 위 영상의 재생 버튼을 누르면 볼 수 있다.
+[MP4 다운로드](media/pickup-demo-20261029.mp4)
 
-차량에서 픽업을 만들고 탑승자가 참여한 뒤, 승인·준비 완료·도착·탑승 완료까지 진행한 약 45초의 무음 편집본이다.
-실제 앱의 버튼·확인 창과 실제 SDK·로컬 서버를 사용했다. 예전의 캡처 2장 반복 GIF와는 다른 자료다.
+## 확인한 흐름
 
-## 영상에서 확인할 것
+1. 초대 링크를 열고 가입·이름 입력·운전자 승인 없이 참여
+2. SDK에서 받은 도착 예정 시간을 웹에 표시
+3. 웹에서 준비 완료 선택 → 차량 앱 수신 → 웹의 전달 상태 갱신
+4. 차량에서 수동으로 도착 알림
+5. 차량에서 탑승 확인·완료 → 웹 위치·ETA 비표시
 
-1. 차량 내비게이션의 선택 목적지로 픽업 생성. 좌표 입력 없음.
-2. 초대 링크를 연 탑승자가 이름으로 참여. 승인 전 장소·위치 비공개.
-3. 차량에서 참여자를 확인하고 승인.
-4. SDK의 위치·남은 시간이 웹에 표시되고 준비 완료가 차량에 반영.
-5. 운전자가 도착을 직접 확인. 탑승 전까지 공유 유지.
-6. 실제 탑승을 확인하고 완료. 웹의 위치·ETA 비표시와 차량 접근 정보 정리.
+## 촬영 조건
 
-## 녹화 범위
+- 차량: 공식 Pleos Connect 2.1 / ARM64 / API 34 / NaviHelper 3.0.5, 별도 에뮬레이터 사용자 10.
+- 앱 화면은 현재 main의 서비스 화면이다. 녹화 시험 코드는 [vehicle PR #81](https://github.com/majung-team/majung-vehicle-app/pull/81)에 있다. 웹은 `ed450be`, 서버는 `f186361` 기준이다.
+- 픽업은 **로컬 API로 미리 만든 시험 데이터**다. 차량 등록·운전자 로그인·차량 화면에서의 픽업 생성은 이번 영상에 포함하지 않았다. 위치 공유 안내 동의도 시험 준비에서 설정했다.
+- Android 화면은 연속 녹화했고 웹은 실제 브라우저의 단계별 화면 7장을 수집했다. 390px 화면은 데스크톱 브라우저의 화면 크기 설정이며 실제 휴대전화가 아니다.
+- 양쪽 화면을 호스트 시각으로 맞추고 대기 구간을 잘랐다. 재생 속도를 높이거나 SDK 응답을 합성하지 않았다. 웹 화면 사이의 움직임은 녹화되지 않아 정지 화면으로 보인다.
+- 정차한 에뮬레이터다. ETA의 교통량 반영·주행 중 감소·자동 도착 판정은 이 영상으로 검증하지 않았다. 도착은 수동 처리했다.
+- 실제 휴대전화·실차·공개 HTTPS·지도·장소 제안·푸시·여러 탑승자 대기열 시연은 포함하지 않았다.
+- 토큰·초대 링크 원문·QR·개인정보는 영상에 넣지 않았다. 임시 초대 파일은 종료 후 지웠다.
 
-- 공식 Pleos Connect 2.1.0 ARM64 / API 34 / 사용자 10 / NaviHelper 3.0.5.
-- 차량은 Android screenrecord로 연속 녹화했다. 웹은 실제 탭 화면 179장을 시간별로 수집해 영상화했다. 낮은 수집 빈도와 구간별 간격 때문에 웹 화면은 일부 움직임이 매끄럽지 않을 수 있다.
-- 호스트 시각으로 양쪽 화면을 배치하고 대기 구간만 잘랐다. 재생 속도를 높이거나 가짜 SDK 응답·화면을 넣지 않았다. 편집본은 1920×1080 H.264 MP4, 출력 프레임률은 24fps다. 출력 프레임률이 원본 화면 수집 빈도를 뜻하지는 않는다.
-- 정차한 에뮬레이터에서 공개 예제 목적지와 ‘시연 탑승자’를 사용했다. 주행과 ETA 감소는 재현하지 않았다. 도착은 수동 확인이므로 그 뒤에도 SDK의 16분 ETA가 유지되는 장면이 있다.
-- 실차·실제 휴대전화·GCP·외부 HTTPS 시연이 아니다. 지도·QR·휴대전화 페어링·장소 변경·푸시도 이번 영상에 포함하지 않았다.
-- 토큰·초대 링크 원문·개인 위치 로그·다른 앱 화면·음성은 영상에 포함하지 않았다. 임시 초대 파일은 녹화 종료 후 지웠다.
+## 다시 촬영하기
 
-## 다시 촬영할 때
-
-[차량 실행 안내](vehicle-pickup.md)대로 로컬 서버·에뮬레이터·공개 예제 경로를 준비한다.
-빌드·설치 후 다음 opt-in 시험을 실행한다. 기본 시험에서는 건너뛰므로 사람의 브라우저 조작을 기다리지 않는다.
+[로컬 실행 안내](vehicle-pickup.md)에 따라 격리된 에뮬레이터와 로컬 서버를 준비한다.
+이 시험은 로컬 API(`http://10.0.2.2:8080`)로 빌드한 DEBUG 앱에서만 실행된다.
+웹 개발 서버는 4173, API는 8080을 사용한다. 위치 권한은 시험 에뮬레이터에서 미리 허용한다.
+사용 중인 차량 앱의 연결 정보를 덮어쓰므로 **평소 쓰는 AVD 대신 별도 시험 AVD**를 사용한다.
 
 ```sh
-adb shell am instrument --user 10 -w -r \
+adb -s emulator-5556 shell am instrument --user 10 -w \
   -e class app.majung.vehicle.VehicleDemoRecordingTest -e recordDemo true \
   app.majung.vehicle.test/androidx.test.runner.AndroidJUnitRunner
 ```
 
-다른 터미널에서 로컬 파일 연결 도구를 실행한다. ADB 경로와 사용자 번호는 자신의 환경에 맞춘다.
+다른 터미널에서 연결 도구를 실행한다. 기기 번호와 사용자 번호는 자기 환경에 맞춘다.
 
 ```sh
-python3 tools/bridge_demo_recording.py --adb "$ANDROID_SDK_ROOT/platform-tools/adb" --user 10
+python3 tools/bridge_demo_recording.py \
+  --adb "$ANDROID_SDK_ROOT/platform-tools/adb" --serial emulator-5556 --user 10
 ```
 
-이 도구는 `evidence/private/demo-recording/phase.txt`로 단계만 전달한다.
-초대 링크는 같은 폴더의 임시 `invitation.json`에만 저장하며 터미널·로그·문서에 출력하지 않는다. 탑승자 브라우저에서 이 링크로 참여한다.
+단계는 `evidence/private/demo-recording/phase.txt`에, 시험 초대는 같은 폴더의 `invitation.json`에만 기록된다.
+초대 파일은 브라우저에서 여는 데만 사용하고 채팅·로그·캡처에 출력하지 않는다.
 
-- `create.go`: 차량의 생성 버튼 실행 → 초대 발급.
-- 브라우저에서 참여 후 `approve.go`: 차량 승인 버튼과 확인 창 실행.
-- 브라우저에서 준비 완료를 누른 뒤 `arrive.go`: 차량 도착 확인.
-- `complete.go`: 차량 탑승 확인·완료.
-- 종료 화면을 촬영한 뒤 `finish.go`: 시험 종료. 이후 `stop` 파일로 연결 도구도 종료한다.
+- `ready` 뒤 `create.go`: 미리 만든 시험 픽업의 링크를 브라우저에 전달한다. UI의 생성 버튼을 누르는 단계는 아니다.
+- 브라우저에서 참여 후 차량의 공유 서비스가 시작되고 실제 SDK ETA가 올라온다.
+- 브라우저에서 준비 완료를 누르고 `passenger-ready`를 확인한다.
+- `arrive.go`: 실제 차량 UI의 도착 버튼과 확인 창을 누른다.
+- `complete.go`: 탑승 완료 버튼과 확인 창을 누른다.
+- 종료 화면을 수집한 뒤 `finish.go`, 연결 도구에는 `stop` 파일을 전달한다.
 
-신호 파일은 위 로컬 폴더에 빈 파일로 만든다. 각 대기 단계는 180초 뒤 실패하며, 종료 시 임시 초대를 정리한다.
-Android 녹화는 `adb shell screenrecord`로 따로 시작·종료하고 파일이 완전히 저장된 뒤 가져온다.
-웹 화면 수집과 초대 참여는 실제 브라우저에서 진행해야 한다. 연결 도구가 웹 UI나 SDK 응답을 대신 생성하지 않는다.
+각 신호 파일은 위 로컬 폴더에 빈 파일로 만든다. 사람 조작 대기는 최대 180초다.
+연결 도구의 `--serial`은 필수이며, 다른 에뮬레이터에 명령이 전달되지 않도록 확인한다.
+Android 녹화는 `adb -s emulator-5556 shell screenrecord`로 별도 진행한다.
 
-편집 도구는 Python 3.9 이상·Pillow·FFmpeg를 사용한다. 원본 `vehicle.mp4`, 웹 PNG들과 밀리초 시각을 담은 `timeline.json`,
-차량 녹화 시작 호스트 시각(초)의 `device-start.txt`가 필요하다. 이번 촬영의 원본은 Git에서 제외한 로컬 폴더에 보관했다.
+편집에는 Python 3.9 이상·Pillow·FFmpeg가 필요하다. 원본 `vehicle.mp4`, `web/`의 PNG,
+각 파일의 호스트 밀리초 시각을 담은 `timeline.json`, 녹화 시작 시각(초)의 `device-start.txt`를 준비한다.
+현재 편집 도구의 차량 크롭은 2560×1440 원본, 웹은 390×844 기준이다.
 
 ```sh
 python3 tools/render_pickup_demo.py \
   --capture-dir evidence/private/demo-recording \
-  --ffmpeg /path/to/ffmpeg \
-  --font /path/to/korean-font \
-  --output docs/media/pickup-demo.mp4
+  --ffmpeg /path/to/ffmpeg --font /path/to/korean-font \
+  --output docs/media/pickup-demo-20261029.mp4
 ```
 
-기록 형식은 편집 스크립트의 `frames`·`events` 사용 부분을 참고한다. 화면 크기·문구·앱 배치가 달라지면 크롭 영역과 자막을 확인하고 다시 촬영한다.
+## 결과
 
-## 검증
+- `VehicleDemoRecordingTest`: **OK (1 test), 175.659초**.
+- 편집본: 1920×1080, H.264, 24fps, 약 40.7초. 전체 디코딩과 각 단계의 대표 프레임 확인.
+- [10월 23일 초기 영상](https://github.com/user-attachments/assets/3090606c-4212-4439-8da4-d6c45c02e819)은 이전 이름 입력·승인 방식의 기록이며 현재 사용 순서와 다르다.
 
-녹화 세션의 `pickupWithPassengerBrowser`가 실제 UI로 진행 후 `OK (1 test)`로 종료됐다.
-차량 단위 시험 8개와 lint도 통과했다. 영상 전체 디코딩과 단계별 대표 프레임을 확인했다.
-다음 작업은 외부 배포 준비와 실제 휴대전화 시험이며, 이 영상만으로 #7의 모든 완료 기준을 충족한 것은 아니다.
+실제 휴대전화·공개 서버에서의 전체 흐름은 [함께 테스트하기](team-testing.md) 순서로 별도 확인한다.

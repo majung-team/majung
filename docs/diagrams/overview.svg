@@ -27,13 +27,14 @@
 <text x="485.0" y="283" text-anchor="middle" font-size="14" fill="#3e535f">픽업 생성 · 승인 · 공유</text>
 <rect x="700" y="200" width="240" height="120" rx="12" fill="#f3f8f5" stroke="#afc9be" stroke-width="1.5"/>
 <text x="820.0" y="232" text-anchor="middle" font-size="19" font-weight="700" fill="#173d35">백엔드 API</text>
-<text x="820.0" y="260" text-anchor="middle" font-size="14" fill="#3e535f">Spring Boot · HTTP</text>
+<text x="820.0" y="260" text-anchor="middle" font-size="14" fill="#3e535f">Caddy → blue / green</text>
 <text x="820.0" y="283" text-anchor="middle" font-size="14" fill="#3e535f">권한 · 상태 · 순번 검사</text>
 <rect x="1035" y="200" width="245" height="120" rx="12" fill="#f3f8f5" stroke="#afc9be" stroke-width="1.5"/>
 <text x="1157.5" y="232" text-anchor="middle" font-size="19" font-weight="700" fill="#173d35">탑승자 웹</text>
 <text x="1157.5" y="260" text-anchor="middle" font-size="14" fill="#3e535f">휴대전화 브라우저</text>
 <text x="1157.5" y="283" text-anchor="middle" font-size="14" fill="#3e535f">참여 · 조회 · 준비 상태</text>
-<rect x="700" y="440" width="240" height="90" rx="12" fill="#f3f8f5" stroke="#afc9be" stroke-width="1.5"/>
+<rect x="700" y="440" width="240" height="100" rx="12" fill="#f3f8f5" stroke="#afc9be" stroke-width="1.5"/>
 <text x="820.0" y="472" text-anchor="middle" font-size="19" font-weight="700" fill="#173d35">DB</text>
 <text x="820.0" y="500" text-anchor="middle" font-size="14" fill="#3e535f">로컬 H2 / 배포 PostgreSQL</text>
+<text x="820.0" y="523" text-anchor="middle" font-size="14" fill="#3e535f">로그인 세션 공유</text>
 </g></svg>

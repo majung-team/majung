@@ -1,6 +1,6 @@
 # 픽업 시연 · 2026-10-29
 
-https://github.com/user-attachments/assets/7f3cfe17-2eab-4dba-a717-89d402aa45bb
+https://github.com/user-attachments/assets/e181fcc1-599f-47e9-ac96-98135dae2f24
 
 약 41초의 무음 영상이다. GitHub에서 위 영상의 재생 버튼을 누르면 볼 수 있다.
 [MP4 다운로드](media/pickup-demo-20261029.mp4)

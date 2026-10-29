@@ -9,5 +9,6 @@
   "physicalPhone": false,
   "realVehicle": false,
   "publicHttps": false,
-  "videoSha256": "24126884444a2dd10a91eba5544a92b479b27f76362ad64befc7e5966a03f2bf"
+  "videoSha256": "40bb392c67059c61366312546d17d2365d9d152c9f30acb44314b3bbe122baa5",
+  "firstFrameChecked": true
 }

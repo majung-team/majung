@@ -69,7 +69,7 @@ SDK 내비 취소 후 안내가 유지되는 [차량 이슈 #56](https://github.
 
 ## 시연 영상 · 10월 29일
 
-https://github.com/user-attachments/assets/7f3cfe17-2eab-4dba-a717-89d402aa45bb
+https://github.com/user-attachments/assets/e181fcc1-599f-47e9-ac96-98135dae2f24
 
 링크 참여 → SDK ETA → 준비 완료 → 수동 도착 → 탑승 완료를 약 41초로 담았다.
 시험용 픽업을 로컬 API로 미리 만든 영상이며, 실차·실제 휴대전화 시연은 아니다.

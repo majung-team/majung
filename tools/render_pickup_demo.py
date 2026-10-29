@@ -64,8 +64,8 @@ for i, (a, b, title, description) in enumerate(segments):
     caption.save(p / f'caption-{i}.png')
     clip = p / f'clip-{i}.mp4'
     filters = [
-        '[0:v]crop=1680:1180:860:90,scale=1140:800,setsar=1[car]',
-        '[1:v]scale=370:800,setsar=1[web]',
+        '[0:v]crop=1680:1180:860:90,scale=1140:800,setsar=1,setpts=PTS-STARTPTS[car]',
+        '[1:v]scale=370:800,setsar=1,setpts=PTS-STARTPTS[web]',
         '[2:v][car]overlay=40:132[withcar]',
         '[withcar][web]overlay=1440:132[paired]',
         '[paired][3:v]overlay=0:945,format=yuv420p[out]',

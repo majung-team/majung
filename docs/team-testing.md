@@ -59,7 +59,7 @@ Swagger 화면은 현재 제공하지 않는다. API 요청 형식은 [서버 AP
 
 별도의 빌드 없이 테스트하려면 GitHub Releases에서 APK를 내려받는다.
 
-[차량 앱 v0.2.14-preview](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.14-preview.20261029)
+[차량 앱 v0.2.15-preview](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.15-preview.20261030)
 
 공식 Pleos 에뮬레이터를 실행한 뒤 설치한다.
 

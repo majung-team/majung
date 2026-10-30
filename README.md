@@ -28,7 +28,7 @@
 
 ## 현재 구현과 확인 범위
 
-2026년 10월 29일 기준이다. [실제 PR·커밋 대조](docs/development-status.md)와 [운영 버전](docs/runtime-2026-10-29.md)을 함께 본다.
+2026년 10월 30일 기준이다. [실제 PR·커밋 대조](docs/development-status.md)와 [운영 버전](docs/runtime-2026-10-29.md)을 함께 본다.
 
 | 항목 | 현재 상태 |
 | --- | --- |
@@ -40,7 +40,7 @@
 | 복구·종료 | 암호화 저장, 서버 상태 확인 후 사용자 재개 확인, 자동 종료·7일 보관 후 파기 |
 | 운영 | 마중 전용 VM·PostgreSQL·Caddy HTTPS, 서버·웹 각각 Actions 배포 |
 
-단위·시험 서버·공식 에뮬레이터 결과가 있다. 실제 휴대전화 전체 흐름·푸시 배너·LTE 전환·실차 검증은 별도다.
+단위·시험 서버·공식 에뮬레이터 결과가 있다. 10월 30일 실제 아이폰 Chrome에서 로그인·탭 이동·검색·재접속을 확인하고 입력 확대와 빈 목록 표시를 보완했다([web #73](https://github.com/majung-team/majung-web/pull/73)). 실제 휴대전화 전체 픽업 흐름·푸시 배너·LTE 전환·실차 검증은 별도다. 추가 시험은 보류하고 현재는 제출 자료를 정리한다.
 SDK 내비 취소 후 안내가 유지되는 [차량 이슈 #56](https://github.com/majung-team/majung-vehicle-app/issues/56)은 미해결이다.
 차량 첫 사용 위치 공유 안내·동의와 [개인정보 안내](https://majung.cloud/privacy)를 반영했다. 익명 지표 집계는 후속 기능이다.
 
@@ -76,5 +76,7 @@ https://github.com/user-attachments/assets/e181fcc1-599f-47e9-ac96-98135dae2f24
 [촬영 조건과 재현 방법](docs/pickup-demo.md) · [추가 촬영 순서](docs/demo-script.md)
 
 [남은 작업](docs/remaining-work.md) · [기여 규칙](CONTRIBUTING.md) · [제출 안내](docs/submission-guide.md)
+
+접수양식은 대표자가 수정한 원본을 사용한다. 참가신청서·기획 내용·동의서는 비공개 Coding 폴더의 공식 DOCX에서 함께 관리하며, 개인정보와 서명은 이 저장소에 올리지 않는다.
 
 최근 사용성 점검: [웹의 연결 목록·자동 조회](https://github.com/majung-team/majung-web/blob/main/docs/usability-check-2026-10-29.md), [차량의 사람 연결·초대](https://github.com/majung-team/majung-vehicle-app/blob/main/docs/usability-check-2026-10-29.md).

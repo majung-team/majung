@@ -5,6 +5,8 @@
 
 공식 Pleos Connect 에뮬레이터와 로컬 API를 사용했으며, 실제 SDK 응답을 기반으로 주요 기능을 확인했다.
 
+10월 30일 APK 0.2.15-preview에서 글자·버튼 크기를 개선했다. 아래 영상은 그 이전 UI의 동작 기록이다. [최신 화면 캡처](https://github.com/majung-team/majung-vehicle-app/blob/main/docs/readability-2026-10-30.md)
+
 ## 1. 시연 영상
 
 https://github.com/user-attachments/assets/e181fcc1-599f-47e9-ac96-98135dae2f24
@@ -88,7 +90,7 @@ ETA는 차량 SDK가 제공한 값이며, 서버에서 교통 상황을 별도�
 | Android API | 34 |
 | 내비게이션 SDK | NaviHelper 3.0.5 |
 | 에뮬레이터 사용자 | 10 |
-| 앱 | 현재 main의 차량 서비스 화면 |
+| 앱 | 10월 29일 촬영 당시 차량 서비스 화면. 10월 30일 0.2.15의 글자·버튼 크기 변경 전 |
 | 테스트 코드 | [차량 PR #81](https://github.com/majung-team/majung-vehicle-app/pull/81) |
 
 ### 서버 및 모바일 웹

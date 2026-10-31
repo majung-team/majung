@@ -22,3 +22,9 @@
 ## 최신 시연
 
 [10월 29일 영상과 촬영 조건](https://github.com/majung-team/majung/blob/main/docs/pickup-demo.md): 링크 참여·SDK ETA·준비 완료·수동 도착·탑승 완료, 약 41초. 로컬 시험이며 실제 휴대전화 시연은 아니다.
+
+## 경유지·복구·도착 시간 확인
+
+기존 경유지는 **경유지에서 만나기**에서 선택한다. 위치를 확인하지 못하면 장소를 다시 선택하고 경유지 순서와 최종 목적지를 확인한다. [좌표 확인과 재선택 안내](https://github.com/majung-team/majung-vehicle-app/blob/main/docs/waypoint-coordinates.md)를 참고한다.
+
+앱을 다시 켜면 서버에서 진행 상태를 확인하고, 운전자가 공유 재개를 확인한 뒤 새 차량 정보를 보낸다. [복구·ETA·권한 검증](https://github.com/majung-team/majung-backend/blob/main/docs/stability-verification.md)과 [백업·운영 점검](https://github.com/majung-team/majung-backend/blob/main/docs/operations-recovery.md)에 실제 확인 범위와 남은 항목을 기록했다. 실차 시동 시험과 휴대전화 푸시 수신은 별도다.

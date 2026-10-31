@@ -1,19 +1,29 @@
 
 # 남은 작업 및 향후 계획
 
-**기준일: 2026년 10월 30일**
+**기준일: 2026년 10월 31일**
 
 마중의 현재 개발 상태와 추가 검증이 필요한 항목, 향후 개선 계획을 정리한 문서다.
 
 차량 앱, 모바일 웹, 백엔드의 주요 기능은 구현했으며 공식 Pleos 에뮬레이터와 시험 서버에서 핵심 동작을 확인했다.
 
-현재는 공모전 제출 자료 정리를 우선하고, 실제 휴대전화 통합 테스트와 실차 검증은 후속 작업으로 관리한다.
+현재는 경유지 좌표와 복구·ETA 등 핵심 흐름의 안정성을 먼저 확인한다. 제출 자료 정리는 그 결과를 반영해 진행한다. 실제 휴대전화 통합 테스트와 실차 검증은 자동 시험과 구분한다.
 
 완료되지 않은 시험은 구현 여부와 관계없이 미검증 상태로 유지한다.
 
 ---
 
 ## 1. 현재 우선 작업
+
+### 핵심 안정성 확인
+
+- 기존 경유지 좌표 복원·재선택, Android 세션 복구: 단위 60개·기기 시험 6개 통과
+- 서버 HTTP 응답과 웹 ETA 계산: 5개 시나리오 통과, CI에 배포 웹 버전 고정 검사 추가
+- 동시성·권한·SSE·푸시 구독·장소 확정: 서버 회귀 시험 통과
+- 일일 백업·주간 복원·매분 운영 점검·외부 HTTPS 감지 적용
+- 남은 항목: 실제 시동 종료와 휴대전화 푸시 수신, 장애 이메일 실제 수신, 외부 저장소 백업, 운영 지표 확대
+
+[검증 범위와 제한](https://github.com/majung-team/majung-backend/blob/main/docs/stability-verification.md)
 
 ### 제출 자료 정리
 
@@ -29,7 +39,7 @@
 | --- | --- |
 | 프로젝트 소개 | [GitHub README](https://github.com/majung-team/majung) |
 | 서비스 웹 | [majung.cloud](https://majung.cloud) |
-| 차량 APK | [v0.2.14-preview](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.14-preview.20261029) |
+| 차량 APK | [v0.2.16-preview](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.16-preview.20261031) |
 | 시연 영상 | [2026년 10월 29일 시연 기록](pickup-demo.md) |
 | 개발 근거 | [기능별 PR 및 커밋](development-status.md) |
 | 제출 점검 | [제출 점검표](submission-checklist.md) |

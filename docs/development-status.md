@@ -1,7 +1,7 @@
 
 # 개발 현황과 PR 대조
 
-**기준일: 2026년 10월 30일**
+**기준일: 2026년 10월 31일**
 
 마중 프로젝트의 기능별 구현 현황, 개발 기여 이력, PR·커밋 근거 및 남은 검증 항목을 정리한 문서다.
 
@@ -59,6 +59,17 @@
 ---
 
 ## 2. 최근 주요 변경 사항
+
+### 2026년 10월 31일 · 복구 및 운영 검증
+
+- 외부 백업: 비공개 Cloud Storage에 매일 복사, 다운로드 해시 대조·성공 시각 기록. 30시간 누락 시 운영 경보 ([서버 #53](https://github.com/majung-team/majung-backend/pull/53) · [#56](https://github.com/majung-team/majung-backend/pull/56) · [#59](https://github.com/majung-team/majung-backend/pull/59))
+- 복원 기능 시험: 외부 복사본을 임시 PostgreSQL에 복원하고 세션 인증·계정·픽업 HTTP 조회·로그아웃 후 차단 통과. 약 26초, 정리 후 임시 DB 0개 ([서버 #55](https://github.com/majung-team/majung-backend/pull/55))
+- 운영 지표: 내부 API 5xx·응답 시간 히스토그램·DB 풀·OAuth 결과 수집, 공개 관리 경로 404 확인 ([서버 #58](https://github.com/majung-team/majung-backend/pull/58) · [#59](https://github.com/majung-team/majung-backend/pull/59))
+- 안내 취소: SDK 직접 취소 2회, 백그라운드 경로 변경·취소 후 위치 숨김 12초·새 안내·재연결 후 공유 복구 시험 통과 ([차량 #89](https://github.com/majung-team/majung-vehicle-app/pull/89)). 과거 실패 원인은 확정하지 않음
+- Notion 역할표: 기존 초기 분담과 기여 이력을 유지하고 운영·복구 시험 결과와 APK 0.2.16-preview를 반영
+
+[운영 시험 결과](https://github.com/majung-team/majung-backend/blob/main/docs/operations-recovery.md) · [SDK 재시험 기록](https://github.com/majung-team/majung-vehicle-app/tree/main/evidence/2026-10-31-sdk-cancel)
+
 
 ### 2026년 10월 29일
 

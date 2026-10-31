@@ -154,7 +154,7 @@ Blue-Green 구조는 애플리케이션 배포 전환을 위한 것으로, VM과
 - [서버 #51](https://github.com/majung-team/majung-backend/pull/51): 실제 HTTP 응답을 배포된 웹 계산 코드에 넣는 ETA 호환성 시험 추가. 경과 시간 중복 차감, 30초 STALE, 2분 숨김, 정체로 늘어나거나 줄어든 ETA 반영을 검사한다.
 - [서버 #48](https://github.com/majung-team/majung-backend/pull/48)·[#49](https://github.com/majung-team/majung-backend/pull/49): 최신 백업 임시 DB 복원, 테이블 9개 조회·스키마 검증·서버 기동, 주간 복원·매분 운영 점검, 외부 HTTPS 점검 2개와 마중 전용 이메일 정책 적용.
 - 일시 503 이후 ACTIVE 상태를 다시 받아도 사용자 확인 전에는 위치 공유를 재개하지 않는 Android 시험 보강.
-- 실제 시동 종료·실차 재시동·휴대전화 푸시 수신, 별도 저장소 백업, 장애 이메일 실제 수신, 전체 운영 지표 대시보드는 미확인 또는 미구현 범위다.
+- 실제 시동 종료·실차 재시동·휴대전화 푸시 수신·경보 이메일 수신은 현장 확인이 남아 있다. 외부 백업과 복원, 내부 API·DB·OAuth 지표 점검은 위 추가 결과에 반영했다. 기간별 대시보드와는 구분한다.
 
 상세 범위는 [복구·ETA·권한 검증](https://github.com/majung-team/majung-backend/blob/main/docs/stability-verification.md)과 [경유지 좌표 대응](https://github.com/majung-team/majung-vehicle-app/blob/main/docs/waypoint-coordinates.md)에서 확인한다.
 

@@ -62,6 +62,8 @@
 
 ### 2026년 11월 2일 · 지도 표시·예약 백업 복구·핵심 흐름 예외 보강
 
+- 차량 #92 복구 수정이 포함된 [0.2.17-preview / code 19](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.17-preview.20261102) 게시. 소스 `c4a4f30`, 이전 인증서 일치·0.2.16 업데이트 설치·Activity 기동·게시 파일 다운로드 해시 대조 확인. 실제 시동 시험은 별도. [차량 #94](https://github.com/majung-team/majung-vehicle-app/pull/94)
+
 - 지도에서 작게 보이던 `차` 글자를 차 아이콘과 `마중 차량` 이름표로 변경. 만날 장소는 초록색 말풍선으로 구분하며 탑승자 현재 GPS 위치로 표시하지 않는다. 오래된 차량 정보는 회색 점선·마지막 위치 문구로 구분한다. Node 테스트 75개, 모바일·PC 크기 SDK 대역 화면 검사 후 웹 배포 완료 ([웹 #77](https://github.com/majung-team/majung-web/pull/77))
 - 11월 1일·2일 예약 백업 실패 원인은 GCP WIF가 `schedule` 이벤트를 거절한 것이었다. backend main의 backup.yml 예약 실행만 허용하고 실패한 예약 실행을 재시도해 업로드·다운로드 해시 검증 통과. 운영 점검도 HTTP 200 / UP 복구. 서버 재시작 없음 ([서버 #62](https://github.com/majung-team/majung-backend/pull/62), [예약 재실행](https://github.com/majung-team/majung-backend/actions/runs/41401001422))
 - 픽업 도착·종료·만료 시 미확정 장소 제안 정리, 차량 계정 해제·기기 철회·카카오 연결 해제 시 진행 중 픽업 취소·추적 차단·도착 푸시 구독 제거를 보강하고 운영 배포 완료 (`ea55d33`, [서버 #64](https://github.com/majung-team/majung-backend/pull/64))

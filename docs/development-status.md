@@ -41,6 +41,9 @@
 
 | 기능 | 개발 기여 | PR·커밋 근거 | 구현 및 확인 범위 |
 | --- | --- | --- | --- |
+| 퀵 메시지 및 음성 안내 | 송승준 | [서버 #67](https://github.com/majung-team/majung-backend/pull/67) · [웹 #86](https://github.com/majung-team/majung-web/pull/86) · [차량 #112](https://github.com/majung-team/majung-vehicle-app/pull/112) | 탑승자 3종 퀵 메시지 웹 전송 및 차량 화면 노출·스피커 TTS 자동 낭독 |
+| 주행 중 백그라운드 알림·자동 도착 | 송승준 | [차량 #112](https://github.com/majung-team/majung-vehicle-app/pull/112) | 내비 주행 중 신규 요청 헤드업 알림 + TTS 음성 안내, 반경 100m 근접 자동 도착 감지 |
+| 차량 정보 배지 | 송승준 | [서버 #67](https://github.com/majung-team/majung-backend/pull/67) · [웹 #86](https://github.com/majung-team/majung-web/pull/86) | 탑승자 화면 상단 매칭 차량 정보(`🚘 ${vehicleName}`) 배지 노출 |
 | 끊김·정보 최신성 | 안성모 초안, 송승준 보완 | 서버 `0e75171`, 웹 `4372565`, [웹 #45](https://github.com/majung-team/majung-web/pull/45) | 오래된 정보 처리, 실제 LTE 전환·재접속 검증 필요 |
 | 도착 임박 푸시 | 안성모 코드, 송승준 운영 설정 | 서버 `c07462e`, 웹 `6dbf515` | Chrome 구독·해제 확인, 실제 휴대전화 알림 배너 미검증 |
 | SSE·연결 복구 | 송승준 | [서버 #30](https://github.com/majung-team/majung-backend/pull/30) · [서버 #32](https://github.com/majung-team/majung-backend/pull/32) · [웹 #39](https://github.com/majung-team/majung-web/pull/39) · [웹 #41](https://github.com/majung-team/majung-web/pull/41) | 웹 SSE 변경 신호 및 API 재조회. 차량 SDK 콜백과 별도 |
@@ -59,6 +62,13 @@
 ---
 
 ## 2. 최근 주요 변경 사항
+
+### 2026년 11월 2일 · 내비 주행 중 백그라운드 픽업 알림·자동 도착·탑승자 퀵 메시지 및 릴리스 배포
+
+- 내비 주행 중 백그라운드 픽업 요청 감지 & 헤드업 알림 + TTS 음성 안내, 픽업 장소 반경 100m 자동 도착 감지, 탑승자 3종 퀵 메시지("지금 내려가요", "1번 출구 앞이에요", "곧 도착해요") 실시간 노출 및 차량 TTS 자동 낭독 반영 ([차량 #112](https://github.com/majung-team/majung-vehicle-app/pull/112)).
+- 탑승자 퀵 메시지 수신 및 스냅샷 전달 API(`POST /api/v1/pickups/{id}/quick-message`, `POST /api/v1/ride-requests/{id}/quick-message`), 매칭 차량 정보(`vehicleName`) 스냅샷 연동 및 블루·그린 운영 서버 무중단 배포 완료 ([서버 #67](https://github.com/majung-team/majung-backend/pull/67)).
+- 탑승자 모바일 화면 차량 정보 배지(`🚘 ${vehicleName}`), 3종 퀵 메시지 칩 원터치 전송 및 전송 완료 힌트 UI 추가 후 `https://majung.cloud` 배포 완료 ([웹 #86](https://github.com/majung-team/majung-web/pull/86)).
+- 최신 정식 서명 Release APK(`v0.2.17-preview / versionCode 19`, SHA-256: `69dd9c10...`) 빌드 및 GitHub Releases 자산 게시 완료. 공식 Pleos 에뮬레이터 설치 및 기동 검증.
 
 ### 2026년 11월 2일 · 지도 표시·예약 백업 복구·핵심 흐름 예외 보강
 

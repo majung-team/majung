@@ -62,6 +62,8 @@
 
 ### 2026년 11월 2일 · 지도 표시·예약 백업 복구·핵심 흐름 예외 보강
 
+- 운영 자동 만료 중단 원인 확인·복구: 서버 계정이 활성 슬롯 파일을 읽지 못해 정기 작업을 건너뛰었다. 비밀 파일 0600은 유지하고 서비스 그룹에 설정 폴더 통과 권한만 허용했다. 기존 픽업의 자동 EXPIRED 전환과 위치·제안·푸시 정리, 운영 health UP 복구 확인. 배포 전 읽기 검사·권한 회귀 27개 추가 ([서버 #66](https://github.com/majung-team/majung-backend/pull/66)). 수동 픽업 취소·DB 수정·서비스 재시작 없이 복구했다.
+
 - 차량 #92 복구 수정이 포함된 [0.2.17-preview / code 19](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.17-preview.20261102) 게시. 소스 `c4a4f30`, 이전 인증서 일치·0.2.16 업데이트 설치·Activity 기동·게시 파일 다운로드 해시 대조 확인. 실제 시동 시험은 별도. [차량 #94](https://github.com/majung-team/majung-vehicle-app/pull/94)
 
 - 지도에서 작게 보이던 `차` 글자를 차 아이콘과 `마중 차량` 이름표로 변경. 만날 장소는 초록색 말풍선으로 구분하며 탑승자 현재 GPS 위치로 표시하지 않는다. 오래된 차량 정보는 회색 점선·마지막 위치 문구로 구분한다. Node 테스트 75개, 모바일·PC 크기 SDK 대역 화면 검사 후 웹 배포 완료 ([웹 #77](https://github.com/majung-team/majung-web/pull/77))

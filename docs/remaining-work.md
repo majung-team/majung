@@ -1,7 +1,7 @@
 
 # 남은 작업 및 향후 계획
 
-**기준일: 2026년 10월 31일**
+**기준일: 2026년 11월 2일**
 
 마중의 현재 개발 상태와 추가 검증이 필요한 항목, 향후 개선 계획을 정리한 문서다.
 
@@ -17,13 +17,13 @@
 
 ### 핵심 안정성 확인
 
-- 기존 경유지 좌표 복원·재선택, Android 세션 복구: 단위 60개·기기 시험 6개 통과
-- 서버 HTTP 응답과 웹 ETA 계산: 5개 시나리오 통과, CI에 배포 웹 버전 고정 검사 추가
-- 동시성·권한·SSE·푸시 구독·장소 확정: 서버 회귀 시험 통과
-- 일일 백업·주간 복원·매분 운영 점검·외부 HTTPS 감지 적용
+- 기존 경유지 좌표 복원·재선택, Android 세션 복구 및 재실행 시 미검증 차량 위치 즉시 삭제: 단위 60개·기기 시험 6개 통과 ([차량 #87](https://github.com/majung-team/majung-vehicle-app/pull/87) · [#92](https://github.com/majung-team/majung-vehicle-app/pull/92))
+- 서버 HTTP 응답과 웹 ETA 계산: 5개 시나리오 통과, CI에 배포 웹 버전 고정 검사 추가 ([서버 #51](https://github.com/majung-team/majung-backend/pull/51))
+- 동시성·권한·SSE·푸시 구독·장소 확정 및 도착·해제 시 미확정 제안·진행 중 픽업 정리: 서버 회귀 시험·웹 테스트 76개 통과 ([서버 #64](https://github.com/majung-team/majung-backend/pull/64) · [웹 #79](https://github.com/majung-team/majung-web/pull/79))
+- 일일 백업·주간 복원·매분 운영 점검·외부 HTTPS 감지 및 WIF 예약 실행 복구 적용 ([서버 #62](https://github.com/majung-team/majung-backend/pull/62))
 - 비공개 외부 백업·다운로드 검증·외부 복사본 실제 복원 통과. 세션 인증·계정·픽업 HTTP 조회·로그아웃 후 차단 확인
 - API 5xx·p95 상한·DB 풀·OAuth 결과 점검 운영 적용, 외부 백업 30시간 누락 감지
-- 안내 취소·백그라운드 경로 변경·공유 복구: 공식 에뮬레이터 재시험 통과
+- 안내 취소·백그라운드 경로 변경·공유 복구 및 SDK 타임아웃·단절 시 경로 변경 상태 정리: 공식 에뮬레이터 재시험 통과 ([차량 #89](https://github.com/majung-team/majung-vehicle-app/pull/89) · [#92](https://github.com/majung-team/majung-vehicle-app/pull/92))
 - 남은 현장 확인: 실제 시동 종료, 휴대전화 푸시 수신·LTE 전환, 경보 이메일 실제 수신
 
 [검증 범위와 제한](https://github.com/majung-team/majung-backend/blob/main/docs/stability-verification.md)

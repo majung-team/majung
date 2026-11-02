@@ -171,6 +171,10 @@ https://github.com/user-attachments/assets/e181fcc1-599f-47e9-ac96-98135dae2f24
 
 ---
 
+### 11월 2일 복구 수정 APK
+
+현재 설치 파일은 [0.2.17-preview](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.17-preview.20261102)다. SDK 연결이 끊기거나 응답이 없을 때 경로 변경 대기 상태를 정리하고, 앱 재실행 후 장소 좌표를 검증하지 못하면 서버의 이전 차량 위치를 지운다. 기존 0.2.16과 서명이 같으며 공식 Pleos 에뮬레이터에서 업데이트 설치와 기동을 확인했다. 실제 시동 종료·재시동 시험과는 구분한다.
+
 ### 10월 31일 경유지·복구·ETA 보완
 
 차량 APK [0.2.16-preview](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.16-preview.20261031)에 기존 경유지 좌표 확인과 장소 재선택을 추가했다. 내비의 최근 장소에서도 위치를 찾지 못하면 운전자가 경유지 위치를 다시 선택하고 순서와 최종 목적지를 확인한다.

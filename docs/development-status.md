@@ -60,10 +60,13 @@
 
 ## 2. 최근 주요 변경 사항
 
-### 2026년 11월 2일 · 지도 표시·예약 백업 복구
+### 2026년 11월 2일 · 지도 표시·예약 백업 복구·핵심 흐름 예외 보강
 
 - 지도에서 작게 보이던 `차` 글자를 차 아이콘과 `마중 차량` 이름표로 변경. 만날 장소는 초록색 말풍선으로 구분하며 탑승자 현재 GPS 위치로 표시하지 않는다. 오래된 차량 정보는 회색 점선·마지막 위치 문구로 구분한다. Node 테스트 75개, 모바일·PC 크기 SDK 대역 화면 검사 후 웹 배포 완료 ([웹 #77](https://github.com/majung-team/majung-web/pull/77))
 - 11월 1일·2일 예약 백업 실패 원인은 GCP WIF가 `schedule` 이벤트를 거절한 것이었다. backend main의 backup.yml 예약 실행만 허용하고 실패한 예약 실행을 재시도해 업로드·다운로드 해시 검증 통과. 운영 점검도 HTTP 200 / UP 복구. 서버 재시작 없음 ([서버 #62](https://github.com/majung-team/majung-backend/pull/62), [예약 재실행](https://github.com/majung-team/majung-backend/actions/runs/41401001422))
+- 픽업 도착·종료·만료 시 미확정 장소 제안 정리, 차량 계정 해제·기기 철회·카카오 연결 해제 시 진행 중 픽업 취소·추적 차단·도착 푸시 구독 제거를 보강하고 운영 배포 완료 (`ea55d33`, [서버 #64](https://github.com/majung-team/majung-backend/pull/64))
+- 대기 중(`QUEUED`) 요청의 취소 확인 창이 열린 상태에서 픽업이 시작(`ACTIVE`)된 경우 취소 API 호출을 막고 상태 변경 안내를 표시하도록 수정 후 웹 배포 완료 (Node 테스트 76개 통과, [웹 #79](https://github.com/majung-team/majung-web/pull/79))
+- 경유지 추가·장소 변경 중 SDK 타임아웃 또는 연결 해제 시 경로 변경 상태를 함께 정리해 재요청 지연을 막고, 앱 재실행 후 차량 좌표 복원 실패 시 서버의 이전 차량 위치를 즉시 삭제하도록 보강 (`PickupRecoveryTest` 에뮬레이터 검증 통과, [차량 #92](https://github.com/majung-team/majung-vehicle-app/pull/92))
 
 ### 2026년 10월 31일 · 복구 및 운영 검증
 

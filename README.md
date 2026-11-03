@@ -27,6 +27,7 @@ https://github.com/user-attachments/assets/e181fcc1-599f-47e9-ac96-98135dae2f24
 | --- | --- | --- |
 | 모바일 웹 | [마중 웹 서비스](https://majung.cloud/account) | 카카오 로그인, 사람 연결, 픽업 요청 및 상태 확인 |
 | 차량용 앱 | [APK 다운로드](https://github.com/majung-team/majung-vehicle-app/releases) | Pleos 공식 에뮬레이터용 서명 APK |
+| API 명세서 | [Swagger UI](https://majung.cloud/api/swagger-ui/index.html) | 백엔드 REST API 75종 인터랙티브 명세서 |
 | 사용 안내 | [GitHub Wiki](https://github.com/majung-team/majung/wiki) | 서비스 이용 방법 |
 | 설치 및 테스트 | [테스트 가이드](docs/team-testing.md) | 설치, 연결 및 기능 확인 방법 |
 | 개발 현황 | [개발 기록](docs/development-status.md) | 구현 내역 및 PR·커밋 근거 |

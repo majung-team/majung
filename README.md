@@ -34,7 +34,62 @@ https://github.com/user-attachments/assets/e181fcc1-599f-47e9-ac96-98135dae2f24
 
 ---
 
-## 2. 개발 배경 및 목적
+## 2. 개발자 빠른 시작 가이드 (Developer Quick Start)
+
+마중의 각 구성 요소를 로컬 환경에서 실행하고 검증하기 위한 핵심 명령어입니다.
+
+### 2.1 🚘 차량용 앱 (majung-vehicle-app)
+
+```sh
+# 1) Pleos 공식 에뮬레이터 실행 (PATH 미설정 시 ~/Library/Android/sdk/emulator/emulator 사용)
+emulator -avd Majung_Pleos_2_1
+
+# 2) 코드 수정 후 정식 서명 바이너리 빌드 및 에뮬레이터 설치 (덮어쓰기 -r)
+cd ~/Coding/majung-vehicle-app
+python3 tools/build-release.py
+adb install -r vehicle/build/outputs/apk/release/vehicle-release.apk
+
+# (원격) GitHub 최신 릴리스 서명 APK 원클릭 설치
+curl -sL https://github.com/majung-team/majung-vehicle-app/releases/download/v0.2.19-preview.20261103/Majung_Majung_release.apk -o /tmp/majung.apk && adb install -r /tmp/majung.apk
+
+# 3) 앱 실행 및 로그캣 확인
+adb shell am start -n app.majung.vehicle/.MainActivity
+adb logcat -s Majung
+```
+
+### 2.2 🌐 백엔드 API 서버 (majung-backend)
+
+```sh
+cd ~/Coding/majung-backend
+
+# 단위 및 통합 테스트 검증
+./gradlew test
+
+# 로컬 개발 서버 실행 (기본 포트 8080)
+./gradlew bootRun
+
+# API 명세 확인: http://localhost:8080/api/swagger-ui/index.html (운영: https://majung.cloud/api/swagger-ui/index.html)
+# 헬스 체크 확인: http://localhost:8080/api/v1/health
+```
+
+### 2.3 📱 탑승자 모바일 웹 (majung-web)
+
+```sh
+cd ~/Coding/majung-web
+
+# 의존성 설치 및 76종 자동화 테스트
+npm ci
+npm test
+
+# 로컬 개발 서버 실행 (기본 포트 4173)
+npm start
+
+# 접속 주소: http://127.0.0.1:4173/account
+```
+
+---
+
+## 3. 개발 배경 및 목적
 
 가족이나 지인을 기차역, 학교, 약속 장소 등에서 데리러 가는 과정에서는 운전자의 현재 위치와 도착 예정 시간, 탑승자의 준비 상태를 확인하기 위해 반복적으로 연락하는 경우가 많습니다.
 

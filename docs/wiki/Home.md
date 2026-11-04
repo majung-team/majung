@@ -171,9 +171,9 @@ https://github.com/user-attachments/assets/e181fcc1-599f-47e9-ac96-98135dae2f24
 
 ---
 
-### 11월 2일 복구 수정 APK
+### 11월 4일 0.2.20-preview 배포 APK
 
-현재 설치 파일은 [0.2.19-preview](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.19-preview.20261103)다. SDK 연결이 끊기거나 응답이 없을 때 경로 변경 대기 상태를 정리하고, 앱 재실행 후 장소 좌표를 검증하지 못하면 서버의 이전 차량 위치를 지운다. 또한 차량 연결 대기 중 버튼 깜빡임을 없애고 경유지·장소 선택 대화상자 버튼 카드와 트랙패드 스크롤을 다듬었다. 기존 0.2.16과 서명이 같으며 공식 Pleos 에뮬레이터에서 업데이트 설치와 기동을 확인했다. 실제 시동 종료·재시동 시험과는 구분한다.
+현재 설치 파일은 [0.2.20-preview](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.20-preview.20261104)다. 7대 계층 클린 아키텍처 정위치화, 내비게이션 목적지 없는 상태에서 요청 수락 시 바로 목적지 자동 설정(`navigateToPickup`), 목적지 부재 시 안내 및 원터치 [내비게이션 열기] 버튼, 탑승자 웹 장소 제안 피드백 및 SSE 실시간 플로팅 토스트/모바일 햅틱 알림이 적용되었다. 기존 0.2.16과 서명이 같으며 공식 Pleos 에뮬레이터에서 업데이트 설치와 기동을 확인했다. 실제 시동 종료·재시동 시험과는 구분한다.
 
 ### 10월 31일 경유지·복구·ETA 보완
 

@@ -50,7 +50,7 @@ python3 tools/build-release.py
 adb install -r vehicle/build/outputs/apk/release/vehicle-release.apk
 
 # (원격) GitHub 최신 릴리스 서명 APK 원클릭 설치
-curl -sL https://github.com/majung-team/majung-vehicle-app/releases/download/v0.2.19-preview.20261103/Majung_Majung_release.apk -o /tmp/majung.apk && adb install -r /tmp/majung.apk
+curl -sL https://github.com/majung-team/majung-vehicle-app/releases/download/v0.2.20-preview.20261104/Majung_Majung_release.apk -o /tmp/majung.apk && adb install -r /tmp/majung.apk
 
 # 3) 앱 실행 및 로그캣 확인
 adb shell am start -n app.majung.vehicle/.MainActivity

@@ -13,7 +13,7 @@
 
 현재 영상은 링크 참여 → SDK ETA → 준비 완료 → 수동 도착 → 탑승 완료를 보여준다. 예전의 이름 입력·운전자 승인 영상은 현재 대표 영상이 아니다. 시험용 픽업을 로컬 API로 미리 만들었으며, 실제 휴대전화나 실차 영상으로 설명하지 않는다.
 
-현재 제출 APK는 목적지 확인 2초 단축·주행 중 헤즈업 원터치 수락·아키텍처 리팩터링을 포함한 0.2.19-preview다. 기존 10월 29일 영상은 이전 UI로 촬영했으며 새 글자·버튼 크기는 [차량 가독성 변경](https://github.com/majung-team/majung-vehicle-app/blob/main/docs/readability-2026-10-30.md)의 캡처에서 확인한다. 영상과 최신 APK의 화면이 완전히 같다고 설명하지 않는다.
+현재 제출 APK는 목적지 부재 시 즉시 목적지 설정·헤즈업 원터치 수락·7대 클린 아키텍처 계층 정위치화를 포함한 0.2.20-preview다. 기존 10월 29일 영상은 이전 UI로 촬영했으며 새 글자·버튼 크기는 [차량 가독성 변경](https://github.com/majung-team/majung-vehicle-app/blob/main/docs/readability-2026-10-30.md)의 캡처에서 확인한다. 영상과 최신 APK의 화면이 완전히 같다고 설명하지 않는다.
 
 ## 제출할 자료
 
@@ -22,7 +22,7 @@
 | 접수양식과 개인정보 동의서 | 공식 DOCX 한 파일에서 관리. 대표자가 수정한 원본을 사용하고 참가자 전원의 동의·본인 서명·날짜를 제출 전에 확인 |
 | 시연 영상 | [10월 29일 영상](pickup-demo.md) 촬영 완료. 추가 영상은 현재 자료를 보완할 때 선택 |
 | 코드와 사용 안내 | 소개 저장소와 차량·서버·웹 저장소. 현재 네 저장소 모두 공개이며 비로그인 접근 확인 |
-| 차량 release APK | [0.2.19-preview](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.19-preview.20261103) 게시. 제출 파일명은 `마중_마중_release.apk` |
+| 차량 release APK | [0.2.20-preview](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.20-preview.20261104) 게시. 제출 파일명은 `마중_마중_release.apk` |
 | 숏폼 | 제출하지 않음 |
 
 ## 제출 전 확인

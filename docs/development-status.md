@@ -44,6 +44,7 @@
 | 퀵 메시지 및 음성 안내 | 송승준 | [서버 #67](https://github.com/majung-team/majung-backend/pull/67) · [웹 #86](https://github.com/majung-team/majung-web/pull/86) · [차량 #112](https://github.com/majung-team/majung-vehicle-app/pull/112) | 탑승자 3종 퀵 메시지 웹 전송 및 차량 화면 노출·스피커 TTS 자동 낭독 |
 | 주행 중 백그라운드 알림·자동 도착 | 송승준 | [차량 #112](https://github.com/majung-team/majung-vehicle-app/pull/112) | 내비 주행 중 신규 요청 헤드업 알림 + TTS 음성 안내, 반경 100m 근접 자동 도착 감지 |
 | 다이내믹 캡슐 토스트 & 도착 안내 | 송승준 | 웹 커밋 `ee421ad` · `be2b4cb` | 중복 토스트 원천 차단(싱글톤), Apple 다이내믹 아일랜드 다크 글래스 캡슐, 차량 도착 시 상단 자동 스크롤 & 전용 안내 |
+| 하단 탭 내비게이션 & 슬라이딩 카드 팝업 | 송승준 | 웹 커밋 `0ecabb6` | 세로 스크롤 해소 모빌리티 UI 개편. 히어로 지도 뷰 유지, 하단 고정 4개 탭(음성 전달·장소 제안·도착 알림·안내), 탭 터치 시 반투명 백드롭 위로 슬라이딩 카드 팝업 오픈, 차량 TTS 퀵 메시지 및 직접 입력 폼 배치 |
 | 차량 정보 배지 | 송승준 | [서버 #67](https://github.com/majung-team/majung-backend/pull/67) · [웹 #86](https://github.com/majung-team/majung-web/pull/86) | 탑승자 화면 상단 매칭 차량 정보(`🚘 ${vehicleName}`) 배지 노출 |
 | 끊김·정보 최신성 | 안성모 초안, 송승준 보완 | 서버 `0e75171`, 웹 `4372565`, [웹 #45](https://github.com/majung-team/majung-web/pull/45) | 오래된 정보 처리, 실제 LTE 전환·재접속 검증 필요 |
 | 도착 임박 푸시 | 안성모 코드, 송승준 운영 설정 | 서버 `c07462e`, 웹 `6dbf515` | Chrome 구독·해제 확인, 실제 휴대전화 알림 배너 미검증 |

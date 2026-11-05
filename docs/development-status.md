@@ -66,6 +66,14 @@
 
 ## 2. 최근 주요 변경 사항
 
+### 2026년 11월 5일 · 픽업 화면 사용성 보완
+
+- [웹 #88](https://github.com/majung-team/majung-web/pull/88), main `1cbd1c2`: 새 요청 지도 높이 복구, 장소·주소 요약, 준비 상태·메시지 조작 통일, 중복 전송 차단·실패 재시도, 동일 이름 차량 구분. 회귀 시험 81건 통과, 운영 배포 확인.
+- [차량 #115](https://github.com/majung-team/majung-vehicle-app/pull/115), main `fcd03dc`: 보조 버튼 구분, 요청 상태·행동 표시, 이름과 긴 메시지 분리, 기본 스크롤 적용. 단위 시험·Lint·debug/시험 APK·서명 release 빌드 통과.
+- 제출 APK `0.2.23-preview`, versionCode 25. [Releases](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.23-preview.20261105)의 sourceRevision과 SHA256SUMS로 소스·파일을 대조한다.
+- 브라우저 화면 검사는 Chrome 데스크톱과 390×844에서 로컬 시험 API·실제 카카오 지도로 진행했다. 운영 계정 화면의 차량 구분 표시도 확인했다. 실제 휴대전화·트랙패드 체감·실차 시험 완료라는 의미는 아니다.
+
+
 ### 2026년 11월 5일 · 내비 주행 중 헤즈업 알림(HUN) 전면 복구 & 탑승자 웹 슬라이딩 스위치 UX 개편
 
 - **차량 앱 내비게이션 주행 중 플로팅 헤즈업 알림(Heads-Up Notification / HUN) 전면 복구 (`c0cbcdd`)**:

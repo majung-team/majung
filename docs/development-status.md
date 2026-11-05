@@ -44,7 +44,7 @@
 | 퀵 메시지 및 음성 안내 | 송승준 | [서버 #67](https://github.com/majung-team/majung-backend/pull/67) · [웹 #86](https://github.com/majung-team/majung-web/pull/86) · [차량 #112](https://github.com/majung-team/majung-vehicle-app/pull/112) | 탑승자 3종 퀵 메시지 웹 전송 및 차량 화면 노출·스피커 TTS 자동 낭독 |
 | 주행 중 백그라운드 알림·자동 도착 | 송승준 | [차량 #112](https://github.com/majung-team/majung-vehicle-app/pull/112) | 내비 주행 중 신규 요청 헤드업 알림 + TTS 음성 안내, 반경 100m 근접 자동 도착 감지 |
 | 다이내믹 캡슐 토스트 & 도착 안내 | 송승준 | 웹 커밋 `ee421ad` · `be2b4cb` | 중복 토스트 원천 차단(싱글톤), Apple 다이내믹 아일랜드 다크 글래스 캡슐, 차량 도착 시 상단 자동 스크롤 & 전용 안내 |
-| 하단 탭 내비게이션 & 슬라이딩 카드 팝업 | 송승준 | 웹 커밋 `0ecabb6` | 세로 스크롤 해소 모빌리티 UI 개편. 히어로 지도 뷰 유지, 하단 고정 4개 탭(음성 전달·장소 제안·도착 알림·안내), 탭 터치 시 반투명 백드롭 위로 슬라이딩 카드 팝업 오픈, 차량 TTS 퀵 메시지 및 직접 입력 폼 배치 |
+| 하단 플로팅 독 & 세그먼트 스위치 | 송승준 | 웹 커밋 `a8a4375` | 장소 검색 결과 접기·선택 카드 UI(긴 리스트 자동 접힘 및 [다른 장소 검색]), 내 탑승 준비 상태 2구 세그먼트 토글 스위치(준비 중/준비 완료 시각적 인지성 강화), 플로팅 아일랜드 독 내비게이션 바 및 슬라이딩 시트 팝업 UX 개편 |
 | 차량 정보 배지 | 송승준 | [서버 #67](https://github.com/majung-team/majung-backend/pull/67) · [웹 #86](https://github.com/majung-team/majung-web/pull/86) | 탑승자 화면 상단 매칭 차량 정보(`🚘 ${vehicleName}`) 배지 노출 |
 | 끊김·정보 최신성 | 안성모 초안, 송승준 보완 | 서버 `0e75171`, 웹 `4372565`, [웹 #45](https://github.com/majung-team/majung-web/pull/45) | 오래된 정보 처리, 실제 LTE 전환·재접속 검증 필요 |
 | 도착 임박 푸시 | 안성모 코드, 송승준 운영 설정 | 서버 `c07462e`, 웹 `6dbf515` | Chrome 구독·해제 확인, 실제 휴대전화 알림 배너 미검증 |
@@ -59,6 +59,7 @@
 | 차량 저장·백그라운드 처리 | 송승준 | [차량 #5](https://github.com/majung-team/majung-vehicle-app/pull/5) · [차량 #7](https://github.com/majung-team/majung-vehicle-app/pull/7) | 암호화 저장, 연결 복구 및 공유 중 서비스 처리. 실차 장시간 검증 필요 |
 | 주행 제한·음성 안내 | 송승준 | [차량 #19](https://github.com/majung-team/majung-vehicle-app/pull/19) · [차량 #30](https://github.com/majung-team/majung-vehicle-app/pull/30) · [차량 #32](https://github.com/majung-team/majung-vehicle-app/pull/32) | 에뮬레이터 주행 제한 전환 확인. 실제 차량·스피커·통화 우선순위 검증 필요 |
 | 차량 화면·팝업·새로고침 | 송승준 | [차량 #54](https://github.com/majung-team/majung-vehicle-app/pull/54) · [차량 #61](https://github.com/majung-team/majung-vehicle-app/pull/61) · [차량 #63](https://github.com/majung-team/majung-vehicle-app/pull/63) · [차량 #65](https://github.com/majung-team/majung-vehicle-app/pull/65) · [차량 #69](https://github.com/majung-team/majung-vehicle-app/pull/69) · [웹 #61](https://github.com/majung-team/majung-web/pull/61) | `0.2.13-preview` 단계의 차량 UI 개선 및 시험 기록 |
+| 내비 연결 루프 방지 & 흐름 UX | 송승준 | 차량 커밋 `f39e51b` | 내비 실패 시 [내비게이션 열기] 상시 노출로 경로 설정 직접 유도, [내비게이션 다시 연결] 확인 중 로딩 상태 표시 및 중복 클릭 방지, 목적지 확인 완료(✓) 및 탑승자 초대 안내(👉) 단계별 UX 확립 |
 | GCP·자동 배포 | 안성모 초기 역할 분담, 송승준 실제 운영 구현 | [서버 #9](https://github.com/majung-team/majung-backend/pull/9) · [웹 #7](https://github.com/majung-team/majung-web/pull/7) · [서버 #45](https://github.com/majung-team/majung-backend/pull/45) · [웹 #71](https://github.com/majung-team/majung-web/pull/71) | 전용 VM, PostgreSQL, Caddy, GitHub Actions, Blue-Green 배포 및 JDBC 공유 세션 |
 
 ---

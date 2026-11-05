@@ -44,6 +44,9 @@ https://github.com/user-attachments/assets/e181fcc1-599f-47e9-ac96-98135dae2f24
 # 1) Pleos 공식 에뮬레이터 실행 (PATH 미설정 시 ~/Library/Android/sdk/emulator/emulator 사용)
 emulator -avd Majung_Pleos_2_1
 
+# PATH 설정 팁 (~/.zshrc)
+# export PATH=$PATH:~/Library/Android/sdk/emulator:~/Library/Android/sdk/platform-tools
+
 # 2) 코드 수정 후 정식 서명 바이너리 빌드 및 에뮬레이터 설치 (덮어쓰기 -r)
 cd ~/Coding/majung-vehicle-app
 python3 tools/build-release.py

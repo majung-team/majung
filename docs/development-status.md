@@ -66,6 +66,15 @@
 
 ## 2. 최근 주요 변경 사항
 
+### 2026년 11월 5일 · 중요한 상태 안내와 픽업 완료 조작
+
+- [웹 #90](https://github.com/majung-team/majung-web/pull/90), main `e9457ec`: 입력 중 도착·취소 갱신, 메시지 50자·실패 초안 보존, 오래된 ETA 안내, 지도 실패 시 장소 제안 유지, 알림의 픽업별 이동, 새 초대 표시·차량 다시 찾기 반영. Node 시험 87개 통과.
+- [서버 #69](https://github.com/majung-team/majung-backend/pull/69), main `5f96368`: 실제 도착 알림을 3분 전 알림과 구분하고 픽업별 이동 경로를 암호화해 전송. Java 시험 115개·배포 시험 27개 통과. 운영 DB는 백업 후 nullable 컬럼 4개를 먼저 추가했다.
+- [차량 #119](https://github.com/majung-team/majung-vehicle-app/pull/119), main `214f2ad`: 도착·탑승 완료 버튼 하단 고정, 받은 요청 수·다음 대기자 요약. 단위 시험·lint·빌드 및 공식 Pleos 2.1 에뮬레이터 `PickupActionDockTest` 1개 통과.
+- 제출 APK [0.2.24-preview / code 26](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.24-preview.20261105) 게시. 기존 인증서와 일치하며 제출 폴더의 APK도 교체했다.
+- [상세 기록](critical-feedback-2026-11-05.md). 브라우저 캡처는 시험 데이터 화면이다. 실제 휴대전화 푸시·실차 검증 및 기존 기기 시험 종료 대기 이슈 #116 해결을 뜻하지 않는다.
+
+
 ### 2026년 11월 5일 · 픽업 화면 사용성 보완
 
 - [웹 #88](https://github.com/majung-team/majung-web/pull/88), main `1cbd1c2`: 새 요청 지도 높이 복구, 장소·주소 요약, 준비 상태·메시지 조작 통일, 중복 전송 차단·실패 재시도, 동일 이름 차량 구분. 회귀 시험 81건 통과, 운영 배포 확인.

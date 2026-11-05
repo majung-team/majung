@@ -30,6 +30,8 @@
 
 ### 이번 사용성 보완
 
+입력 중 도착·취소 표시, 메시지 초안 보존·50자 제한, 알림의 픽업별 이동, 지도 복귀, 차량 하단 완료 버튼은 반영했다. [변경 내용과 시험 범위](critical-feedback-2026-11-05.md)를 기준으로 확인한다. 실제 휴대전화의 도착 푸시 수신과 실차 시험은 남아 있다.
+
 가독성 기기 시험의 ActivityScenario 종료 대기 실패는 [차량 #116](https://github.com/majung-team/majung-vehicle-app/issues/116)에 남아 있다. 화면 확인과 전체 시험 통과를 구분한다.
 
 웹 요청 지도·준비 상태·동일 이름 차량 구분은 [웹 #88](https://github.com/majung-team/majung-web/pull/88)로 반영했다. 요청 안내·긴 메시지·기본 스크롤은 [차량 #115](https://github.com/majung-team/majung-vehicle-app/pull/115)에 반영했다. 코드 수정·자동 검사와 실제 트랙패드 체감·실차 검증을 구분한다.
@@ -48,7 +50,7 @@
 | --- | --- |
 | 프로젝트 소개 | [GitHub README](https://github.com/majung-team/majung) |
 | 서비스 웹 | [majung.cloud](https://majung.cloud) |
-| 차량 APK | [v0.2.23-preview](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.23-preview.20261105) |
+| 차량 APK | [v0.2.24-preview](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.24-preview.20261105) |
 | 시연 영상 | [2026년 10월 29일 시연 기록](pickup-demo.md) |
 | 개발 근거 | [기능별 PR 및 커밋](development-status.md) |
 | 제출 점검 | [제출 점검표](submission-checklist.md) |

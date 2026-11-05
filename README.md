@@ -1,7 +1,7 @@
 
 # 마중 (Majung)
 
-#이번 사용성 보완은 [웹 화면 기록](https://github.com/majung-team/majung-web/blob/main/docs/usability-2026-11-05.md)과 [차량 화면 기록](https://github.com/majung-team/majung-vehicle-app/blob/main/docs/usability-2026-11-05.md)에서 확인할 수 있습니다. 현재 제출 APK는 0.2.23-preview입니다.
+이번 사용성 보완은 [웹 화면 기록](https://github.com/majung-team/majung-web/blob/main/docs/usability-2026-11-05.md)과 [차량 화면 기록](https://github.com/majung-team/majung-vehicle-app/blob/main/docs/usability-2026-11-05.md)에서 확인할 수 있습니다. 최신 [도착 안내·메시지·픽업 버튼 보완 기록](docs/critical-feedback-2026-11-05.md)도 함께 확인할 수 있습니다. 현재 제출 APK는 0.2.24-preview입니다.
 
 ## 차량 내비게이션과 탑승자를 연결하는 픽업 지원 서비스
 
@@ -55,7 +55,7 @@ python3 tools/build-release.py
 adb install -r vehicle/build/outputs/apk/release/vehicle-release.apk
 
 # (원격) GitHub 최신 릴리스 서명 APK 원클릭 설치
-curl -sL https://github.com/majung-team/majung-vehicle-app/releases/download/v0.2.23-preview.20261105/Majung_Majung_release.apk -o /tmp/majung.apk && adb install -r /tmp/majung.apk
+curl -sL https://github.com/majung-team/majung-vehicle-app/releases/download/v0.2.24-preview.20261105/Majung_Majung_release.apk -o /tmp/majung.apk && adb install -r /tmp/majung.apk
 
 # 3) 앱 실행 및 로그캣 확인
 adb shell am start -n app.majung.vehicle/.MainActivity
@@ -82,7 +82,7 @@ cd ~/Coding/majung-backend
 ```sh
 cd ~/Coding/majung-web
 
-# 의존성 설치 및 76종 자동화 테스트
+# 의존성 설치 및 자동화 테스트
 npm ci
 npm test
 
@@ -156,7 +156,7 @@ Pleos NaviHelper를 활용하여 차량 내비게이션의 경로, 목적지, �
 
 픽업이 시작되면 권한이 있는 탑승자는 모바일 웹에서 매칭된 차량 정보 배지(`🚘 아이오닉 5 · 마중 차량`), 차량의 현재 위치, 예상 도착 시간 및 진행 상태를 확인할 수 있습니다.
 
-탑승자는 자신의 준비 상태(준비 중 / 준비 완료)를 변경할 수 있으며, 직접 입력 폼(최대 100자) 및 '지금 내려가요', '1번 출구 앞이에요', '곧 도착해요'와 같은 빠른 칩을 통해 차량으로 메시지를 즉시 전송할 수 있습니다. 메시지는 주행 중인 차량 앱에 실시간으로 표시되는 동시에 차량 스피커(TTS)로 낭독됩니다.
+탑승자는 자신의 준비 상태(준비 중 / 준비 완료)를 변경할 수 있으며, 직접 입력 폼(최대 50자) 및 '지금 내려가요', '1번 출구 앞이에요', '곧 도착해요'와 같은 빠른 칩을 통해 차량으로 메시지를 보낼 수 있습니다. 웹의 저장 완료는 운전자의 수신·확인을 뜻하지 않습니다. 차량 앱이 새 메시지를 받으면 화면 표시와 음성 안내 설정에 따라 안내합니다.
 
 웹에서는 SSE(Server-Sent Events)를 통해 상태 변경 신호를 수신한 후 API에서 최신 상태를 다시 조회합니다.
 입력 도중 화면 재랜더링으로 인한 키보드 닫힘 방지 및 임시 초안 보존 처리가 적용되어 모바일에서도 안정적으로 메시지를 입력할 수 있습니다.

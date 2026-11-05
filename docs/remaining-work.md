@@ -30,6 +30,8 @@
 
 ### 이번 사용성 보완
 
+가독성 기기 시험의 ActivityScenario 종료 대기 실패는 [차량 #116](https://github.com/majung-team/majung-vehicle-app/issues/116)에 남아 있다. 화면 확인과 전체 시험 통과를 구분한다.
+
 웹 요청 지도·준비 상태·동일 이름 차량 구분은 [웹 #88](https://github.com/majung-team/majung-web/pull/88)로 반영했다. 요청 안내·긴 메시지·기본 스크롤은 [차량 #115](https://github.com/majung-team/majung-vehicle-app/pull/115)에 반영했다. 코드 수정·자동 검사와 실제 트랙패드 체감·실차 검증을 구분한다.
 
 ### 제출 자료 정리

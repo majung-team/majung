@@ -1,7 +1,7 @@
 
 # 남은 작업 및 향후 계획
 
-**기준일: 2026년 11월 2일**
+**기준일: 2026년 11월 5일**
 
 마중의 현재 개발 상태와 추가 검증이 필요한 항목, 향후 개선 계획을 정리한 문서다.
 
@@ -28,6 +28,10 @@
 
 [검증 범위와 제한](https://github.com/majung-team/majung-backend/blob/main/docs/stability-verification.md)
 
+### 이번 사용성 보완
+
+웹 요청 지도·준비 상태·동일 이름 차량 구분은 [웹 #88](https://github.com/majung-team/majung-web/pull/88)로 반영했다. 요청 안내·긴 메시지·기본 스크롤은 [차량 #115](https://github.com/majung-team/majung-vehicle-app/pull/115)에 반영했다. 코드 수정·자동 검사와 실제 트랙패드 체감·실차 검증을 구분한다.
+
 ### 제출 자료 정리
 
 - 프로젝트 README와 Wiki의 기능 설명 및 이용 흐름 정리
@@ -42,7 +46,7 @@
 | --- | --- |
 | 프로젝트 소개 | [GitHub README](https://github.com/majung-team/majung) |
 | 서비스 웹 | [majung.cloud](https://majung.cloud) |
-| 차량 APK | [v0.2.20-preview](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.20-preview.20261104) |
+| 차량 APK | [v0.2.23-preview](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.23-preview.20261105) |
 | 시연 영상 | [2026년 10월 29일 시연 기록](pickup-demo.md) |
 | 개발 근거 | [기능별 PR 및 커밋](development-status.md) |
 | 제출 점검 | [제출 점검표](submission-checklist.md) |

@@ -1,7 +1,9 @@
 
 # 마중 (Majung)
 
-### 차량 내비게이션과 탑승자를 연결하는 픽업 지원 서비스
+#이번 사용성 보완은 [웹 화면 기록](https://github.com/majung-team/majung-web/blob/main/docs/usability-2026-11-05.md)과 [차량 화면 기록](https://github.com/majung-team/majung-vehicle-app/blob/main/docs/usability-2026-11-05.md)에서 확인할 수 있습니다. 현재 제출 APK는 0.2.23-preview입니다.
+
+## 차량 내비게이션과 탑승자를 연결하는 픽업 지원 서비스
 
 마중은 차량 내비게이션의 픽업 장소와 예상 도착 시간, 탑승자의 준비 상태를 하나의 서비스에서 공유하여 운전자와 탑승자 간의 반복적인 연락을 줄이는 것을 목표로 합니다.
 
@@ -53,7 +55,7 @@ python3 tools/build-release.py
 adb install -r vehicle/build/outputs/apk/release/vehicle-release.apk
 
 # (원격) GitHub 최신 릴리스 서명 APK 원클릭 설치
-curl -sL https://github.com/majung-team/majung-vehicle-app/releases/download/v0.2.20-preview.20261104/Majung_Majung_release.apk -o /tmp/majung.apk && adb install -r /tmp/majung.apk
+curl -sL https://github.com/majung-team/majung-vehicle-app/releases/download/v0.2.23-preview.20261105/Majung_Majung_release.apk -o /tmp/majung.apk && adb install -r /tmp/majung.apk
 
 # 3) 앱 실행 및 로그캣 확인
 adb shell am start -n app.majung.vehicle/.MainActivity

@@ -50,7 +50,7 @@
 | --- | --- |
 | 프로젝트 소개 | [GitHub README](https://github.com/majung-team/majung) |
 | 서비스 웹 | [majung.cloud](https://majung.cloud) |
-| 차량 APK | [v0.2.24-preview](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.24-preview.20261105) |
+| 차량 APK | [v0.2.25-preview](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.25-preview.20261106) |
 | 시연 영상 | [2026년 10월 29일 시연 기록](pickup-demo.md) |
 | 개발 근거 | [기능별 PR 및 커밋](development-status.md) |
 | 제출 점검 | [제출 점검표](submission-checklist.md) |

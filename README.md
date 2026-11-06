@@ -1,7 +1,7 @@
 
 # 마중 (Majung)
 
-이번 사용성 보완은 [웹 화면 기록](https://github.com/majung-team/majung-web/blob/main/docs/usability-2026-11-05.md)과 [차량 화면 기록](https://github.com/majung-team/majung-vehicle-app/blob/main/docs/usability-2026-11-05.md)에서 확인할 수 있습니다. 최신 [도착 안내·메시지·픽업 버튼 보완 기록](docs/critical-feedback-2026-11-05.md)도 함께 확인할 수 있습니다. 현재 제출 APK는 0.2.25-preview입니다.
+이번 사용성 보완은 [웹 화면 기록](https://github.com/majung-team/majung-web/blob/main/docs/usability-2026-11-05.md)과 [차량 화면 기록](https://github.com/majung-team/majung-vehicle-app/blob/main/docs/usability-2026-11-05.md)에서 확인할 수 있습니다. 최신 [도착 안내·메시지·픽업 버튼 보완 기록](docs/critical-feedback-2026-11-05.md)도 함께 확인할 수 있습니다. 현재 제출 APK는 [0.2.26-preview](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.26-preview.20261106)입니다.
 
 ## 차량 내비게이션과 탑승자를 연결하는 픽업 지원 서비스
 
@@ -55,7 +55,7 @@ python3 tools/build-release.py
 adb install -r vehicle/build/outputs/apk/release/vehicle-release.apk
 
 # (원격) GitHub 최신 릴리스 서명 APK 원클릭 설치
-curl -sL https://github.com/majung-team/majung-vehicle-app/releases/download/v0.2.25-preview.20261106/Majung_Majung_release.apk -o /tmp/majung.apk && adb install -r /tmp/majung.apk
+curl -fL https://github.com/majung-team/majung-vehicle-app/releases/download/v0.2.26-preview.20261106/Majung_Majung_release.apk -o /tmp/majung.apk && adb install -r /tmp/majung.apk
 
 # 3) 앱 실행 및 로그캣 확인
 adb shell am start -n app.majung.vehicle/.MainActivity

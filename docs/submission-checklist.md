@@ -1,6 +1,6 @@
 # 1차 제출 점검표
 
-작성일: 2026-10-26, 갱신일: 2026-10-30. 출처는 공식 [제출 안내](https://appdevchallenge.auto-hmg.io/guide/submission)와 [심사·시상](https://appdevchallenge.auto-hmg.io/guide/judging-awards)이다. 접수 기간은 **2026-10-21 ~ 2026-11-15**이고, 11/13 리허설·11/14 제출은 이전에 제안한 내부 일정이다. 공식 안내가 바뀔 수 있으므로 제출 직전에 다시 대조한다.
+작성일: 2026-10-26, 갱신일: 2026-11-06. 출처는 공식 [제출 안내](https://appdevchallenge.auto-hmg.io/guide/submission)와 [심사·시상](https://appdevchallenge.auto-hmg.io/guide/judging-awards)이다. 접수 기간은 **2026-10-21 ~ 2026-11-15**이고, 11/13 리허설·11/14 제출은 이전에 제안한 내부 일정이다. 공식 안내가 바뀔 수 있으므로 제출 직전에 다시 대조한다.
 
 10/29 담당 갱신: 현재 제출 준비는 승준이 이어간다. 기존 성모 작성 자료와 기여는 이력으로 보존한다. 팀명은 마중, 대표자는 송승준, 팀원은 안성모다. 대학생·일반 혼합팀이므로 일반 부문으로 준비한다.
 
@@ -14,7 +14,7 @@
 | 개인정보 수집·이용 동의서 | 필수 | 현재 파일에 두 사람의 동의 표시·이름·날짜가 기재돼 있다. 각 참가자가 본인 내용을 작성한 최종본인지 제출 전에 확인한다 | 각 참가자 |
 | 시연 영상 | 선택, 가산점 | [10월 29일 약 41초 영상](pickup-demo.md) 촬영 완료. 링크 참여·SDK ETA·준비 완료·수동 도착·탑승 완료를 담았으며 로컬 API 시험이다 | 승준 |
 | GitHub 저장소 | 선택, 가산점 | 소개·차량·서버·웹 저장소 모두 공개다. 비로그인 상태에서 접근 확인 | 승준 |
-| release APK | 선택, 가산점 | [0.2.25-preview](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.25-preview.20261106) 서명 APK 게시. 제출 파일명은 `마중_마중_release.apk`. 공식 에뮬레이터 검증이며 실차 검증은 아님 | 승준 |
+| release APK | 선택, 가산점 | [0.2.26-preview](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.26-preview.20261106) 서명 APK 게시. 제출 파일명은 `마중_마중_release.apk`. Pleos 에뮬레이터 업데이트 설치·실행 확인. 실차 시험은 남아 있음 | 승준 |
 | 숏폼 링크 | 선택, 가산점 없음 | 해당 없음 | — |
 
 ## 먼저 정해야 하는 것

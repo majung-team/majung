@@ -15,6 +15,15 @@
 
 ## 11월 9일 · 첫 초대와 픽업 복구
 
+| 대상 | 11월 9일 확인 버전 | 확인 경로 |
+| --- | --- | --- |
+| 백엔드 | `3546902` · Green 슬롯 · UP | [운영 health](https://majung.cloud/api/v1/health) · [배포 실행](https://github.com/majung-team/majung-backend/actions/runs/42591855886) |
+| 탑승자 웹 | `30e28d2` | [운영 release.json](https://majung.cloud/release.json) · [배포 실행](https://github.com/majung-team/majung-web/actions/runs/42593227100) |
+| 차량 앱 | `0.2.29-preview` · 버전 코드 31 · 소스 `6d599f1` | [APK 및 체크섬](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.29-preview.20261109) |
+
+- [웹 #110](https://github.com/majung-team/majung-web/pull/110): 지도 오류 시 빈 카드를 숨기고 약속 장소와 다시 불러오기 버튼을 표시한다.
+- Chrome 모바일 크기(390px)와 데스크톱(1280px)에서 초대 재시도, 참여, 같은 탭 재접속, 취소, 이전 링크 차단을 확인했다.
+
 - [서버 #73](https://github.com/majung-team/majung-backend/pull/73): 링크로 참여하기 전에 초대가 유효한지 확인한다. 유효한 경우 장소 이름만 보이고, 확인만으로는 초대가 사용되지 않는다.
 - [웹 #108](https://github.com/majung-team/majung-web/pull/108): 초대 만료와 일시적인 연결 실패를 구분한다. 로그인 여부에 관계없이 약속 장소 옆에서 장소를 제안할 수 있게 정리하고, 위치나 도착 시간을 아직 받지 못했을 때 안내를 바꿨다.
 - [차량 #132](https://github.com/majung-team/majung-vehicle-app/pull/132): 내비에서 돌아온 뒤 장소 제안 확인을 이어간다. Pleos에서 장소 변경, 앱 강제 종료 후 위치·도착 시간 공유 재개, 두 번째 대기 픽업의 경유지 안내와 완료를 확인했다.

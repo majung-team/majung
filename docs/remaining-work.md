@@ -1,7 +1,7 @@
 
 # 남은 작업 및 향후 계획
 
-**기준일: 2026년 11월 5일**
+**갱신일: 2026년 11월 9일**
 
 마중의 현재 개발 상태와 추가 검증이 필요한 항목, 향후 개선 계획을 정리한 문서다.
 
@@ -28,7 +28,11 @@
 
 [검증 범위와 제한](https://github.com/majung-team/majung-backend/blob/main/docs/stability-verification.md)
 
-### 이번 사용성 보완
+### 최근 픽업 검증
+
+Chrome 모바일 크기와 데스크톱에서 초대 재시도·참여·재접속·취소를 확인했다. Pleos에서 장소 변경, 앱 강제 종료 후 위치·도착 시간 공유 재개, 두 번째 대기 픽업을 확인했다. 남은 검증은 최신 버전의 실제 iPhone 픽업 전체 흐름과 실차 시동 종료·재시동이다. [11월 9일 검증 기록](development-status.md#11월-9일--첫-초대와-픽업-복구)
+
+### 기존 사용성 보완
 
 입력 중 도착·취소 표시, 메시지 초안 보존·50자 제한, 알림의 픽업별 이동, 지도 복귀, 차량 하단 완료 버튼은 반영했다. [변경 내용과 시험 범위](critical-feedback-2026-11-05.md)를 기준으로 확인한다. 실제 휴대전화의 도착 푸시 수신과 실차 시험은 남아 있다.
 
@@ -50,7 +54,7 @@
 | --- | --- |
 | 프로젝트 소개 | [GitHub README](https://github.com/majung-team/majung) |
 | 서비스 웹 | [majung.cloud](https://majung.cloud) |
-| 차량 APK | [v0.2.25-preview](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.25-preview.20261106) |
+| 차량 APK | [0.2.29-preview](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.29-preview.20261109) (버전 코드 31) |
 | 시연 영상 | [2026년 10월 29일 시연 기록](pickup-demo.md) |
 | 개발 근거 | [기능별 PR 및 커밋](development-status.md) |
 | 제출 점검 | [제출 점검표](submission-checklist.md) |

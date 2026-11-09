@@ -5,11 +5,11 @@
 
 운전자와 탑승자가 서로 다른 계정을 사용하여 픽업 요청부터 탑승 완료까지의 흐름을 검증한다.
 
-**기준일: 2026년 10월 30일**
+**갱신일: 2026년 11월 9일**
 
 > 이 문서는 테스트 절차를 설명한다. 아래 항목이 모두 실제 휴대전화나 차량에서 검증 완료됐다는 뜻은 아니다.
 >
-> 현재 운영 버전과 배포 기록은 [운영 버전 및 배포 검증](runtime-2026-10-29.md)을 참고한다.
+> 현재 운영 버전과 배포 기록은 [개발 현황의 운영 버전](development-status.md#11월-9일--첫-초대와-픽업-복구)을 참고한다.
 
 ### 첫 사용과 복구 확인
 
@@ -40,7 +40,7 @@
 
 웹 주소만 열었다고 진행 중인 픽업이나 차량 위치가 자동으로 공개되지는 않는다.
 
-Swagger 화면은 현재 제공하지 않는다. API 요청 형식은 [서버 API 문서](https://github.com/majung-team/majung-backend/blob/main/docs/ride-requests.md)를 참고한다.
+API 요청 형식은 [운영 Swagger UI](https://majung.cloud/api/swagger-ui/index.html)와 [서버 API 문서](https://github.com/majung-team/majung-backend/blob/main/docs/ride-requests.md)에서 확인한다.
 
 일반적인 서비스 테스트에는 서버 SSH 접속, GCP 관리자 권한 또는 관리자 키가 필요하지 않다.
 
@@ -68,7 +68,7 @@ Swagger 화면은 현재 제공하지 않는다. API 요청 형식은 [서버 AP
 
 별도의 빌드 없이 테스트하려면 GitHub Releases에서 APK를 내려받는다.
 
-[차량 앱 0.2.26-preview](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.26-preview.20261106)
+[차량 앱 0.2.29-preview](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.29-preview.20261109) (버전 코드 31)
 
 공식 Pleos 에뮬레이터를 실행한 뒤 설치한다.
 

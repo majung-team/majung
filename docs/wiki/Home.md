@@ -108,23 +108,19 @@
 
 ## 5. 서비스 시연 영상
 
-### 주요 기능 시연 (2026.10.29)
+### 픽업 및 내비 연동 시연 (2026.11.10 · 차량 앱 0.2.29-preview)
 
-https://github.com/user-attachments/assets/e181fcc1-599f-47e9-ac96-98135dae2f24
-
-약 41초 분량으로 다음 흐름을 담았다.
-
-1. 초대 링크로 픽업 참여
-2. 차량 SDK 예상 도착 시간 확인
-3. 탑승자 준비 완료 상태 반영
-4. 수동 도착 처리
-5. 탑승 완료 및 픽업 종료
+- **[시연 영상 MP4 보기 (1분 36초 · 음성 포함)](https://github.com/majung-team/majung/raw/main/docs/media/pickup-demo.mp4)**
+- **초대 참여부터 탑승 완료까지 (`0:00 ~ 0:45`)**: 차량 앱에서 만날 장소 확인 및 초대(초대 QR 가림) → 탑승자 웹 초대 링크 참여 → 차량 위치와 예상 도착 시간 확인 → 준비 완료 반영 → 도착 및 탑승 확인 후 양쪽 픽업·위치 공유 종료
+- **차량 내비 연동 및 음성 안내 (`0:45 ~ 1:19`)**: 차량 내비게이션과 탑승자 웹 나란히 표시 → 탑승자가 ‘지금 내려가요’ 전송 시 내비 화면 위 알림 및 에뮬레이터 안내 음성(TTS) 출력 → 광교중앙역 장소 변경 제안 후 내비 화면에서 ‘수락 및 내비 변경’ 선택 시 최종 목적지를 유지한 채 경유지 경로 열림 → 새 경로 안내 시작 및 탑승자 웹 약속 장소 변경
+- **구현 기능 및 검증 범위 요약 (`1:19 ~ 1:36`)**: 차량 직접 초대, 탑승자 요청·대기열, 주행 중 조작 제한, 도착 전 웹 알림, 끊김 복구 안내
+- 이전 기본 흐름 시연(2026.10.29, 약 41초): https://github.com/user-attachments/assets/e181fcc1-599f-47e9-ac96-98135dae2f24
 
 > **시연 환경**
 >
-> 로컬 API에서 시험용 픽업을 미리 생성한 뒤 공식 에뮬레이터에서 촬영한 영상이다.
+> 공식 Pleos Connect 에뮬레이터(`0.2.29-preview`)와 운영 서버(`majung.cloud`)를 연결해 촬영한 영상이다.
 >
-> 실제 차량이나 실제 휴대전화에서 전체 픽업 과정을 검증한 영상은 아니다.
+> 실제 차량 주행이나 실제 휴대전화 푸시 알림 수신을 검증한 영상은 아니다.
 
 [촬영 조건 및 재현 방법](https://github.com/majung-team/majung/blob/main/docs/pickup-demo.md)
 
@@ -170,6 +166,10 @@ https://github.com/user-attachments/assets/e181fcc1-599f-47e9-ac96-98135dae2f24
 - [제출 및 검증 자료](https://github.com/majung-team/majung/blob/main/docs/submission-guide.md)
 
 ---
+
+### 11월 9일 0.2.29-preview 배포 APK 및 11월 10일 내비 연동 시연
+
+현재 설치 파일은 [0.2.29-preview](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.29-preview.20261109) (버전 코드 31)다. 초대 링크 사전 확인, 장소 제안 확인 복귀, 앱 재실행 후 픽업 공유 재개, 대기 픽업 경유지 안내를 Pleos 에뮬레이터와 운영 서버(`majung.cloud`)에서 확인하고 11월 10일 내비 연동 시연 영상을 촬영했다.
 
 ### 11월 4일 0.2.20-preview 배포 APK
 

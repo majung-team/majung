@@ -26,6 +26,20 @@
 
 ## 2. 개발 진행 기록
 
+### 2026년 11월 9일 ~ 11월 10일
+
+**차량 앱 · 서버 · 모바일 웹**
+
+- 차량 서명 APK [`0.2.29-preview`](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.29-preview.20261109) (버전 코드 31, 소스 `6d599f1`) 배포 및 Pleos 에뮬레이터 설치·실행 확인
+- 초대 링크 사전 확인([서버 #73](https://github.com/majung-team/majung-backend/pull/73)), 초대 만료·일시 연결 실패 구분 및 지도 오류 시 재시도 안내([웹 #108](https://github.com/majung-team/majung-web/pull/108) · [#110](https://github.com/majung-team/majung-web/pull/110)), 내비 복귀 후 장소 제안 확인 및 앱 재실행 후 픽업 공유 재개([차량 #132](https://github.com/majung-team/majung-vehicle-app/pull/132)) 반영
+
+**내비 연동 시연 영상 촬영 (2026.11.10)**
+
+- 운영 서버(`3546902`), 탑승자 웹(`30e28d2`), 차량 앱 `0.2.29-preview`를 연결해 약 1분 36초 분량의 내비 연동 시연 영상([`docs/media/pickup-demo.mp4`](https://github.com/majung-team/majung/raw/main/docs/media/pickup-demo.mp4)) 촬영
+- 기본 픽업 흐름(0:00~0:45), 내비 화면 위 탑승자 메시지 알림 및 에뮬레이터 안내 음성(TTS, 0:45~0:51), 장소 변경 제안(`광교중앙역`)과 내비 화면 위 ‘수락 및 내비 변경’을 통한 경유지 경로 추가·웹 약속 장소 갱신(0:51~1:19), 구현 기능 및 검증 범위 요약 카드(1:19~1:36) 수록
+
+[시연 촬영 조건 및 상세 안내](https://github.com/majung-team/majung/blob/main/docs/pickup-demo.md)
+
 ### 2026년 10월 29일
 
 **차량 앱**
@@ -99,7 +113,7 @@
 | 차량 앱 | Pleos 공식 에뮬레이터 기반 검증 |
 | 모바일 웹 | 주요 기능 구현 및 일부 실제 iPhone Chrome 검증 |
 | 백엔드 서버 | 공개 서버 운영 및 배포 |
-| 시연 영상 | 에뮬레이터 기반 기본 흐름 촬영 |
+| 시연 영상 | 에뮬레이터·운영 서버 기반 내비 연동 및 픽업 흐름 촬영 (2026.11.10, 1분 36초) |
 | 실제 휴대전화 전체 픽업 | 추가 검증 필요 |
 | 푸시 알림 배너 | 실제 기기 검증 필요 |
 | LTE·Wi-Fi 전환 | 추가 검증 필요 |

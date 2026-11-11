@@ -35,12 +35,14 @@
 
 세부 제출 상태는 [점검표](submission-checklist.md)를 따른다. VM 이름·고정 IP·프로젝트 식별값·운영 자격 증명·초대 토큰은 제출 소개 자료에 넣지 않는다. 이 문서 정리로 제출 메일을 발송하거나 저장소 공개 범위를 바꾸지는 않는다.
 
-## 11월 5일 사용성 보완
+## 참고 · 11월 5일 사용성 보완 기록
+
+11월 5일 기준 사용성 보완 변경 내역이며, 최신 제출 APK는 위 안내의 `0.2.29-preview` (버전 코드 31)다.
 
 웹의 새 요청 지도 높이를 복구하고 선택한 장소명·검색 주소를 요청 버튼 위에 표시했다. 준비 상태는 초대 링크와 계정 화면에서 같은 조작을 사용하며, 서버 저장과 차량 수신 확인을 구분한다. 동일한 차량명은 구분 코드·계정 연결 시각으로 구별한다.
 
 - [웹 변경과 화면](https://github.com/majung-team/majung-web/blob/main/docs/usability-2026-11-05.md)
 - [차량 화면 변경과 확인 범위](https://github.com/majung-team/majung-vehicle-app/blob/main/docs/usability-2026-11-05.md)
-- 서명 APK: versionCode 25, SHA-256 `00bc243ed9fa6ea4fb6263bb917e622e02bf5bd28ae13c30fb68d76ec293be87`
+- 당시 서명 APK (11/5): versionCode 25, SHA-256 `00bc243ed9fa6ea4fb6263bb917e622e02bf5bd28ae13c30fb68d76ec293be87`
 
 공모전 신청서·기획서·동의서는 기존 양식을 유지한 로컬 파일을 사용한다. 참가자 연락처와 서명이 있는 원본은 저장소에 올리지 않는다. 트랙패드 관성·실차 결과는 이번 자동 검사로 대체하지 않는다.

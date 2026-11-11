@@ -1,7 +1,7 @@
 
 # 마중 (Majung) 시스템 아키텍처
 
-**문서 기준일: 2026년 10월 30일**
+**문서 기준일: 2026년 11월 10일**
 
 마중은 차량 내비게이션의 경로·예상 도착 시간과 탑승자의 준비 상태를 연결하는 픽업 서비스다.
 
@@ -306,27 +306,29 @@ RideRequest 생성
 
 기준 경로:
 
-`majung-vehicle-app/vehicle/src/main/java/app/majung/vehicle/`
+`majung-vehicle-app/vehicle/src/main/java/app/majung/vehicle/` (`ui`, `navi`, `domain`, `data.api`, `data.storage`, `service`, `util` 7대 계층)
 
 | 파일 | 역할 |
 | --- | --- |
-| `VehicleApplication.kt` | Reader·Controller 생성, 암호화 저장소 연결, 초기 복구 |
-| `MainActivity.kt` | 화면 생명주기, 메뉴 전환, 권한 및 복구 처리 |
-| `VehicleViews.kt` | 공통 UI, 버튼, 입력, 팝업 및 조작 제한 |
-| `VehicleAccountController.kt` | 운전자 계정 및 연결 상태 관리 |
-| `VehicleAccountSection.kt` | 계정·요청·사람 연결 화면 |
-| `RequestPickupFlow.kt` | 요청 장소의 경로 준비, 검증 및 픽업 시작 |
-| `PickupCreationSection.kt` | 픽업 생성 및 초대 |
-| `PickupParticipantSection.kt` | 참여자 및 초대 승인 |
-| `PickupStatusSection.kt` | 픽업 상태 표시 |
-| `PickupCompletionSection.kt` | 도착, 완료 및 취소 |
-| `PickupSharingService.kt` | 백그라운드 SDK 조회, 전송 및 종료 감지 |
-| `DestinationReader.kt` | SDK 연결, 이벤트, 조회 및 연결 세대 확인 |
-| `VehicleTelemetry.kt` | 위치·ETA 수신 시각과 목적지 일치 검사 |
-| `PickupController.kt` | 픽업 상태, 권한, 순번 및 전송 중복 관리 |
-| `PickupApiClient.kt` | JSON 및 Bearer 토큰 기반 HTTP 통신 |
-| `PickupSessionStore.kt` | 픽업 복구 데이터 저장 인터페이스 |
-| `EncryptedPickupSessionStore.kt` | 암호화 저장, 원자적 파일 교체 및 삭제 |
+| `VehicleApplication.kt` | Reader·Controller·음성 안내 생성, 암호화 저장소 연결, 초기 복구 |
+| `MainActivity.kt` | 화면 생명주기, 탭 전환, 위치 권한, 동의·복구 처리 |
+| `ui/VehicleViews.kt` | 공통 UI, 버튼, 입력, 팝업 및 조작 제한 |
+| `domain/VehicleAccountController.kt` | 운전자 계정 및 연결 상태 관리 |
+| `ui/sections/VehicleAccountSection.kt` | 계정·요청·사람 연결 화면 |
+| `domain/RequestPickupFlow.kt` | 요청 장소의 경로 준비, 검증 및 픽업 시작 |
+| `ui/sections/PickupCreationSection.kt` | 픽업 생성 및 초대 |
+| `ui/sections/PickupParticipantSection.kt` | 참여자 및 초대 승인 |
+| `ui/sections/PickupStatusSection.kt` | 픽업 상태·메시지·제안 카드 표시 |
+| `ui/sections/PickupCompletionSection.kt` | 도착, 완료 및 취소 |
+| `service/PickupSharingService.kt` | 백그라운드 SDK 조회, 헤즈업 알림, 근접 도착·전송 및 종료 감지 |
+| `navi/DestinationReader.kt` | SDK 연결, 이벤트, 조회 및 연결 세대 확인 |
+| `navi/VehicleTelemetry.kt` | 위치·ETA 수신 시각과 목적지 일치 검사 |
+| `domain/PickupController.kt` | 픽업 상태, 권한, 순번 및 전송 중복 관리 |
+| `domain/PickupArrivalEvidence.kt` | 내비 도착 이벤트·반경 100m 근접 도착 판별 |
+| `data/api/PickupApiClient.kt` | JSON 및 Bearer 토큰 기반 HTTP 통신 |
+| `data/storage/PickupSessionStore.kt` | 픽업 복구 데이터 저장 인터페이스 |
+| `data/storage/EncryptedPickupSessionStore.kt` | 암호화 저장, 원자적 파일 교체 및 삭제 |
+| `util/PickupVoiceGuide.kt` | Pleos TTS 음성 안내(기본 켜짐·설정 전환) 및 메시지 낭독 |
 
 [차량 화면 구조](https://github.com/majung-team/majung-vehicle-app/blob/main/docs/vehicle-screen.md)
 
@@ -334,7 +336,7 @@ RideRequest 생성
 
 ## 6. 백엔드 아키텍처
 
-백엔드는 Spring Boot를 기반으로 계정, 차량 연결, 픽업 요청, 상태 관리 및 데이터 정리를 처리한다.
+백엔드는 Spring Boot를 기반으로 계정, 차량 연결, 픽업 요청, 상태 관리, 알림 및 데이터 정리를 처리한다.
 
 ### 주요 패키지 및 파일
 
@@ -344,18 +346,14 @@ majung-backend/
     ├── java/app/majung/server/
     │   ├── MajungServerApplication.java
     │   └── pickup/
-    │       ├── PickupApi.java
-    │       ├── PickupEventsApi.java
-    │       ├── PickupEventStreams.java
-    │       ├── PickupService.java
-    │       ├── Pickup.java
-    │       ├── PickupRepository.java
-    │       ├── AccountApi.java
-    │       ├── MemberService.java
-    │       ├── VehicleAccountService.java
-    │       ├── RideRequestService.java
-    │       ├── TokenService.java
-    │       └── PickupRetentionJob.java
+    │       ├── api/         # PickupApi, PickupEventsApi, AccountApi, RideRequestApi, PickupPlanApi 등
+    │       ├── service/     # PickupService, MemberService, VehicleAccountService, RideRequestService, ArrivalPushService 등
+    │       ├── domain/      # Pickup, RideRequest, Member, RegisteredVehicle 등
+    │       ├── repository/  # Spring Data JPA 리포지토리 및 행 잠금 쿼리
+    │       ├── security/    # 세션 인증, Rate Limit, 보안 헤더 필터
+    │       ├── job/         # PickupRetentionJob, PickupExpirationJob, ActiveDeploymentJobs
+    │       ├── push/        # PickupEventStreams, VapidPushTransport
+    │       └── common/      # SwaggerConfig, 공통 예외/응답 처리
     └── resources/
 
 deploy/
@@ -365,7 +363,7 @@ deploy/
 
 | 구성 요소 | 역할 |
 | --- | --- |
-| `PickupApi` | 픽업 HTTP 요청 및 응답 |
+| `PickupApi` | 픽업·초대 확인·퀵 메시지 HTTP 요청 및 응답 |
 | `PickupEventsApi` | SSE 연결 요청 |
 | `PickupEventStreams` | 인증된 상태 변경 신호 전달 |
 | `PickupService` | 픽업 권한·상태·순번·시간 검증 |
@@ -376,6 +374,7 @@ deploy/
 | `VehicleAccountService` | 차량 QR 및 운전자 계정 연결 |
 | `RideRequestService` | 탑승자 요청·대기열·Pickup 연결 |
 | `TokenService` | 토큰 발급 및 해시 비교 |
+| `ArrivalPushService` | 도착 3분 전 및 실제 도착 웹 푸시 처리 |
 | `PickupRetentionJob` | 만료·종료 데이터 정리 |
 
 ### 6.1 상태 변경과 동시성
@@ -420,9 +419,14 @@ majung-web/
 ├── index.html
 ├── style.css
 ├── app.js
+├── map.js
+├── proposal.js
+├── push.js
+├── sw.js
 ├── stream.js
 ├── model.js
 ├── api.js
+├── privacy.html
 ├── account.html
 ├── account.js
 ├── account-api.js
@@ -433,10 +437,14 @@ majung-web/
 | --- | --- |
 | `index.html` | 초대 및 픽업 화면 |
 | `style.css` | 공통 UI 스타일 |
-| `app.js` | 픽업 참여, 준비 상태, 화면 처리 |
+| `app.js` | 픽업 참여, 준비 상태, 빠른 메시지, 화면 처리 |
+| `map.js` | 카카오맵 차량·약속 장소 마커 및 다시 찾기 |
+| `proposal.js` | 인라인 장소 검색·지도 핀 선택·제안 카드 |
+| `push.js` · `sw.js` | 도착 3분 전 및 실제 도착 웹 푸시 구독·알림 |
 | `stream.js` | SSE 연결, 재연결 및 상태 재조회 |
-| `model.js` | 화면 상태 및 데이터 만료 판단 |
+| `model.js` | 화면 상태, 데이터 만료 판단 및 세그먼트 컨트롤 |
 | `api.js` | 픽업 관련 API 요청 |
+| `privacy.html` | 공개 개인정보 처리방침 및 위치 공유 안내 |
 | `account.html` | 계정 및 사람 연결 화면 |
 | `account.js` | 로그인, 검색, 차량 연결 및 요청 |
 | `account-api.js` | 계정 세션 및 CSRF 요청 |
@@ -705,30 +713,29 @@ GitHub Actions는 GCP 단기 인증과 제한된 배포 권한을 사용한다.
 
 ## 13. 현재 검증 범위
 
+**2026년 11월 10일 기준**
+
 ### 수행한 검증
 
-- 공식 에뮬레이터와 로컬 API에서 픽업 생성부터 탑승 완료까지 확인
+- 공식 에뮬레이터(`0.2.29-preview`)와 운영 서버(`majung.cloud`)·로컬 API에서 픽업 생성부터 탑승 완료, 내비 복귀·장소 제안 확정·앱 강제 종료 후 공유 재개까지 확인 (11/10 1분 36초 내비 연동 시연 영상 촬영)
 - 화면이 내려간 상태에서 약 310초 동안 최신 차량 정보 유지 확인
 - 서버 취소 후 백그라운드 공유 서비스 종료 확인
 - 앱 재실행 및 복구 흐름 확인
 - 사용자 재개 확인 전 위치 미전송
 - 재개 후 전송 순번 유지 및 종료 후 저장 정보 삭제
-- 공개 HTTPS에서 기존 초대 픽업 API 확인
-- 차량 앱 및 SDK 연동 시험
-- 실제 카카오 로그인과 세션 유지 확인
+- Chrome 모바일 크기(390px)·데스크톱 초대 재시도·참여·재접속·지도 오류 복구 및 실제 iPhone Chrome 로그인·탭 이동·검색·재접속 확인
 - 신규 요청을 가상 계정 3명 및 로컬 API·브라우저·차량 계측으로 시험
-- Blue-Green 배포와 공유 세션 관련 시험
+- Blue-Green 배포 전환·후보 슬롯 점검·외부 백업 복원 시험 통과
 
 ### 추가 검증이 필요한 항목
 
-- 실제 휴대전화의 전체 픽업 흐름
+- 실제 휴대전화(서로 다른 두 계정)의 전체 픽업 흐름
 - 실제 GPS 및 위치 권한 처리
 - 여러 실제 탑승자 계정의 순차 픽업
 - LTE·Wi-Fi 전환
-- 실제 휴대전화 푸시 알림
-- SDK 자동 도착 이벤트
-- 차량 시동 OFF/ON
-- 실제 차량의 주행 제한 및 TTS
+- 실제 휴대전화 푸시 알림 배너 수신
+- 차량 시동 OFF/ON 및 장시간 실행
+- 실제 차량의 주행 제한 및 TTS 스피커 출력
 - 플랫폼 배포·입점 심사
 
 에뮬레이터와 로컬 API의 시험 결과는 실제 차량 검증을 대체하지 않는다.

@@ -1,7 +1,7 @@
 
 # 마중 (Majung) 시스템 아키텍처
 
-**문서 기준일: 2026년 11월 10일**
+**문서 기준일: 2026년 11월 12일**
 
 마중은 차량 내비게이션의 경로·예상 도착 시간과 탑승자의 준비 상태를 연결하는 픽업 서비스다.
 
@@ -346,13 +346,13 @@ majung-backend/
     ├── java/app/majung/server/
     │   ├── MajungServerApplication.java
     │   └── pickup/
-    │       ├── api/         # PickupApi, PickupEventsApi, AccountApi, RideRequestApi, PickupPlanApi 등
-    │       ├── service/     # PickupService, MemberService, VehicleAccountService, RideRequestService, ArrivalPushService 등
+    │       ├── api/         # PickupApi, PickupEventsApi, AccountApi, RideRequestApi, PlaceSearchApi, PickupPlanApi 등
+    │       ├── service/     # PickupService, MemberService, MemberDeletionService, KakaoPlaceSearchService, VehicleAccountService, RideRequestService, ArrivalPushService 등
     │       ├── domain/      # Pickup, RideRequest, Member, RegisteredVehicle 등
     │       ├── repository/  # Spring Data JPA 리포지토리 및 행 잠금 쿼리
     │       ├── security/    # 세션 인증, Rate Limit, 보안 헤더 필터
     │       ├── job/         # PickupRetentionJob, PickupExpirationJob, ActiveDeploymentJobs
-    │       ├── push/        # PickupEventStreams, VapidPushTransport
+    │       ├── push/        # PickupEventStreams, VapidPushTransport, CompositePushTransport
     │       └── common/      # SwaggerConfig, 공통 예외/응답 처리
     └── resources/
 
@@ -363,18 +363,21 @@ deploy/
 
 | 구성 요소 | 역할 |
 | --- | --- |
-| `PickupApi` | 픽업·초대 확인·퀵 메시지 HTTP 요청 및 응답 |
-| `PickupEventsApi` | SSE 연결 요청 |
+| `PickupApi` | 픽업·초대 확인·게스트 대기 이탈·퀵 메시지 HTTP 요청 및 응답 |
+| `PickupEventsApi` | 픽업·요청 목록 SSE 연결 요청 |
 | `PickupEventStreams` | 인증된 상태 변경 신호 전달 |
+| `PlaceSearchApi` | 카카오 로컬 키워드·도로명/지번 주소 통합 검색 HTTP 요청 및 응답 |
+| `KakaoPlaceSearchService` | 카카오 로컬 키워드/주소 조회, 병합 및 중복 제거 |
 | `PickupService` | 픽업 권한·상태·순번·시간 검증 |
 | `Pickup` | 픽업 및 참여자, 최신 차량 정보 관리 |
 | `PickupRepository` | DB 저장·조회 및 행 잠금 |
-| `AccountApi` | 계정 관련 API |
+| `AccountApi` | 계정 조회·닉네임·회원 탈퇴 API |
 | `MemberService` | 카카오 계정·검색·사람 연결 |
+| `MemberDeletionService` | 회원 탈퇴 시 연관 픽업·요청·차량 연결·계정 정리 |
 | `VehicleAccountService` | 차량 QR 및 운전자 계정 연결 |
 | `RideRequestService` | 탑승자 요청·대기열·Pickup 연결 |
 | `TokenService` | 토큰 발급 및 해시 비교 |
-| `ArrivalPushService` | 도착 3분 전 및 실제 도착 웹 푸시 처리 |
+| `ArrivalPushService` | 도착 3분 전 및 실제 도착 푸시 처리 |
 | `PickupRetentionJob` | 만료·종료 데이터 정리 |
 
 ### 6.1 상태 변경과 동시성
@@ -713,11 +716,12 @@ GitHub Actions는 GCP 단기 인증과 제한된 배포 권한을 사용한다.
 
 ## 13. 현재 검증 범위
 
-**2026년 11월 10일 기준**
+**2026년 11월 12일 기준**
 
 ### 수행한 검증
 
 - 공식 에뮬레이터(`0.2.29-preview`)와 운영 서버(`majung.cloud`)·로컬 API에서 픽업 생성부터 탑승 완료, 내비 복귀·장소 제안 확정·앱 강제 종료 후 공유 재개까지 확인 (11/10 1분 36초 내비 연동 시연 영상 촬영)
+- 백엔드 Gradle 단위·통합 테스트(`124 passed, 1 skipped`)·배포 스크립트(`29 tests`) 및 웹 테스트(`104 passed`) 통과, 운영 서버(`102a9a4` Blue 슬롯 `UP`) 및 웹(`31f894a`) 공개 동작 확인
 - 화면이 내려간 상태에서 약 310초 동안 최신 차량 정보 유지 확인
 - 서버 취소 후 백그라운드 공유 서비스 종료 확인
 - 앱 재실행 및 복구 흐름 확인

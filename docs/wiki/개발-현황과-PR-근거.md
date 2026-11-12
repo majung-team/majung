@@ -26,6 +26,13 @@
 
 ## 2. 개발 진행 기록
 
+### 2026년 11월 12일
+
+**운영 백엔드 API 보강 및 제출 자료 점검**
+
+- 백엔드(`102a9a4` Blue 슬롯 `UP` · `c8ffb61`): 카카오 로컬 키워드·도로명/지번 주소 통합 검색 프록시(`GET /api/v1/places/search`), 회원 탈퇴(`DELETE /api/v1/accounts/me`), 게스트 대기 이탈(`POST /api/v1/pickups/{id}/leave`), 요청·초대 목록 실시간 SSE(`GET /api/v1/ride-requests/events`) 반영 및 단위·통합 테스트 통과
+- 웹(`31f894a`, `npm test` `104 passed`) 운영 반영 및 차량 APK `0.2.29-preview`(`15a88d9a...`)·시연 영상(`374169dc...`)·제출 문서 정합성 대조 완료
+
 ### 2026년 11월 9일 ~ 11월 10일
 
 **차량 앱 · 서버 · 모바일 웹**

@@ -1,6 +1,6 @@
 # 제출 자료 안내
 
-2026년 11월 10일 기준. 참가 정보와 서비스 설명은 **대표자가 수정한 공식 접수양식 원본**을 기준으로 한다. 접수양식 안에 기획 내용을 작성하므로 신청서와 기획서를 별도 문서로 다시 만들지 않는다.
+2026년 11월 12일 기준. 참가 정보와 서비스 설명은 **대표자가 수정한 공식 접수양식 원본**을 기준으로 한다. 접수양식 안에 기획 내용을 작성하므로 신청서와 기획서를 별도 문서로 다시 만들지 않는다.
 
 개인정보가 들어 있는 원본은 비공개 `Coding/majung-submission-private` 폴더에서 관리한다. GitHub와 노션에는 연락처·서명·동의서 원본을 올리지 않는다. 원본의 문장과 구성을 문서 자동 생성으로 덮어쓰지 않는다.
 
@@ -30,7 +30,7 @@
 - 공식 [지원·제출 방법](https://appdevchallenge.auto-hmg.io/guide/submission)과 [FAQ](https://appdevchallenge.auto-hmg.io/faq)를 대조한다. 접수양식은 필수이고 영상·GitHub·APK는 선택 제출이다.
 - 대표자가 팀원 전원을 CC에 넣어 공식 접수 이메일로 보낸다. 동의·서명은 각 참가자가 작성한 내용인지 확인한다.
 - GitHub 링크와 APK 파일 경로가 열리는지, README에 실행 환경·설치 방법·서버 주소가 있는지 확인한다. Releases 파일명은 `Majung_Majung_release.apk`이며 제출 파일명은 `마중_마중_release.apk`다. 이름을 바꾼 뒤에도 SHA-256이 릴리스의 `SHA256SUMS` 값과 같은지 확인한다.
-- 영상의 촬영 버전과 APK 버전을 함께 적는다. 공개 웹은 [release.json](https://majung.cloud/release.json), 서버는 [health](https://majung.cloud/api/v1/health)에서 확인한다.
+- 영상의 촬영 버전과 APK 버전을 함께 적는다. 공개 웹은 [release.json](https://majung.cloud/release.json) (`31f894a`), 운영 서버는 [health](https://majung.cloud/api/v1/health) (`102a9a4` Blue 슬롯)에서 확인하며, 11월 10일 시연 영상은 촬영 당시 배포 버전(서버 `3546902` · 웹 `30e28d2`)으로 촬영했다.
 - 추가 실기기 시험은 현재 우선 작업에서 보류한다. 미확인 항목을 검증 완료로 바꾸지는 않는다. 남은 범위는 [남은 작업](remaining-work.md)에 기록한다.
 
 세부 제출 상태는 [점검표](submission-checklist.md)를 따른다. VM 이름·고정 IP·프로젝트 식별값·운영 자격 증명·초대 토큰은 제출 소개 자료에 넣지 않는다. 이 문서 정리로 제출 메일을 발송하거나 저장소 공개 범위를 바꾸지는 않는다.

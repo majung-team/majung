@@ -167,9 +167,9 @@
 
 ---
 
-### 11월 9일 0.2.29-preview 배포 APK 및 11월 10일 내비 연동 시연
+### 11월 12일 운영 백엔드 보강 및 11월 9~10일 시연·APK 기준
 
-현재 설치 파일은 [0.2.29-preview](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.29-preview.20261109) (버전 코드 31)다. 초대 링크 사전 확인, 장소 제안 확인 복귀, 앱 재실행 후 픽업 공유 재개, 대기 픽업 경유지 안내를 Pleos 에뮬레이터와 운영 서버(`majung.cloud`)에서 확인하고 11월 10일 내비 연동 시연 영상을 촬영했다.
+현재 차량 설치 파일은 [0.2.29-preview](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.29-preview.20261109) (버전 코드 31)이며, 11월 10일 내비 연동 시연 영상은 운영 서버(`majung.cloud`)와 연결해 촬영했다. 11월 12일에는 운영 서버(`102a9a4` Blue 슬롯)에 카카오 로컬 장소·주소 검색 프록시, 회원 탈퇴, 비로그인 대기 이탈, 요청·초대 목록 SSE를 추가 배포해 안정성을 보완했다.
 
 ### 11월 4일 0.2.20-preview 배포 APK
 

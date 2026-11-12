@@ -68,7 +68,7 @@ API 요청 형식은 [운영 Swagger UI](https://majung.cloud/api/swagger-ui/ind
 
 별도의 빌드 없이 테스트하려면 GitHub Releases에서 APK를 내려받는다.
 
-[차량 앱 0.2.30-preview](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.30-preview.20261112) (버전 코드 32)
+[차량 앱 0.2.33-preview](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.33-preview.20261112) (버전 코드 35)
 
 공식 Pleos 에뮬레이터를 실행한 뒤 설치한다.
 

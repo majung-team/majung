@@ -28,10 +28,10 @@
 
 ### 2026년 11월 12일
 
-**운영 백엔드 API 보강 및 제출 자료 점검**
+**운영 백엔드 API 보강 및 클라이언트 안정화·제출 자료 점검**
 
-- 백엔드(`81c79cf` Blue 슬롯 `UP`): 카카오 로컬 키워드·도로명/지번 주소 통합 검색 프록시(`GET /api/v1/places/search`), 회원 탈퇴(`DELETE /api/v1/accounts/me`), 게스트 대기 이탈(`POST /api/v1/pickups/{id}/leave`), 요청·초대 목록 실시간 SSE(`GET /api/v1/ride-requests/events`), 더미 데이터 시딩 및 비공개 관리자 콘솔(`/api/v1/ops`) 반영 (`128 tests`, `0 failures`, `1 skipped`)
-- 웹(`aeb5a4b`, `npm test` `104 passed`) 운영 반영 및 차량 APK [`0.2.30-preview`](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.30-preview.20261112)(버전 코드 32, 소스 `a584d96`, SHA-256 `9e1ca492...`) Pleos 에뮬레이터(`emulator-5554`) 업데이트·기동 확인 (11/10 시연 영상 `374169dc...`은 직전 `0.2.29-preview` 기준 촬영본으로 유지)
+- 백엔드(`84d9498` Blue 슬롯 `UP`): 카카오 로컬 키워드·도로명/지번 주소 통합 검색 프록시(`GET /api/v1/places/search`), 회원 탈퇴(`DELETE /api/v1/accounts/me`), 게스트 대기 이탈(`POST /api/v1/pickups/{id}/leave`), 요청·초대 목록 실시간 SSE(`GET /api/v1/ride-requests/events`) 반영 (`125 tests`, `0 failures`, `1 skipped`)
+- 웹(`0188bd2`, `npm test` `104 passed`) · iOS(`4f9a132`) 운영 반영 및 차량 APK [`0.2.33-preview`](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.33-preview.20261112)(버전 코드 35, 소스 `692eae5`, SHA-256 `97738e46...` · 안정 기준인 QR 자동 연결 확인 팝업·3초 폴링 포함) Pleos 에뮬레이터(`Majung_Pleos_2_1`) 업데이트 확인 (11/10 시연 영상 `374169dc...`은 직전 `0.2.29-preview` 기준 촬영본으로 유지)
 
 ### 2026년 11월 9일 ~ 11월 10일
 

@@ -14,7 +14,7 @@
 | 개인정보 수집·이용 동의서 | 필수 | 현재 파일에 두 사람의 동의 표시·이름·날짜가 기재돼 있다. 각 참가자가 본인 내용을 작성한 최종본인지 제출 전에 확인한다 | 각 참가자 |
 | 시연 영상 | 선택, 가산점 | [11월 10일 약 1분 36초 내비 연동판 영상](pickup-demo.md) (`docs/media/pickup-demo.mp4`, 제출 폴더 `마중_픽업_시연_내비연동판.mp4`) 촬영 완료. 기본 픽업 흐름과 내비 화면 위 메시지 알림·TTS 음성, 장소 제안(`광교중앙역`) 수락 및 경유지 경로 변경을 담았으며 Pleos 에뮬레이터(`0.2.29-preview`)와 운영 서버(`majung.cloud`) 기준이다 | 승준 |
 | GitHub 저장소 | 선택, 가산점 | 소개·차량·서버·웹 저장소 모두 공개다. 비로그인 상태에서 접근 확인 | 승준 |
-| release APK | 선택, 가산점 | [0.2.30-preview](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.30-preview.20261112) (버전 코드 32, SHA-256 `9e1ca492...`) 서명 APK 빌드·태그 및 Pleos 에뮬레이터(`emulator-5554`) 덮어쓰기 업데이트·기동 확인 완료. 제출 파일명은 `마중_마중_release.apk` (직전 시연 기준 `0.2.29-preview`). 실차 시험은 남아 있음 | 승준 |
+| release APK | 선택, 가산점 | [0.2.31-preview](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.31-preview.20261112) (버전 코드 33, SHA-256 `345667fb...`) 서명 APK 빌드·태그 및 Pleos 에뮬레이터(`emulator-5554`) 덮어쓰기 업데이트·기동 확인 완료. 제출 파일명은 `마중_마중_release.apk` (직전 시연 기준 `0.2.29-preview`). 실차 시험은 남아 있음 | 승준 |
 | 숏폼 링크 | 선택, 가산점 없음 | 해당 없음 | — |
 
 ## 먼저 정해야 하는 것

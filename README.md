@@ -4,14 +4,14 @@
   <p>차량 내비게이션의 픽업 장소·실시간 위치·예상 도착 시간(ETA)과 탑승자의 준비 상태를 하나로 연결해, 마중 가는 과정의 반복 연락을 줄이는 픽업 지원 서비스입니다.</p>
   <p>
     <a href="https://majung.cloud/account">모바일 웹</a> ·
-    <a href="https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.30-preview.20261112">차량 APK (0.2.30-preview)</a> ·
+    <a href="https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.31-preview.20261112">차량 APK (0.2.31-preview)</a> ·
     <a href="https://majung.cloud/api/swagger-ui/index.html">Swagger UI</a> ·
     <a href="https://github.com/majung-team/majung/wiki">Wiki</a> ·
     <a href="docs/development-status.md">개발 현황</a>
   </p>
 </div>
 
-> 차량 앱은 Pleos Connect 공식 에뮬레이터(`0.2.30-preview`)와 SDK 기반으로 개발·검증 중이며, 실차 주행 및 앱마켓 심사는 아직 진행하지 않았습니다.
+> 차량 앱은 Pleos Connect 공식 에뮬레이터(`0.2.31-preview`)와 SDK 기반으로 개발·검증 중이며, 실차 주행 및 앱마켓 심사는 아직 진행하지 않았습니다.
 
 ---
 
@@ -74,7 +74,7 @@ flowchart LR
 
 | 구분 | 범위 |
 | --- | --- |
-| **자동화 · 에뮬레이터 검증** | 백엔드·웹·iOS 단위/통합/계약/UI 테스트, Pleos 에뮬레이터(`0.2.29-preview` 시연 · `0.2.30-preview` 설치·QR 확인 팝업 반영) 검증, 모바일·아이폰 연동 확인, 운영 서버(`majung.cloud`) 배포 확인 |
+| **자동화 · 에뮬레이터 검증** | 백엔드·웹·iOS 단위/통합/계약/UI 테스트, Pleos 에뮬레이터(`0.2.29-preview` 시연 · `0.2.31-preview` 설치 및 미연결 차량 직접 요청 수신 반영) 검증, 모바일·아이폰 연동 확인, 운영 서버(`majung.cloud`) 배포 구성 확인 |
 | **실환경 별도 확인** | 실제 차량 주행 및 스피커 출력, LTE·Wi-Fi 네트워크 전환, 실기기 푸시 배너 동작, 앱마켓 입점 심사 |
 
 - **알려진 제한 사항**: 에뮬레이터에서 SDK 경유지 원본 좌표 `0` 응답 우회 적용 중([차량 이슈 #13](https://github.com/majung-team/majung-vehicle-app/issues/13)), 가독성 기기 시험 종료 시 `ActivityScenario` PAUSED 대기([차량 이슈 #116](https://github.com/majung-team/majung-vehicle-app/issues/116))

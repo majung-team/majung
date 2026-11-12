@@ -74,6 +74,7 @@ flowchart LR
 
 | 구분 | 범위 |
 | --- | --- |
+| **Pleos 에뮬레이터 규격** | `Pleos Connect v2.1.0` (`release_connect_v2.1.0` · Android 14 / API 34 · `android-automotive arm64-v8a`) · 디바이스 프로파일 `Pleos_Connect_v2_0` · 화면 **`2560 × 1440 px` (`160 dpi`)** · SDK `NaviHelper 3.0.5` · `TextToSpeech 3.3.1` |
 | **자동화 · 에뮬레이터 검증** | 백엔드·웹·iOS 단위/통합/계약/UI 테스트, Pleos 에뮬레이터(`0.2.29-preview` 시연 · `0.2.33-preview` 설치 및 QR 자동 확인 팝업 반영) 검증, 모바일·아이폰 연동 확인, 운영 서버(`majung.cloud`) 배포 구성 확인 |
 | **실환경 별도 확인** | 실제 차량 주행 및 스피커 출력, LTE·Wi-Fi 네트워크 전환, 실기기 푸시 배너 동작, 앱마켓 입점 심사 |
 

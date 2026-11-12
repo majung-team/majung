@@ -68,9 +68,16 @@ flowchart LR
 
 ---
 
-## 3. 검증 범위 및 현황
+## 3. 실행 방법 · 테스트 환경 · 검증 범위
 
 **기준일: 2026년 11월 12일**
+
+- **차량 APK 위치**: [`majung-vehicle-app/apk/마중_마중_release.apk`](https://github.com/majung-team/majung-vehicle-app/blob/main/apk/%EB%A7%88%EC%A4%91_%EB%A7%88%EC%A4%91_release.apk) · [GitHub Releases (`0.2.33-preview`)](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.33-preview.20261112)
+- **실행 방법**:
+  1. Pleos Connect 에뮬레이터에 `adb install -r 마중_마중_release.apk`로 차량 앱을 설치·실행합니다.
+  2. 휴대전화로 차량 화면의 QR을 스캔해 [`https://majung.cloud/account`](https://majung.cloud/account)에 운전자 계정을 연결합니다.
+  3. 다른 계정(탑승자)이나 차량 초대 링크로 참여해 픽업 요청·수락·내비 연동·메시지 전달 흐름을 테스트합니다.
+- **테스트 환경 및 필요한 설정**: `minSdk 28` / `targetSdk 34`, JDK 25, Pleos SDK(`NaviHelper 3.0.5` · `TextToSpeech 3.3.1`), 공개 운영 서버(`https://majung.cloud`, 별도 API 키 설정 불필요), 카카오 계정 2개 및 위치 권한 허용
 
 | 구분 | 범위 |
 | --- | --- |

@@ -78,8 +78,6 @@ flowchart LR
 | **자동화 · 에뮬레이터 검증** | 백엔드·웹·iOS 단위/통합/계약/UI 테스트, Pleos 에뮬레이터(`0.2.29-preview` 시연 · `0.2.33-preview` 설치 및 QR 자동 확인 팝업 반영) 검증, 모바일·아이폰 연동 확인, 운영 서버(`majung.cloud`) 배포 구성 확인 |
 | **실환경 별도 확인** | 실제 차량 주행 및 스피커 출력, LTE·Wi-Fi 네트워크 전환, 실기기 푸시 배너 동작, 앱마켓 입점 심사 |
 
-- **알려진 제한 사항**: 에뮬레이터에서 SDK 경유지 원본 좌표 `0` 응답 우회 적용 중([차량 이슈 #13](https://github.com/majung-team/majung-vehicle-app/issues/13)), 가독성 기기 시험 종료 시 `ActivityScenario` PAUSED 대기([차량 이슈 #116](https://github.com/majung-team/majung-vehicle-app/issues/116))
-
 ---
 
 ## 4. 상세 문서 및 관련 저장소

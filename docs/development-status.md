@@ -21,9 +21,9 @@
 | 탑승자 웹 | `0188bd2` | [운영 release.json](https://majung.cloud/release.json) |
 | 차량 앱 | `0.2.33-preview` · 버전 코드 35 · 소스 `692eae5` | [APK 및 체크섬](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.33-preview.20261112) |
 
-- 백엔드(`84d9498`): 카카오 로컬 키워드·도로명/지번 주소 통합 검색 프록시(`GET /api/v1/places/search`), 회원 탈퇴(`DELETE /api/v1/accounts/me`), 비로그인 참여 대기 이탈 동기화(`POST /api/v1/pickups/{id}/leave`), 계정 요청·초대 목록 실시간 SSE(`GET /api/v1/ride-requests/events`)를 유지하며 실험적 운영 콘솔·더미 시더·직접 차량 요청 기능을 철회했다 (`./gradlew test` `125 passed, 0 failed, 1 skipped`).
-- 탑승자 웹(`0188bd2`) · iOS 앱(`majung-ios`): 앱 내 테스트 서버 전환 UI 제거(항상 운영 서버 연결), QR 스캔 재시도 보완 및 로그인/설정 화면 `마중 앱 이용 안내 다시 보기` 지원 (`majung-web` `104 passed, 0 failed`).
-- 차량 앱 `0.2.33-preview` (`692eae5`, 버전 코드 35, SHA-256 `97738e46ffef16a8ac42533b9411d5e24501c478e01eb0b75765604671c983fc`): 실험적 차량 호출 코드·프로필 편집을 철회하고 안정 기준인 `0.2.30-preview`(QR 스캔 직후 자동 계정 확인 팝업 및 3초 polling) 기능으로 복원했으며, Pleos 에뮬레이터(`Majung_Pleos_2_1`) 덮어쓰기 업데이트 설치(`versionCode=35`)를 확인했다(`11/10` 내비 연동 시연 영상 `374169dc...`은 `0.2.29-preview` 기준 촬영본으로 유지, 실차 시동/주행 시험은 미완료).
+- 백엔드(`84d9498`): 카카오 로컬 키워드·도로명/지번 주소 통합 검색(`GET /api/v1/places/search`), 회원 탈퇴(`DELETE /api/v1/accounts/me`), 비로그인 참여 대기 이탈(`POST /api/v1/pickups/{id}/leave`), 요청·초대 목록 실시간 SSE(`GET /api/v1/ride-requests/events`)를 운영 서버(`majung.cloud`)에 반영했다 (`./gradlew test` `125 passed, 0 failed, 1 skipped`).
+- 탑승자 웹(`0188bd2`) · iOS 앱(`4f9a132`): 운영 서버(`https://majung.cloud`) 단일 연결 정리, QR 스캔 재시도 보완 및 로그인/설정 화면 `마중 앱 이용 안내 다시 보기`를 반영했다 (`majung-web` `104 passed, 0 failed`).
+- 차량 앱 `0.2.33-preview` (`692eae5`, 버전 코드 35, SHA-256 `97738e46ffef16a8ac42533b9411d5e24501c478e01eb0b75765604671c983fc`): 휴대전화 QR 스캔 직후 자동 계정 확인 팝업과 3초 백그라운드 조회를 포함한 최신 서명 Release APK를 빌드·게시하고, `Pleos Connect v2.1.0` 에뮬레이터(`Pleos_Connect_v2_0`, `2560 × 1440 px / 160 dpi`)에서 덮어쓰기 설치(`versionCode=35`)를 확인했다(`11/10` 내비 연동 시연 영상 `374169dc...`은 `0.2.29-preview` 기준 촬영본으로 유지, 실차 시동/주행 시험은 미완료).
 
 ## 11월 10일 · 내비 연동 시연 영상 촬영 및 제출 문서 최신화
 

@@ -54,7 +54,7 @@ Chrome 모바일 크기와 데스크톱에서 초대 재시도·참여·재접�
 | --- | --- |
 | 프로젝트 소개 | [GitHub README](https://github.com/majung-team/majung) |
 | 서비스 웹 | [majung.cloud](https://majung.cloud) |
-| 차량 APK | [0.2.29-preview](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.29-preview.20261109) (버전 코드 31) |
+| 차량 APK | [0.2.30-preview](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.30-preview.20261112) (버전 코드 32 · SHA-256 `9e1ca492...`) |
 | 시연 영상 | [2026년 11월 10일 내비 연동 시연 및 10월 29일 기록](pickup-demo.md) |
 | 개발 근거 | [기능별 PR 및 커밋](development-status.md) |
 | 제출 점검 | [제출 점검표](submission-checklist.md) |

@@ -17,13 +17,13 @@
 
 | 대상 | 11월 12일 확인 버전 | 확인 경로 |
 | --- | --- | --- |
-| 백엔드 | `102a9a4` (`c8ffb61` 배포 스크립트 보완) · Blue 슬롯 · UP | [운영 health](https://majung.cloud/api/v1/health) |
-| 탑승자 웹 | `31f894a` | [운영 release.json](https://majung.cloud/release.json) |
-| 차량 앱 | `0.2.29-preview` · 버전 코드 31 · 소스 `6d599f1` | [APK 및 체크섬](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.29-preview.20261109) |
+| 백엔드 | `81c79cf` · Blue 슬롯 · UP | [운영 health](https://majung.cloud/api/v1/health) |
+| 탑승자 웹 | `aeb5a4b` | [운영 release.json](https://majung.cloud/release.json) |
+| 차량 앱 | `0.2.30-preview` · 버전 코드 32 · 소스 `a584d96` | [APK 및 체크섬](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.30-preview.20261112) |
 
-- 백엔드(`102a9a4`): 카카오 로컬 키워드·도로명/지번 주소 통합 검색 프록시(`GET /api/v1/places/search`), 회원 탈퇴(`DELETE /api/v1/accounts/me`), 비로그인 참여 대기 이탈 동기화(`POST /api/v1/pickups/{id}/leave`), 계정 요청·초대 목록 실시간 SSE(`GET /api/v1/ride-requests/events`)를 반영하고 운영 서버 `blue` 슬롯에 배포 완료 (`./gradlew test` `124 passed, 1 skipped`, `deploy` `29 tests` 통과, 공개 HTTPS에서 `/api/v1/places/search?query=의왕역` 카카오 검색 응답 확인).
-- 탑승자 웹(`31f894a`): 자동화 테스트 `104 passed, 0 failed` 통과 및 운영 반영 완료.
-- 제출 자료 점검: 차량 APK `0.2.29-preview` SHA-256(`15a88d9a...`)과 `11/10` 내비 연동 시연 영상(`374169dc...`) 해시 일치 및 접수양식·이메일 문안·GitHub 문서·노션 정합성 확인(실제 휴대전화 전체 흐름·실차 시험은 미완료로 유지).
+- 백엔드(`81c79cf`): 카카오 로컬 키워드·도로명/지번 주소 통합 검색 프록시(`GET /api/v1/places/search`), 회원 탈퇴(`DELETE /api/v1/accounts/me`), 비로그인 참여 대기 이탈 동기화(`POST /api/v1/pickups/{id}/leave`), 계정 요청·초대 목록 실시간 SSE(`GET /api/v1/ride-requests/events`), 더미 데이터 시딩 및 비공개 관리자 콘솔(`/api/v1/ops`)을 반영하고 운영 서버 `blue` 슬롯에 배포 완료 (`./gradlew test` `128 passed, 1 skipped`, `deploy` `29 tests` 통과, 공개 HTTPS에서 `/api/v1/places/search?query=의왕역` 카카오 검색 응답 확인).
+- 탑승자 웹(`aeb5a4b`): 자동화 테스트 `104 passed, 0 failed` 통과 및 운영 반영 완료.
+- 차량 앱 `0.2.30-preview` (`a584d96`, 버전 코드 32, SHA-256 `9e1ca49238f4c9ebb57bf092c90c530bf6db84d452c2d834510423f3a449ffcc`): 휴대전화 QR 연결 요청 시 차량 QR 창을 닫고 계정 확인·연결 팝업을 자동으로 띄우도록 보완했으며, Pleos 에뮬레이터(`emulator-5554`) 덮어쓰기 업데이트 설치·실행을 확인했다(직전 `11/10` 내비 연동 시연 영상 `374169dc...`은 `0.2.29-preview` 기준 촬영본으로 유지, 실차 시동/주행 시험은 미완료).
 
 ## 11월 10일 · 내비 연동 시연 영상 촬영 및 제출 문서 최신화
 

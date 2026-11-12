@@ -19,11 +19,11 @@
 | --- | --- | --- |
 | 백엔드 | `6292b3d` (main 반영 · 운영 DB 스키마 적용 후 Blue-Green 배포) | [운영 health](https://majung.cloud/api/v1/health) |
 | 탑승자 웹 | `6f98a91` (차량 코드 조회·자주 타는 차량 반영) | [운영 release.json](https://majung.cloud/release.json) |
-| 차량 앱 | `0.2.31-preview` · 버전 코드 33 · 소스 `c63e8c2` | [APK 및 체크섬](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.31-preview.20261112) |
+| 차량 앱 | `0.2.32-preview` · 버전 코드 34 · 소스 `1e8fdf8` | [APK 및 체크섬](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.32-preview.20261112) |
 
 - 백엔드(`6292b3d`): 휴대전화 미연결 차량 직접 마중 요청(고정 차량 코드 `VEH-XXXXXX` · 차종/차량번호/구별 힌트 조회 · `FIRST_TIME` / `TRUSTED` / `BLOCKED` 탑승자 구분 · 자주 타는 차량), 카카오 로컬 키워드·도로명/지번 주소 통합 검색 프록시(`GET /api/v1/places/search`), 회원 탈퇴(`DELETE /api/v1/accounts/me`), 비로그인 참여 대기 이탈 동기화(`POST /api/v1/pickups/{id}/leave`), 계정 요청·초대 목록 실시간 SSE(`GET /api/v1/ride-requests/events`), 더미 데이터 시딩·메타데이터 백필 및 비공개 관리자 콘솔(`/api/v1/ops`, 차량 코드 표기 포함)을 `main`에 반영 (`./gradlew test` `129 passed, 0 failed, 1 skipped`, `ETA 계약 5 scenarios`, `deploy 29 tests` 통과; 운영 PostgreSQL에 `upgrade-vehicle-direct-requests.sql` 선적용 후 후보 슬롯 전환).
-- 탑승자 웹(`6f98a91`) · iOS 앱(`majung-ios`): 차량 코드 조회·확인 카드·자주 타는 차량 추가, 앱 내 테스트 서버 전환 UI 제거(항상 운영 서버 연결) 및 로그인/설정 화면 `마중 앱 이용 안내 다시 보기` 지원 (`majung-web` `104 passed, 0 failed`).
-- 차량 앱 `0.2.31-preview` (`c63e8c2`, 버전 코드 33, SHA-256 `345667fba35f50626e725f79b3c06bb1fadb35fbd7c92c23f6fae844293ca177`): 휴대전화 미연결 상태에서도 고정 차량 코드(`VEH-XXXXXX`)·상시 수신 기반으로 마중 요청을 받고 처음 요청 탑승자 확인/거절/차단 및 정차 중 차종·차량번호·힌트 편집을 지원하며, Pleos 에뮬레이터(`emulator-5554`) 덮어쓰기 업데이트 설치(`versionCode=33`)·실행을 확인했다(직전 `0.2.30-preview` `a584d96`은 QR 자동 확인 팝업 반영, `11/10` 내비 연동 시연 영상 `374169dc...`은 `0.2.29-preview` 기준 촬영본으로 유지, 실차 시동/주행 시험은 미완료).
+- 탑승자 웹(`6f98a91`) · iOS 앱(`majung-ios`): 차량 코드 조회·확인 카드·자주 타는 차량 추가, 앱 내 테스트 서버 전환 UI 제거(항상 운영 서버 연결), QR 스캔 재시도 보완 및 로그인/설정 화면 `마중 앱 이용 안내 다시 보기` 지원 (`majung-web` `104 passed, 0 failed`).
+- 차량 앱 `0.2.32-preview` (`1e8fdf8`, 버전 코드 34, SHA-256 `a61d0484f489a86a5ac1c3ece712120319a1013b65f8f5c95bd53fd6b7735fc5`): 구버전 운영 백엔드 호환 폴백(`/vehicles/me` 404 및 미연결 `/vehicles/ride-requests` 409 시에도 차량 권한·운전자 QR 연결 유지), 휴대전화 미연결 상태 고정 차량 코드(`VEH-XXXXXX`)·상시 수신 기반 마중 요청·처음 요청 탑승자 확인/거절/차단 및 정차 중 차종·차량번호·힌트 편집을 반영하고, Pleos 에뮬레이터(`emulator-5554`) 덮어쓰기 업데이트 설치(`versionCode=34`)·실행을 확인했다(직전 `0.2.30-preview` `a584d96`은 QR 자동 확인 팝업 반영, `11/10` 내비 연동 시연 영상 `374169dc...`은 `0.2.29-preview` 기준 촬영본으로 유지, 실차 시동/주행 시험은 미완료).
 
 ## 11월 10일 · 내비 연동 시연 영상 촬영 및 제출 문서 최신화
 

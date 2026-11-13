@@ -5,7 +5,7 @@
 
 마중은 차량 내비게이션의 경로·예상 도착 시간과 탑승자의 준비 상태를 연결하는 픽업 서비스다.
 
-차량 앱, 백엔드 서버, 모바일 웹으로 구성되며, 운전자 초대와 탑승자 요청, 순차 픽업, 실시간 상태 공유를 지원한다.
+차량 앱, 백엔드 서버, 모바일 웹, iOS 앱으로 구성되며, 운전자 초대와 탑승자 요청, 순차 픽업, 실시간 상태 공유를 지원한다.
 
 이 문서는 실제 구현된 시스템 구조와 주요 데이터 흐름, 보안 및 운영 방식을 설명한다.
 
@@ -26,6 +26,7 @@
 | 백엔드 | Spring Boot | 인증, 권한, 픽업 상태, 요청 대기열 |
 | 데이터베이스 | PostgreSQL | 계정·픽업·세션 데이터 저장 |
 | 모바일 웹 | HTML, CSS, JavaScript | 탑승자 요청, 위치·ETA·준비 상태 확인 |
+| iOS 앱 | SwiftUI, MapKit, `AVFoundation` | 탑승자 요청, QR 연결, 위치·ETA·APNs |
 | 실시간 갱신 | SSE, REST API | 변경 알림 및 최신 상태 조회 |
 | 웹 서버 | Caddy | HTTPS, 정적 웹 제공, API 프록시 |
 | 인프라 | GCP VM | 백엔드 및 웹 운영 |
@@ -720,8 +721,8 @@ GitHub Actions는 GCP 단기 인증과 제한된 배포 권한을 사용한다.
 
 ### 수행한 검증
 
-- 공식 에뮬레이터(`0.2.29-preview`)와 운영 서버(`majung.cloud`)·로컬 API에서 픽업 생성부터 탑승 완료, 내비 복귀·장소 제안 확정·앱 강제 종료 후 공유 재개까지 확인 (11/10 1분 36초 내비 연동 시연 영상 촬영)
-- 백엔드 Gradle 단위·통합 테스트(`124 passed, 1 skipped`)·배포 스크립트(`29 tests`) 및 웹 테스트(`104 passed`) 통과, 운영 서버(`102a9a4` Blue 슬롯 `UP`) 및 웹(`31f894a`) 공개 동작 확인
+- 공식 에뮬레이터(`0.2.29-preview`)와 운영 서버(`majung.cloud`)·로컬 API에서 픽업 생성부터 탑승 완료, 내비 복귀·장소 제안 확정·앱 강제 종료 후 공유 재개까지 확인 (11/10 1분 36초 내비 연동 시연 영상 촬영) 및 최신 [`0.2.33-preview`](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.33-preview.20261112)(버전 코드 35) QR 자동 연결 팝업 반영·덮어쓰기 설치 확인
+- 백엔드 Gradle 단위·통합 테스트(총 125건 중 `124 passed, 1 skipped`)·배포 스크립트(`29 tests`) 및 웹 테스트(`104 passed`), iOS 테스트(`MajungTests` 26 · `MajungUITests` 6) 통과, 운영 서버(`84d9498` Blue 슬롯 `UP`) 및 웹(`0188bd2`) 공개 동작 확인
 - 화면이 내려간 상태에서 약 310초 동안 최신 차량 정보 유지 확인
 - 서버 취소 후 백그라운드 공유 서비스 종료 확인
 - 앱 재실행 및 복구 흐름 확인
@@ -751,10 +752,16 @@ GitHub Actions는 GCP 단기 인증과 제한된 배포 권한을 사용한다.
 ### 전체 시스템
 
 - [프로젝트 README](https://github.com/majung-team/majung)
+- [전체 사용 안내 Wiki](https://github.com/majung-team/majung/wiki)
 - [개발 현황과 PR 근거](development-status.md)
 - [팀 테스트 안내](team-testing.md)
 - [운영 버전 및 배포 기록](runtime-2026-10-29.md)
 - [남은 작업](remaining-work.md)
+
+### iOS 앱
+
+- [iOS 저장소 README](https://github.com/majung-team/majung-ios#readme)
+- [iOS 기여 가이드](https://github.com/majung-team/majung-ios/blob/main/CONTRIBUTING.md)
 
 ### 차량 앱
 

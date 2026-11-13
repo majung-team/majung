@@ -461,14 +461,14 @@ SDK 정보가 없다면 임의의 도착 시간을 생성하지 않고 정보 �
 
 ## 11. 현재 검증 범위
 
-**2026년 11월 9일 기준**
+**2026년 11월 12일 기준**
 
 ### 확인된 항목
 
-- 주요 기능 코드 반영 및 자동화 테스트
-- 시험 서버 및 공식 Pleos 에뮬레이터(`0.2.29-preview`) 기반 픽업·복구·대기 픽업 검증
+- 주요 기능 코드 반영 및 자동화 테스트(백엔드 `124/125` · 배포 `29` · 웹 `104` · iOS `MajungTests` 26 · `MajungUITests` 6)
+- 시험 서버 및 공식 Pleos 에뮬레이터(`0.2.29-preview` 내비 연동 시연 · `0.2.33-preview` 덮어쓰기 설치 및 QR 자동 확인 팝업) 기반 픽업·복구·대기 픽업 검증
 - 차량 SDK의 경로·ETA 및 장소 변경 관련 시험
-- 공개 HTTPS 서비스와 서버 health 확인
+- 공개 HTTPS 서비스(`84d9498` / `0188bd2`)와 서버 health 확인
 - Chrome 모바일 크기(390px)·데스크톱 초대 재시도·참여·재접속·지도 오류 복구 및 실제 iPhone Chrome 로그인·탭 이동·검색·재접속 확인
 - Blue-Green 배포 및 공유 세션 관련 시험
 
@@ -492,6 +492,7 @@ SDK 정보가 없다면 임의의 도착 시간을 생성하지 않고 정보 �
 ### 사용 및 개발 문서
 
 - [프로젝트 README](https://github.com/majung-team/majung)
+- [마중 사용 안내 홈 · 기술 회고 6편](https://github.com/majung-team/majung/wiki)
 - [차량 앱 설치 안내](https://github.com/majung-team/majung/wiki/차량-앱-설치)
 - [모바일 웹 이용 안내](https://github.com/majung-team/majung/wiki/웹에서-시작하기)
 - [개발 현황 및 PR 근거](development-status.md)

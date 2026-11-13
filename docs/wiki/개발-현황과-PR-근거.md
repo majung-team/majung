@@ -13,24 +13,15 @@
 
 ## 1. 개발 및 검증 자료
 
-| 구분 | 문서 | 내용 |
+| 문서 · 기준 | 확인 대상 | 주요 내용 |
 | --- | --- | --- |
-| 개발 현황 | [기능별 PR·커밋 기록](https://github.com/majung-team/majung/blob/main/docs/development-status.md) | 기능 구현, 작성 커밋 및 남은 확인 사항 |
-| 운영 현황 | [운영 버전 및 검증 범위](https://github.com/majung-team/majung/blob/main/docs/runtime-2026-10-29.md) | 서버·웹·차량 앱 운영 상태 |
-| 향후 작업 | [남은 개발 및 검증](https://github.com/majung-team/majung/blob/main/docs/remaining-work.md) | 미완료 기능 및 실기기 검증 |
-| 역할 분담 | [노션 역할표](https://app.notion.com/p/10-4026da9ae26a80c6bb08c5550c5d02be) | 초기 역할 분담 및 개발 계획 |
+| **개발 현황** | [기능별 PR·커밋 기록](https://github.com/majung-team/majung/blob/main/docs/development-status.md) | 기능 구현, 작성 커밋 및 남은 확인 사항 |
+| **문제 해결 · 회고** | [기술 회고 6편 (Wiki 홈)](https://github.com/majung-team/majung/wiki#7-%EB%AC%B8%EC%A0%9C-%ED%95%B4%EA%B2%B0%EA%B3%BC-%EA%B8%B0%EC%88%A0-%ED%9A%8C%EA%B3%A0) | 경유지 0 우회, 복구, Blue-Green, 동기화 |
+| **운영 · 배포** | [초기 10/29 운영 전환 기록](https://github.com/majung-team/majung/blob/main/docs/runtime-2026-10-29.md) | 최초 Blue-Green 전환 및 배포 기준 |
+| **향후 작업** | [남은 개발 및 검증](https://github.com/majung-team/majung/blob/main/docs/remaining-work.md) | 미완료 기능 및 실기기 검증 |
+| **역할 분담** | [노션 역할표](https://app.notion.com/p/10-4026da9ae26a80c6bb08c5550c5d02be) | 초기 역할 분담 및 개발 계획 |
 
-실제 구현과 검증 근거는 GitHub PR, 커밋 및 관련 문서에서 확인할 수 있다.
-
----
-
-## 2. 개발 진행 기록
-
-### 2026년 11월 12일
-
-**운영 백엔드 API 보강 및 클라이언트 안정화·제출 자료 점검**
-
-- 백엔드(`84d9498` Blue 슬롯 `UP`): 카카오 로컬 키워드·도로명/지번 주소 통합 검색 프록시(`GET /api/v1/places/search`), 회원 탈퇴(`DELETE /api/v1/accounts/me`), 게스트 대기 이탈(`POST /api/v1/pickups/{id}/leave`), 요청·초대 목록 실시간 SSE(`GET /api/v1/ride-requests/events`) 반영 (`125 tests`, `0 failures`, `1 skipped`)
+- 백엔드(`84d9498` Blue 슬롯 `UP`): 카카오 로컬 키워드·도로명/지번 주소 통합 검색 프록시(`GET /api/v1/places/search`), 회원 탈퇴(`DELETE /api/v1/accounts/me`), 게스트 대기 이탈(`POST /api/v1/pickups/{id}/leave`), 요청·초대 목록 실시간 SSE(`GET /api/v1/ride-requests/events`) 반영 (JUnit `124 passed, 0 failed, 1 skipped` + `deploy` `29 tests`)
 - 웹(`0188bd2`, `npm test` `104 passed`) · iOS(`4f9a132`) 운영 반영 및 차량 APK [`0.2.33-preview`](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.33-preview.20261112)(버전 코드 35, 소스 `692eae5`, SHA-256 `97738e46...` · 안정 기준인 QR 자동 연결 확인 팝업·3초 폴링 포함) Pleos 에뮬레이터(`Majung_Pleos_2_1`) 업데이트 확인 (11/10 시연 영상 `374169dc...`은 직전 `0.2.29-preview` 기준 촬영본으로 유지)
 
 ### 2026년 11월 9일 ~ 11월 10일
@@ -114,18 +105,16 @@
 
 기능 구현, 테스트 수행, 실제 차량 검증은 서로 다른 단계로 구분한다.
 
-| 구분 | 현재 상태 |
+| 대상 영역 | 현재 상태 (2026.11.12 기준) |
 | --- | --- |
-| 주요 픽업 기능 | 구현 및 시험 서버 기반 검증 |
-| 차량 앱 | Pleos 공식 에뮬레이터 기반 검증 |
-| 모바일 웹 | 주요 기능 구현 및 일부 실제 iPhone Chrome 검증 |
-| 백엔드 서버 | 공개 서버 운영 및 배포 |
-| 시연 영상 | 에뮬레이터·운영 서버 기반 내비 연동 및 픽업 흐름 촬영 (2026.11.10, 1분 36초) |
-| 실제 휴대전화 전체 픽업 | 추가 검증 필요 |
-| 푸시 알림 배너 | 실제 기기 검증 필요 |
-| LTE·Wi-Fi 전환 | 추가 검증 필요 |
-| 실제 차량 환경 | 검증 미진행 |
-| 익명 서비스 지표 | 후속 구현 예정 |
+| **주요 픽업 기능** | 구현 및 운영(`majung.cloud`)·시험 서버 검증 |
+| **차량 앱 (`0.2.33-preview`)** | Pleos 공식 에뮬레이터 설치·QR 팝업 검증 |
+| **모바일 웹 (`0188bd2`)** | `npm test` 104건 · iPhone Chrome 일부 확인 |
+| **iOS 앱 (`4f9a132`)** | `MajungTests` 26 · `MajungUITests` 6 시뮬레이터 |
+| **백엔드 서버 (`84d9498`)** | 단일 VM Blue-Green 운영(`UP`) · 124/125 통과 |
+| **시연 영상 (11/10)** | `0.2.29-preview` 기준 내비 연동 1분 36초 촬영 |
+| **실차 · 실기기 E2E** | 실제 휴대전화 2계정·푸시 배너·LTE·실차 미완료 |
+| **익명 서비스 지표** | 후속 구현 예정 (미구현) |
 
 코드가 병합되거나 서버에 배포됐다는 사실만으로 모든 사용자 환경에서 정상 동작한다고 판단하지 않는다.
 

@@ -22,10 +22,10 @@
 
 | 단계 | 운전자 (차량 앱) | 탑승자 (웹 · iOS) |
 | --- | --- | --- |
-| **1. 연결 · 요청** | 차량 QR 승인 · 지인 직접 초대 · 대기열 순차 처리 | 운전자 검색 요청 · 비회원 초대 링크 참여 |
-| **2. 내비 연동** | 기존 목적지 유지 · 경유지 추가 · 변경 수락 확정 | 만날 장소 변경 제안 (확정 전 기존 유지) |
-| **3. 실시간 소통** | 위치·ETA 전송 · 내비 위 알림 · Pleos TTS 안내 | 차량 위치·ETA 확인 · 준비 상태·메시지(50자) |
-| **4. 안전 · 종료** | `CarUxRestrictions` 요약 · 100m 도착 · 재개 확인 | 픽업 완료·취소 시 위치 공유 즉시 종료 |
+| **1.&nbsp;연결·요청** | 차량 QR 승인 · 지인 직접 초대<br>대기열 순차 처리 | 운전자 검색 요청<br>비회원 초대 링크 참여 |
+| **2.&nbsp;내비&nbsp;연동** | 기존 목적지 유지 · 경유지 추가<br>변경 수락 확정 | 만날 장소 변경 제안<br>(확정 전 기존 유지) |
+| **3.&nbsp;실시간&nbsp;소통** | 위치·ETA 전송 · 내비 위 알림<br>Pleos TTS 음성 안내 | 차량 위치·ETA 확인<br>준비 상태·메시지(50자) |
+| **4.&nbsp;안전·종료** | `CarUxRestrictions` 요약<br>100m 도착 · 재개 확인 | 픽업 완료·취소 시<br>위치 공유 즉시 종료 |
 
 ---
 
@@ -42,12 +42,12 @@ flowchart LR
 > [!NOTE]
 > SSE는 상태 변경 신호(`changed` / `refresh`)만 가볍게 전달하며, 웹과 iOS 클라이언트는 신호 수신 또는 재연결 시 REST API를 다시 조회해 최신 상태를 맞춥니다.
 
-| 영역 | 구성 요소 | 핵심 기술 |
+| 영역 | 구성 | 핵심 기술 |
 | --- | --- | --- |
-| **차량 앱** | AAOS 애플리케이션 | Kotlin · Android Automotive OS · Pleos `NaviHelper 3.0.5` · `TTS 3.3.1` · `CarUxRestrictions` |
-| **클라이언트** | 모바일 웹 · iOS 앱 | 웹(HTML · CSS · JS · Kakao Maps) · iOS(SwiftUI · `@Observable` · MapKit · `AVFoundation`) |
-| **백엔드** | API · 실시간 · 인증 | Java 17(JDK 25) · Spring Boot 4.0.8 · OAuth2 · PostgreSQL · Spring Session JDBC |
-| **알림 · 인프라** | 메시징 · 배포 · 운영 | SSE · Web Push(VAPID) · APNs · Caddy(HTTPS) · GitHub Actions · 단일 VM Blue-Green |
+| **차량&nbsp;앱** | Android Automotive 앱 | Kotlin · AAOS · Pleos `NaviHelper 3.0.5`<br>`TTS 3.3.1` · `CarUxRestrictions` |
+| **클라이언트** | 모바일 웹 · iOS 앱 | 웹(HTML · CSS · JS · Kakao Maps)<br>iOS(SwiftUI · MapKit · `AVFoundation`) |
+| **백엔드** | API · 실시간 · 인증 | Java 17(JDK 25) · Spring Boot 4.0.8<br>OAuth2 · PostgreSQL · Spring Session JDBC |
+| **인프라** | 알림 · 배포 · 운영 | SSE · Web Push(VAPID) · APNs · Caddy<br>GitHub Actions · 단일 VM Blue-Green |
 
 ---
 
@@ -64,8 +64,8 @@ flowchart LR
 | --- | --- |
 | **APK** | [`majung-vehicle-app/apk/마중_마중_release.apk`](https://github.com/majung-team/majung-vehicle-app/blob/main/apk/%EB%A7%88%EC%A4%91_%EB%A7%88%EC%A4%91_release.apk)<br>[GitHub Releases (0.2.33-preview · versionCode 35)](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.33-preview.20261112) |
 | **에뮬레이터** | `Pleos Connect v2.1.0` (`Android 14 / API 34`, `arm64-v8a`)<br>프로파일 `Pleos_Connect_v2_0` · **`2560 × 1440 px` (`160 dpi`)** |
-| **실행 조건** | `minSdk 28` / `targetSdk 34` · JDK 25 · `NaviHelper 3.0.5` · `TextToSpeech 3.3.1`<br>운영 서버 `https://majung.cloud` · 카카오 계정 2개 · 위치 권한 |
-| **검증 범위** | 백엔드·웹·iOS 자동화 테스트, 에뮬레이터(`0.2.29` 시연 · `0.2.33` 설치)<br>*(실제 차량 주행, LTE 전환, 실기기 푸시, 앱마켓 심사는 별도 검증 필요)* |
+| **실행 조건** | `minSdk 28` / `targetSdk 34` · JDK 25 · `NaviHelper 3.0.5`<br>`TextToSpeech 3.3.1` · `majung.cloud` · 계정 2개 · 위치 권한 |
+| **검증 범위** | 백엔드·웹·iOS 자동화, 에뮬레이터(`0.2.29` 시연·`0.2.33` 설치)<br>*(실차 주행, LTE 전환, 실기기 푸시, 앱마켓 심사는 별도 검증)* |
 
 ---
 

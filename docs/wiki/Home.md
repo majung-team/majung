@@ -100,12 +100,12 @@
 > [!IMPORTANT]
 > 마중 웹에 접속하거나 로그인하는 것만으로 차량 위치가 공개되지 않습니다. 픽업이 완료·취소되면 위치 공유도 즉시 종료됩니다.
 
-| 진행 단계 | 위치 · ETA 공유 여부 | 탑승자 화면 표시 |
+| 진행&nbsp;단계 | 위치 · ETA 공유 | 탑승자 화면 표시 |
 | --- | --- | --- |
-| **요청 대기 (`QUEUED`)** | 본인 픽업 위치 비공개 | 대기 순서 및 상태 안내 |
-| **픽업 진행 (`ACTIVE`)** | SDK 유효 위치·ETA 실시간 공유 | 차량 배지 · 지도 마커 · ETA 카운트다운 |
-| **지연 · 단절 (`STALE`)** | 30초 경과 시 지연, 2분 후 숨김 | 오래된 좌표를 현재처럼 표시하지 않음 |
-| **도착 · 종료 (`COMPLETED`)** | 완료·취소 시 즉시 공유 차단 | 종료 안내 및 추가 추적 중단 |
+| **대기&nbsp;(`QUEUED`)** | 본인 픽업 위치 비공개 | 대기 순서 및 상태 안내 |
+| **진행&nbsp;(`ACTIVE`)** | SDK 유효 위치·ETA 공유 | 차량 배지 · 지도 마커 · ETA |
+| **지연&nbsp;(`STALE`)** | 30초 지연 · 2분 후 숨김 | 오래된 좌표를 현재처럼 미표시 |
+| **종료&nbsp;(`COMPLETED`)** | 완료·취소 시 즉시 차단 | 종료 안내 및 추적 중단 |
 
 위치와 예상 도착 시간을 확인하려면 다음 조건이 필요하다.
 
@@ -174,12 +174,12 @@
 
 | 기술 회고 문서 | 다룬 장애 · 해결과 검증 |
 | --- | --- |
-| [Pleos 내비가 경유지 좌표 0을 돌려줄 때 경로는 어떻게 지킬까?](https://github.com/majung-team/majung/wiki/Pleos-내비가-경유지-좌표-0을-돌려줄-때-경로는-어떻게-지킬까) | `WaypointCoordinates` ID 대조<br>목적지 재선택(`#113`) · 연결 루프 차단 |
-| [앱이 꺼지거나 내비에서 돌아와도 픽업은 이어질까?](https://github.com/majung-team/majung/wiki/앱이-꺼지거나-내비에서-돌아와도-픽업은-이어질까) | Keystore `AES-GCM` 암호화 세션<br>운전자 확인 후 재개 · 내비 복귀(`#132`) |
-| [내비 화면만 보고 있어도 요청과 메시지를 알릴 수 있을까?](https://github.com/majung-team/majung/wiki/내비-화면만-보고-있어도-요청과-메시지를-알릴-수-있을까) | 헤드업 알림 · Pleos TTS 낭독<br>주행 제한 요약 · 기기 시험 실패(`#117`) |
-| [픽업이 끝나거나 연결을 끊으면 위치 공유는 바로 멈출까?](https://github.com/majung-team/majung/wiki/픽업이-끝나거나-연결을-끊으면-위치-공유는-바로-멈출까) | 해제 시 제안·푸시 차단(`#64`)<br>초대 검증 · ETA 이중 차감 방지 계약 |
-| [단일 VM Blue-Green 배포와 예약 백업은 왜 중간에 멈췄을까?](https://github.com/majung-team/majung/wiki/단일-VM-Blue-Green-배포와-예약-백업은-왜-중간에-멈췄을까) | 슬롯 읽기 권한(`#66`) · 75초 대기(`#75`)<br>백업 SSH·WIF 인증 복구(`#56`, `#62`) |
-| [휴대전화 QR 연결과 웹·iOS 실시간 상태는 왜 어긋났을까?](https://github.com/majung-team/majung/wiki/휴대전화-QR-연결과-웹-iOS-실시간-상태는-왜-어긋났을까) | QR 확인 팝업 자동화(`ad3ffd6`)<br>웹 SSE 재조회 · iOS UI 경합 분리(`#29`) |
+| [Pleos 내비가 경유지 좌표 0을 돌려줄 때 경로는 어떻게 지킬까?](https://github.com/majung-team/majung/wiki/Pleos-내비가-경유지-좌표-0을-돌려줄-때-경로는-어떻게-지킬까) | `WaypointCoordinates` 대조<br>재선택(`#113`) · 연결 루프 차단 |
+| [앱이 꺼지거나 내비에서 돌아와도 픽업은 이어질까?](https://github.com/majung-team/majung/wiki/앱이-꺼지거나-내비에서-돌아와도-픽업은-이어질까) | Keystore `AES-GCM` 저장소<br>운전자 재개 확인 · 복귀(`#132`) |
+| [내비 화면만 보고 있어도 요청과 메시지를 알릴 수 있을까?](https://github.com/majung-team/majung/wiki/내비-화면만-보고-있어도-요청과-메시지를-알릴-수-있을까) | 헤드업 알림 · Pleos TTS<br>주행 요약 · 기기 시험 실패(`#117`) |
+| [픽업이 끝나거나 연결을 끊으면 위치 공유는 바로 멈출까?](https://github.com/majung-team/majung/wiki/픽업이-끝나거나-연결을-끊으면-위치-공유는-바로-멈출까) | 해제 시 제안·푸시 차단(`#64`)<br>초대 검증 · ETA 계약 검증 |
+| [단일 VM Blue-Green 배포와 예약 백업은 왜 중간에 멈췄을까?](https://github.com/majung-team/majung/wiki/단일-VM-Blue-Green-배포와-예약-백업은-왜-중간에-멈췄을까) | 슬롯 권한(`#66`) · 75초 대기(`#75`)<br>백업 SSH·WIF 복구(`#56`, `#62`) |
+| [휴대전화 QR 연결과 웹·iOS 실시간 상태는 왜 어긋났을까?](https://github.com/majung-team/majung/wiki/휴대전화-QR-연결과-웹-iOS-실시간-상태는-왜-어긋났을까) | QR 확인 팝업(`ad3ffd6`)<br>웹 SSE · iOS UI 분리(`#29`) |
 
 ---
 

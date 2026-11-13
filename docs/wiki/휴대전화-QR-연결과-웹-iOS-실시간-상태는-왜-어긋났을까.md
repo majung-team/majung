@@ -54,12 +54,12 @@ iOS 동반 앱 쪽에서는 실제 iPhone 사용 흐름과 UI 테스트에서 �
 
 ## 확인한 것과 확인하지 못한 것
 
-| 클라이언트 · 영역 | 해결한 동기화 문제 | 확인 · 테스트 근거 |
+| 클라이언트 | 해결한 동기화 문제 | 확인 · 테스트 근거 |
 | --- | --- | --- |
-| **차량 (`ad3ffd6`)** | 3틱 QR 폴링 · 확인 팝업 자동화 | `AWAITING_VEHICLE_CONFIRMATION` 트리거 |
-| **모바일 웹 (`#88`)** | 지도 `304px` · 준비 상태 덮어쓰기 차단 · `linkedAt` 구분 | `npm test` 104건 통과 (`0188bd2`) |
-| **백엔드 (`102a9a4`)** | 목록 SSE + `verifyActiveSession()` 세션 철회 차단 | JUnit 124/125 (`0 failures, 1 skipped`) |
-| **iOS (`c4ac2cb` · `#29`)** | `AVFoundation` 스캐너 · 한 줄 입력 · UI 폴링/수동 분리 | `MajungTests` 26 · `MajungUITests` 6 (시뮬레이터) |
+| **차량**<br>`ad3ffd6` | 3틱 QR 폴링<br>계정 확인 팝업 자동화 | `AWAITING_VEHICLE`<br>`_CONFIRMATION` 트리거 |
+| **모바일&nbsp;웹**<br>`#88` | 요청 지도 `304px` · 상태 보호<br>`linkedAt` 차량 구분 | `npm test` 104건 통과<br>(`0188bd2`) |
+| **백엔드**<br>`102a9a4` | 목록 SSE 신호 +<br>`verifyActiveSession()` 철회 차단 | JUnit `124/125`<br>(`0 failures, 1 skipped`) |
+| **iOS**<br>`c4ac2cb` · `#29` | `AVFoundation` QR 스캐너<br>한 줄 입력 · UI 경합 분리 | `MajungTests` 26 · `MajungUITests` 6<br>(시뮬레이터) |
 
 **확인하지 못한 점**
 

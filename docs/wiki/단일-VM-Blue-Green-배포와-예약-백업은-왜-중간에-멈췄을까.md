@@ -6,12 +6,12 @@
 
 구조를 처음 올리고 실제 운영을 돌리자 개발 환경 단위 테스트에서는 안 보이던 운영 장애 네 건이 차례대로 터졌다. (VM 호스트명, 내부 IP, GCP 프로젝트 번호 등 비공개 인프라 식별자는 공개 문서에 남기지 않는다.)
 
-| 사건 | 증상 · 근본 원인 | 복구 · 재발 방지 조치 | 검증 결과 |
-| --- | --- | --- | --- |
-| **#66 만료 멈춤** | `/etc/majung 0700`으로 `majung` 계정이 `active-slot` 읽기 실패 | 디렉터리 `root:majung 0710` · 비밀 `0600` · `runuser` 검사 | 서버 재시작 없이 `EXPIRED` 자동 복구<br>`JobSelectorAccessTest` 등 27 tests |
-| **#75 기동 30초 초과** | 단일 VM 동시 기동 약 32초 vs 기본 `attempts=30` | 후보 서버 대기 `CANDIDATE_START_ATTEMPTS = 75` | `test_candidate_healthy_after_thirty...`<br>Blue-Green 스위칭 단위 검증 통과 |
-| **#56 백업 손상** | `gcloud` 최초 SSH 키 안내 문구가 `tar stdout`에 혼입 | 백업 전 `~/.ssh/google_compute_engine` silent 생성 | Actions `41158789207` 해시 일치<br>`RestoreVerification` 25.68초 통과 |
-| **#62 예약 WIF 거절** | WIF 조건이 `schedule` 이벤트 차단 (09:30 KST 실패) | `backup.yml@refs/heads/main` `schedule` 한시 허용 | Actions `41401001422` 재시도 성공<br>공개 health `UP` 유지 |
+| 사건 | 원인 · 복구 조치 | 검증 결과 |
+| --- | --- | --- |
+| **#66<br>만료 멈춤** | `/etc/majung 0700` → 읽기 실패<br>폴더 `0710` · 비밀 `0600` · `runuser` | 재시작 없이 `EXPIRED` 전환<br>`JobSelectorAccessTest` 27 tests |
+| **#75<br>기동 32초** | 동시 기동 32초 vs 대기 `30초`<br>후보 대기 `ATTEMPTS = 75` 상향 | `test_candidate_healthy...`<br>Blue-Green 스위칭 통과 |
+| **#56<br>백업 손상** | `gcloud` SSH 안내가 `tar` 출력 혼입<br>백업 전 `ssh-keygen -q` 선실행 | Actions `41158789207` 해시 일치<br>`RestoreVerification` 25.68초 통과 |
+| **#62<br>WIF 거절** | WIF 조건이 `schedule` 이벤트 차단<br>`backup.yml@refs/heads/main` 허용 | Actions `41401001422` 성공<br>공개 health `UP` 유지 |
 
 ---
 

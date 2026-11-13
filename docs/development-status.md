@@ -22,7 +22,7 @@
 | 차량 앱 | `0.2.34-preview` · 버전 코드 36 · 소스 `127c146` | [APK 및 체크섬](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.34-preview.20261113) |
 
 - 백엔드(`84d9498`): 카카오 로컬 키워드·도로명/지번 주소 통합 검색(`GET /api/v1/places/search`), 회원 탈퇴(`DELETE /api/v1/accounts/me`), 비로그인 참여 대기 이탈(`POST /api/v1/pickups/{id}/leave`), 요청·초대 목록 실시간 SSE(`GET /api/v1/ride-requests/events`)를 운영 서버(`majung.cloud`)에 반영했다 (`./gradlew test` 총 125건 중 `124 passed, 0 failed, 1 skipped` · `deploy` 29 tests 통과).
-- 탑승자 웹(`0188bd2`) · iOS 앱(`b6d9927`): 운영 서버(`https://majung.cloud`) 단일 연결 정리, QR 스캔(`AVFoundation`)·재시도 보완, 차량 연결 UI 경합 분리([iOS #29](https://github.com/majung-team/majung-ios/pull/29)), 참여 전환 레이아웃 보완(`bea016f`) 및 상시 이용 가이드 전환(`1b48ec3`, 로그인·설정 재진입)을 반영했다 (`majung-web` `104 passed, 0 failed`, `majung-ios` `MajungTests` 32 · `MajungUITests` 6).
+- 탑승자 웹(`0188bd2`) · iOS 앱(`c46907d`): 운영 서버(`https://majung.cloud`) 단일 연결 정리, QR 스캔(`AVFoundation`)·재시도 보완, 차량 연결 UI 경합 분리([iOS #29](https://github.com/majung-team/majung-ios/pull/29)), 참여 전환 레이아웃 보완(`bea016f`), 상시 이용 가이드 전환(`1b48ec3`, 로그인·설정 재진입) 및 픽업 완료 화면 카드·버튼 톤 통일(`c46907d`)을 반영했다 (`majung-web` `104 passed, 0 failed`, `majung-ios` `MajungTests` 32 · `MajungUITests` 6).
 - 차량 앱 `0.2.34-preview` (`127c146`, 버전 코드 36, SHA-256 `89ad895c639991690c312a2cd932dd851df004445983a0674218c6c342af215e`): 직전 `0.2.33-preview`(QR 자동 계정 확인 팝업·3초 조회)에 더해 빠른 메시지 알림 확인 시 내비 이탈 방지(`9983272` — `NotificationDismissReceiver`·`USE_FULL_SCREEN_INTENT` 제거)를 포함한 서명 Release APK를 빌드·게시하고, `Pleos Connect v2.1.0` 에뮬레이터(`Majung_Pleos_2_1`, `2560 × 1440 px / 160 dpi`)에서 덮어쓰기 설치(`versionCode=36`)를 확인했다(`11/10` 내비 연동 시연 영상 `374169dc...`은 `0.2.29-preview` 기준 촬영본으로 유지, 실차 시동/주행 시험은 미완료).
 
 ## 11월 10일 · 내비 연동 시연 영상 촬영 및 제출 문서 최신화
@@ -507,7 +507,7 @@ Notion의 초기 역할 분담 및 진행 자료도 기존 기록과 대조하�
 
 ## 8. 현재 개발 단계 요약
 
-2026년 11월 13일 기준, 마중은 차량용 애플리케이션(`0.2.34-preview`, 버전 코드 36 · 시연 영상 촬영본 `0.2.29-preview`)과 모바일 웹(`0188bd2`), iOS 앱(`b6d9927`), 백엔드 서버(`84d9498` Blue 슬롯 `UP`)의 주요 기능을 구현하고 공식 Pleos 에뮬레이터와 운영 서버(`majung.cloud`)를 연결한 내비 연동 시연 영상(약 1분 36초)과 서명 APK, 개발 저장소를 제공하고 있다.
+2026년 11월 13일 기준, 마중은 차량용 애플리케이션(`0.2.34-preview`, 버전 코드 36 · 시연 영상 촬영본 `0.2.29-preview`)과 모바일 웹(`0188bd2`), iOS 앱(`c46907d`), 백엔드 서버(`84d9498` Blue 슬롯 `UP`)의 주요 기능을 구현하고 공식 Pleos 에뮬레이터와 운영 서버(`majung.cloud`)를 연결한 내비 연동 시연 영상(약 1분 36초)과 서명 APK, 개발 저장소를 제공하고 있다.
 
 실제 iPhone Chrome에서 일부 기능을 확인했지만, 실제 두 대의 휴대전화를 이용한 전체 픽업 흐름과 푸시 알림 배너, 네트워크 전환 및 실차 검증은 완료되지 않았다.
 

@@ -44,12 +44,13 @@
 
 ## 4. iOS QR 스캐너·초대 입력 UX·연결 경합 테스트 정리 (`c4ac2cb`, `9bbcf43`, `#29`)
 
-iOS 동반 앱 쪽에서는 실제 iPhone 사용 흐름과 UI 테스트에서 네 가지 어긋남을 발견했다.
+iOS 동반 앱 쪽에서는 실제 iPhone 사용 흐름과 UI 테스트에서 다섯 가지 어긋남을 발견했다.
 
 - **QR 스캐너 호환성과 URL Fragment 변형 파싱 (`c4ac2cb`)**: 초기 `VisionKit` `DataScannerViewController` 의존으로는 지원 조건이 까다로워 `AVFoundation` 카메라 캡처(`VehicleCameraQRScanner`, `AVCaptureDevice.default(for: .video)`) 기반으로 정리하고, 차량 QR 링크가 `https://majung.cloud/account#vehicle/...`, `/account/#enroll/...`, `#enroll/...`, `account#...` 등 경로/해시 조합이 조금씩 달라도 모두 파싱하도록 `VehiclePairingTarget`을 보강했다(`MajungCoreTests`). 1인 테스트용 로컬 데모 서버(`SoloDemoServer`) 리스너 준비 대기 시간도 `2초`에서 `8초`로 늘렸다.
 - **초대 링크 여러 줄 입력과 키보드 닫기 실패 (`9bbcf43`)**: 홈 화면 초대 링크 입력창이 `axis: .vertical`로 열려 여러 줄 붙여넣기나 줄바꿈 시 입력칸이 커지고, Return 키나 바깥 영역 스크롤로 키보드가 잘 닫히지 않았다. 한 줄 입력, 지우기 버튼, `.submitLabel(.go)`, `.scrollDismissesKeyboard(.interactively)`, 키보드 상단 `"키보드 닫기"` 툴바를 추가했고, 로그인 온보딩 재확인 및 QR 재스캔 재시도도 보강했다(`e88cbb8`).
 - **차량 연결 UI 테스트의 자동 폴링 vs 수동 확인 경합 (PR [#29](https://github.com/majung-team/majung-ios/pull/29), `fadb31d`)**: 설정 탭에서 백그라운드로 돌던 `2초` 간격 자동 폴링(`pollPendingVehicleUntilDone`)과 수동 `"상태 확인"` 버튼을 검증하는 UI 테스트가 동시에 돌면서 상태 확인 시점이 엇갈렸다. 게다가 UI 테스트용 `LocalE2EServer`도 `GET /api/v1/vehicle-links/requests/{id}`가 `LINKED`를 반환하자마자 `pendingChallenge = nil`로 지워버리고, `expiresAt`을 `"2026-11-11T10:15:00Z"` 고정 문자열로 내려주고 있었다. PR `#29`에서는 자동 폴링 완료 테스트와 수동 확인 테스트(`-UITestManualVehiclePairing` 인자)를 분리하고, 목 서버가 `LINKED` 상태를 유지하며 실행 시점 기준(`Date().addingTimeInterval(600)`) 만료 시각을 만들도록 고쳤다.
 - **초대 참여 직후 화면 전환 레이아웃 보정·상시 이용 가이드 전환 (`bea016f`, `1b48ec3`)**: 초대 참여(`PickupViewModel.join()`) 시 초기 스냅샷·차량 정보를 먼저 조회한 뒤 `.pickup` 화면으로 넘기고, `.inline` 타이틀·중앙 `MajungCard` 로딩/재시도 화면으로 통일해 참여 순간 레이아웃 어긋남을 막았다. 또한 재설치·로그아웃마다 첫 화면을 가리던 강제 `OnboardingStore` 게이트를 제거하고 로그인·홈 우측 상단(`?`)과 설정에서 언제든 여는 상시 **마중 이용 가이드**(`MajungGuideView`)로 전환했다.
+- **픽업 완료 화면 카드·버튼 톤 통일 (`c46907d`)**: 완료·취소·만료 화면(`finished`)에만 남아 있던 초록 틴트 배경·외곽선과 `.tint(.green)` 버튼을 걷어내고, 도착 화면(`arrival`)과 같은 `MajungCard`, `statusHeroHeader`, `placeSummaryBox`, 기본 강조 버튼으로 통일했다.
 
 ---
 
@@ -60,7 +61,7 @@ iOS 동반 앱 쪽에서는 실제 iPhone 사용 흐름과 UI 테스트에서 �
 | **차량**<br>`ad3ffd6` | 3틱 QR 폴링<br>계정 확인 팝업 자동화 | `AWAITING_VEHICLE`<br>`_CONFIRMATION` 트리거 |
 | **모바일&nbsp;웹**<br>`#88` | 요청 지도 `304px` · 상태 보호<br>`linkedAt` 차량 구분 | `npm test` 104건 통과<br>(`0188bd2`) |
 | **백엔드**<br>`102a9a4` | 목록 SSE 신호 +<br>`verifyActiveSession()` 철회 차단 | JUnit `124/125`<br>(`0 failures, 1 skipped`) |
-| **iOS**<br>`b6d9927` | QR·UI 경합 분리 · 참여 전환 보완<br>상시 이용 가이드 (`MajungGuideView`) | `MajungTests` 32 · `MajungUITests` 6<br>(시뮬레이터) |
+| **iOS**<br>`c46907d` | QR·UI 경합 분리 · 참여 전환·완료 톤 통일<br>상시 이용 가이드 (`MajungGuideView`) | `MajungTests` 32 · `MajungUITests` 6<br>(시뮬레이터) |
 
 **확인하지 못한 점**
 
@@ -73,4 +74,4 @@ iOS 동반 앱 쪽에서는 실제 iPhone 사용 흐름과 UI 테스트에서 �
 - [차량 `ad3ffd6`: QR 스캔 후 자동 확인 팝업](https://github.com/majung-team/majung-vehicle-app/commit/ad3ffd6b9e64ed3a1c5b2188334e729005044f42)
 - [웹 #88: 요청 지도·준비 상태·차량 구분 개선 (`1cbd1c2`)](https://github.com/majung-team/majung-web/commit/1cbd1c23e2518c8af98c76bb16b8561131cac44c) · [웹 사용성 보완 기록](https://github.com/majung-team/majung-web/blob/main/docs/usability-2026-11-05.md) · [`stream.js`](https://github.com/majung-team/majung-web/blob/main/stream.js)
 - [백엔드 SSE·계정 기능 보강 (`102a9a4`)](https://github.com/majung-team/majung-backend/commit/102a9a4e09c9fa07f7be418fa4f3585ad41bee8c)
-- [iOS QR 스캐너·프래그먼트 수정 (`c4ac2cb`)](https://github.com/majung-team/majung-ios/commit/c4ac2cb9cce2736323627b427aaf56e6f9344f72) · [초대 입력·키보드 닫기 (`9bbcf43`)](https://github.com/majung-team/majung-ios/commit/9bbcf43586e264c42c551b4b364ce114f14868bf) · [PR #29: 자동 갱신·수동 확인 분리 (`fadb31d`)](https://github.com/majung-team/majung-ios/commit/fadb31d62aff4c67683b0acc61ea889dde5555a9) · [참여 전환 레이아웃 보완 (`bea016f`)](https://github.com/majung-team/majung-ios/commit/bea016fd27cd89a94378f2ff3161d2a27727baaf) · [상시 이용 가이드 전환 (`1b48ec3`)](https://github.com/majung-team/majung-ios/commit/1b48ec3b5cabe9e1544ae316702835cf1a615367)
+- [iOS QR 스캐너·프래그먼트 수정 (`c4ac2cb`)](https://github.com/majung-team/majung-ios/commit/c4ac2cb9cce2736323627b427aaf56e6f9344f72) · [초대 입력·키보드 닫기 (`9bbcf43`)](https://github.com/majung-team/majung-ios/commit/9bbcf43586e264c42c551b4b364ce114f14868bf) · [PR #29: 자동 갱신·수동 확인 분리 (`fadb31d`)](https://github.com/majung-team/majung-ios/commit/fadb31d62aff4c67683b0acc61ea889dde5555a9) · [참여 전환 레이아웃 보완 (`bea016f`)](https://github.com/majung-team/majung-ios/commit/bea016fd27cd89a94378f2ff3161d2a27727baaf) · [상시 이용 가이드 전환 (`1b48ec3`)](https://github.com/majung-team/majung-ios/commit/1b48ec3b5cabe9e1544ae316702835cf1a615367) · [완료 화면 카드·버튼 톤 통일 (`c46907d`)](https://github.com/majung-team/majung-ios/commit/c46907d95c6d2d1c61732857c0cec705af30b871)

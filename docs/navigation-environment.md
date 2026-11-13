@@ -6,4 +6,4 @@
 
 세부 환경·오류와 공식 업데이트 문의 상태는 [차량 저장소 안내](https://github.com/majung-team/majung-vehicle-app/blob/main/docs/navigation-environment.md)를 기준으로 한다. 11월 10일 시연 영상은 그 당시 정상 연동을 촬영한 기록이며, 이후 발생한 개발 환경 오류를 해결한 증거는 아니다.
 
-차량 APK는 `0.2.33-preview`(versionCode 35), 시연 촬영 APK는 `0.2.29-preview`로 구분한다. 마중의 설치·계정 연결과 기본 내비의 지도 초기화는 별도 단계다.
+차량 APK는 `0.2.34-preview`(versionCode 36), 시연 촬영 APK는 `0.2.29-preview`로 구분한다. 마중의 설치·계정 연결과 기본 내비의 지도 초기화는 별도 단계다.

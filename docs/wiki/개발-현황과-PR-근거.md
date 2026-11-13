@@ -22,7 +22,7 @@
 | **역할 분담** | [노션 역할표](https://app.notion.com/p/10-4026da9ae26a80c6bb08c5550c5d02be) | 초기 역할 분담 및 개발 계획 |
 
 - 백엔드(`84d9498` Blue 슬롯 `UP`): 카카오 로컬 키워드·도로명/지번 주소 통합 검색 프록시(`GET /api/v1/places/search`), 회원 탈퇴(`DELETE /api/v1/accounts/me`), 게스트 대기 이탈(`POST /api/v1/pickups/{id}/leave`), 요청·초대 목록 실시간 SSE(`GET /api/v1/ride-requests/events`) 반영 (JUnit `124 passed, 0 failed, 1 skipped` + `deploy` `29 tests`)
-- 웹(`0188bd2`, `npm test` `104 passed`) · iOS(`4f9a132`) 운영 반영 및 차량 APK [`0.2.33-preview`](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.33-preview.20261112)(버전 코드 35, 소스 `692eae5`, SHA-256 `97738e46...` · 안정 기준인 QR 자동 연결 확인 팝업·3초 폴링 포함) Pleos 에뮬레이터(`Majung_Pleos_2_1`) 업데이트 확인 (11/10 시연 영상 `374169dc...`은 직전 `0.2.29-preview` 기준 촬영본으로 유지)
+- 웹(`0188bd2`, `npm test` `104 passed`) · iOS(`b6d9927`, 참여 전환 보완·상시 이용 가이드, `MajungTests` 32 · `MajungUITests` 6) 운영·저장소 반영 및 차량 APK [`0.2.34-preview`](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.34-preview.20261113)(버전 코드 36, 소스 `127c146`, SHA-256 `89ad895c...` · 빠른 메시지 알림 내비 유지 `9983272` 및 QR 자동 연결 확인 팝업·3초 폴링 포함) Pleos 에뮬레이터(`Majung_Pleos_2_1`) 업데이트 확인 (11/10 시연 영상 `374169dc...`은 직전 `0.2.29-preview` 기준 촬영본으로 유지)
 
 ### 2026년 11월 9일 ~ 11월 10일
 
@@ -105,12 +105,12 @@
 
 기능 구현, 테스트 수행, 실제 차량 검증은 서로 다른 단계로 구분한다.
 
-| 대상 영역 | 현재 상태 (2026.11.12 기준) |
+| 대상 영역 | 현재 상태 (2026.11.13 기준) |
 | --- | --- |
 | **주요 픽업 기능** | 구현 및 운영(`majung.cloud`)·시험 서버 검증 |
-| **차량 앱 (`0.2.33-preview`)** | Pleos 공식 에뮬레이터 설치·QR 팝업 검증 |
+| **차량 앱 (`0.2.34-preview`)** | Pleos 공식 에뮬레이터 설치·내비 유지·QR 검증 |
 | **모바일 웹 (`0188bd2`)** | `npm test` 104건 · iPhone Chrome 일부 확인 |
-| **iOS 앱 (`4f9a132`)** | `MajungTests` 26 · `MajungUITests` 6 시뮬레이터 |
+| **iOS 앱 (`b6d9927`)** | `MajungTests` 32 · `MajungUITests` 6 시뮬레이터 |
 | **백엔드 서버 (`84d9498`)** | 단일 VM Blue-Green 운영(`UP`) · 124/125 통과 |
 | **시연 영상 (11/10)** | `0.2.29-preview` 기준 내비 연동 1분 36초 촬영 |
 | **실차 · 실기기 E2E** | 실제 휴대전화 2계정·푸시 배너·LTE·실차 미완료 |

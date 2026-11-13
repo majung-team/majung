@@ -15,7 +15,7 @@
 
 영상은 11월 13일 촬영·제출 버전 안내와 장소 확정 자막 시점을 보완했다. 장면과 음성은 원본을 유지했다.
 
-최신 서명 APK는 [0.2.33-preview](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.33-preview.20261112) (버전 코드 35, 소스 `692eae5`, SHA-256 `97738e46ffef16a8ac42533b9411d5e24501c478e01eb0b75765604671c983fc`)다. 11월 10일 대표 시연 영상은 직전 [0.2.29-preview](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.29-preview.20261109)(버전 코드 31)와 운영 서버(`majung.cloud`)를 기준으로 촬영했다. 10월 29일 초기 시연 영상은 당시 화면과 로컬 시험 환경 기록으로 함께 보존한다.
+최신 서명 APK는 [0.2.34-preview](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.34-preview.20261113) (버전 코드 36, 소스 `127c146`, SHA-256 `89ad895c639991690c312a2cd932dd851df004445983a0674218c6c342af215e`)다. 11월 10일 대표 시연 영상은 직전 [0.2.29-preview](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.29-preview.20261109)(버전 코드 31)와 운영 서버(`majung.cloud`)를 기준으로 촬영했다. 10월 29일 초기 시연 영상은 당시 화면과 로컬 시험 환경 기록으로 함께 보존한다.
 
 ## 현재 시험 환경의 제한
 
@@ -28,7 +28,7 @@
 | 접수양식과 개인정보 동의서 | 공식 DOCX 한 파일에서 관리. 대표자가 수정한 원본을 사용하고 참가자 전원의 동의·본인 서명·날짜를 제출 전에 확인 |
 | 시연 영상 | [11월 10일 시연 영상](pickup-demo.md) (`docs/media/pickup-demo.mp4`, 제출 파일 `마중_시연영상.mp4`, 약 1분 36초) 촬영 및 QR 비노출 점검 완료 |
 | 코드와 사용 안내 | 소개 저장소와 차량·서버·웹 저장소. 현재 네 저장소 모두 공개이며 비로그인 접근 확인 |
-| 차량 release APK | [0.2.33-preview](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.33-preview.20261112) (버전 코드 35) 기준. 제출용 파일명은 `마중_마중_release.apk` |
+| 차량 release APK | [0.2.34-preview](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.34-preview.20261113) (버전 코드 36) 기준. 제출용 파일명은 `마중_마중_release.apk` |
 | 숏폼 | 제출하지 않음 |
 
 비공개 제출 폴더는 `마중_송승준/`이며 DOCX·APK·MP4 세 파일을 `마중_송승준.zip`으로 묶는다. DOCX 보완 후 ZIP을 다시 생성하고, 압축 안의 세 파일이 원본과 같은지 대조한다.
@@ -45,7 +45,7 @@
 
 ## 참고 · 11월 5일 사용성 보완 기록
 
-11월 5일 기준 사용성 보완 변경 내역이며, 최신 제출 APK는 위 안내의 `0.2.33-preview` (버전 코드 35)다.
+11월 5일 기준 사용성 보완 변경 내역이며, 최신 제출 APK는 위 안내의 `0.2.34-preview` (버전 코드 36)다.
 
 웹의 새 요청 지도 높이를 복구하고 선택한 장소명·검색 주소를 요청 버튼 위에 표시했다. 준비 상태는 초대 링크와 계정 화면에서 같은 조작을 사용하며, 서버 저장과 차량 수신 확인을 구분한다. 동일한 차량명은 구분 코드·계정 연결 시각으로 구별한다.
 

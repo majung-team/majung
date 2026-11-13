@@ -199,17 +199,17 @@
 
 ---
 
-### 11월 12일 최신 배포 · APK (`0.2.33-preview`) 및 11월 10일 시연 기준
+### 11월 13일 최신 배포 · APK (`0.2.34-preview`) 및 11월 10일 시연 기준
 
 > [!NOTE]
-> 최신 차량 APK는 **[0.2.33-preview](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.33-preview.20261112)** (버전 코드 35, 소스 `692eae5`)입니다. QR 스캔 직후 자동 계정 확인 팝업과 3틱 백그라운드 조회를 반영했으며, 11월 10일 시연 영상은 직전 **[0.2.29-preview](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.29-preview.20261109)** 기준으로 촬영했습니다.
+> 최신 차량 APK는 **[0.2.34-preview](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.34-preview.20261113)** (버전 코드 36, 소스 `127c146`)입니다. 빠른 메시지 알림 확인 시 내비 화면 유지(`9983272`)와 QR 자동 계정 확인 팝업·3틱 백그라운드 조회를 반영했으며, 11월 10일 시연 영상은 직전 **[0.2.29-preview](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.29-preview.20261109)** 기준으로 촬영했습니다.
 
-| 영역 | 11월 12일 최신 기준 | 주요 반영 내용 |
+| 영역 | 11월 13일 최신 기준 | 주요 반영 내용 |
 | --- | --- | --- |
-| **차량 앱** | `0.2.33-preview` (코드 35) | QR 자동 연결 확인 팝업 · 3틱 조회 |
+| **차량 앱** | `0.2.34-preview` (코드 36) | 메시지 내비 유지(`9983272`) · QR 자동 팝업 |
 | **백엔드** | `84d9498` (Blue 슬롯 `UP`) | 장소 검색 프록시 · 회원 탈퇴 · 목록 SSE |
 | **모바일 웹** | `0188bd2` (`majung.cloud`) | iPhone QR 앱 연결 · 지도 오류 카드 정리 |
-| **iOS 앱** | `4f9a132` (`Majung`) | `AVFoundation` QR · PKCE · 연결 경합 분리 |
+| **iOS 앱** | `b6d9927` (`Majung`) | 참여 전환·이용 가이드 · QR · PKCE · 경합 분리 |
 
 ### 11월 4일 0.2.20-preview 배포 APK
 

@@ -1,7 +1,7 @@
 
 # 개발 현황과 PR 대조
 
-**기준일: 2026년 11월 12일**
+**기준일: 2026년 11월 13일**
 
 마중 프로젝트의 기능별 구현 현황, 개발 기여 이력, PR·커밋 근거 및 남은 검증 항목을 정리한 문서다.
 
@@ -13,17 +13,17 @@
 
 > 이 문서의 코드 반영 여부와 시험 결과는 각 기록의 확인 범위에 한정된다. 기능 구현, 운영 배포, 에뮬레이터 검증, 실제 휴대전화 검증, 실차 검증은 각각 구분한다.
 
-## 11월 12일 · 클라이언트 기능 안정화 및 제출 자료 최신화
+## 11월 13일 · 0.2.34-preview 배포 및 iOS·차량 보완
 
-| 대상 | 11월 12일 확인 버전 | 확인 경로 |
+| 대상 | 11월 13일 확인 버전 | 확인 경로 |
 | --- | --- | --- |
 | 백엔드 | `84d9498` (`main` 반영 · 운영 Blue-Green 배포) | [운영 health](https://majung.cloud/api/v1/health) |
 | 탑승자 웹 | `0188bd2` | [운영 release.json](https://majung.cloud/release.json) |
-| 차량 앱 | `0.2.33-preview` · 버전 코드 35 · 소스 `692eae5` | [APK 및 체크섬](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.33-preview.20261112) |
+| 차량 앱 | `0.2.34-preview` · 버전 코드 36 · 소스 `127c146` | [APK 및 체크섬](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.34-preview.20261113) |
 
 - 백엔드(`84d9498`): 카카오 로컬 키워드·도로명/지번 주소 통합 검색(`GET /api/v1/places/search`), 회원 탈퇴(`DELETE /api/v1/accounts/me`), 비로그인 참여 대기 이탈(`POST /api/v1/pickups/{id}/leave`), 요청·초대 목록 실시간 SSE(`GET /api/v1/ride-requests/events`)를 운영 서버(`majung.cloud`)에 반영했다 (`./gradlew test` 총 125건 중 `124 passed, 0 failed, 1 skipped` · `deploy` 29 tests 통과).
-- 탑승자 웹(`0188bd2`) · iOS 앱(`4f9a132`): 운영 서버(`https://majung.cloud`) 단일 연결 정리, QR 스캔(`AVFoundation`)·재시도 보완, 차량 연결 UI 경합 분리([iOS #29](https://github.com/majung-team/majung-ios/pull/29)) 및 로그인/설정 화면 `마중 앱 이용 안내 다시 보기`를 반영했다 (`majung-web` `104 passed, 0 failed`, `majung-ios` `MajungTests` 26 · `MajungUITests` 6).
-- 차량 앱 `0.2.33-preview` (`692eae5`, 버전 코드 35, SHA-256 `97738e46ffef16a8ac42533b9411d5e24501c478e01eb0b75765604671c983fc`): 휴대전화 QR 스캔 직후 자동 계정 확인 팝업과 3초 백그라운드 조회를 포함한 최신 서명 Release APK를 빌드·게시하고, `Pleos Connect v2.1.0` 에뮬레이터(`Pleos_Connect_v2_0`, `2560 × 1440 px / 160 dpi`)에서 덮어쓰기 설치(`versionCode=35`)를 확인했다(`11/10` 내비 연동 시연 영상 `374169dc...`은 `0.2.29-preview` 기준 촬영본으로 유지, 실차 시동/주행 시험은 미완료).
+- 탑승자 웹(`0188bd2`) · iOS 앱(`b6d9927`): 운영 서버(`https://majung.cloud`) 단일 연결 정리, QR 스캔(`AVFoundation`)·재시도 보완, 차량 연결 UI 경합 분리([iOS #29](https://github.com/majung-team/majung-ios/pull/29)), 참여 전환 레이아웃 보완(`bea016f`) 및 상시 이용 가이드 전환(`1b48ec3`, 로그인·설정 재진입)을 반영했다 (`majung-web` `104 passed, 0 failed`, `majung-ios` `MajungTests` 32 · `MajungUITests` 6).
+- 차량 앱 `0.2.34-preview` (`127c146`, 버전 코드 36, SHA-256 `89ad895c639991690c312a2cd932dd851df004445983a0674218c6c342af215e`): 직전 `0.2.33-preview`(QR 자동 계정 확인 팝업·3초 조회)에 더해 빠른 메시지 알림 확인 시 내비 이탈 방지(`9983272` — `NotificationDismissReceiver`·`USE_FULL_SCREEN_INTENT` 제거)를 포함한 서명 Release APK를 빌드·게시하고, `Pleos Connect v2.1.0` 에뮬레이터(`Majung_Pleos_2_1`, `2560 × 1440 px / 160 dpi`)에서 덮어쓰기 설치(`versionCode=36`)를 확인했다(`11/10` 내비 연동 시연 영상 `374169dc...`은 `0.2.29-preview` 기준 촬영본으로 유지, 실차 시동/주행 시험은 미완료).
 
 ## 11월 10일 · 내비 연동 시연 영상 촬영 및 제출 문서 최신화
 
@@ -507,7 +507,7 @@ Notion의 초기 역할 분담 및 진행 자료도 기존 기록과 대조하�
 
 ## 8. 현재 개발 단계 요약
 
-2026년 11월 12일 기준, 마중은 차량용 애플리케이션(`0.2.33-preview`, 버전 코드 35 · 시연 영상 촬영본 `0.2.29-preview`)과 모바일 웹(`0188bd2`), iOS 앱(`4f9a132`), 백엔드 서버(`84d9498` Blue 슬롯 `UP`)의 주요 기능을 구현하고 공식 Pleos 에뮬레이터와 운영 서버(`majung.cloud`)를 연결한 내비 연동 시연 영상(약 1분 36초)과 서명 APK, 개발 저장소를 제공하고 있다.
+2026년 11월 13일 기준, 마중은 차량용 애플리케이션(`0.2.34-preview`, 버전 코드 36 · 시연 영상 촬영본 `0.2.29-preview`)과 모바일 웹(`0188bd2`), iOS 앱(`b6d9927`), 백엔드 서버(`84d9498` Blue 슬롯 `UP`)의 주요 기능을 구현하고 공식 Pleos 에뮬레이터와 운영 서버(`majung.cloud`)를 연결한 내비 연동 시연 영상(약 1분 36초)과 서명 APK, 개발 저장소를 제공하고 있다.
 
 실제 iPhone Chrome에서 일부 기능을 확인했지만, 실제 두 대의 휴대전화를 이용한 전체 픽업 흐름과 푸시 알림 배너, 네트워크 전환 및 실차 검증은 완료되지 않았다.
 

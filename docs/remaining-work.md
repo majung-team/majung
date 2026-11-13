@@ -1,7 +1,7 @@
 
 # 남은 작업 및 향후 계획
 
-**갱신일: 2026년 11월 12일**
+**갱신일: 2026년 11월 13일**
 
 마중의 현재 개발 상태와 추가 검증이 필요한 항목, 향후 개선 계획을 정리한 문서다.
 
@@ -54,7 +54,7 @@ Chrome 모바일 크기와 데스크톱에서 초대 재시도·참여·재접�
 | --- | --- |
 | 프로젝트 소개 | [GitHub README](https://github.com/majung-team/majung) |
 | 서비스 웹 | [majung.cloud](https://majung.cloud) |
-| 차량 APK | [0.2.33-preview](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.33-preview.20261112) (버전 코드 35 · SHA-256 `97738e46...`) |
+| 차량 APK | [0.2.34-preview](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.34-preview.20261113) (버전 코드 36 · SHA-256 `89ad895c...`) |
 | 시연 영상 | [2026년 11월 10일 내비 연동 시연 및 10월 29일 기록](pickup-demo.md) |
 | 개발 근거 | [기능별 PR 및 커밋](development-status.md) |
 | 제출 점검 | [제출 점검표](submission-checklist.md) |

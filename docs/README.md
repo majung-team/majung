@@ -52,7 +52,7 @@
 
 | 문서 | 내용 |
 | --- | --- |
-| [개발 현황과 PR 대조](development-status.md) | 기능별 구현 근거, 기여 이력 및 `11월 12일` 검증 범위 |
+| [개발 현황과 PR 대조](development-status.md) | 기능별 구현 근거, 기여 이력 및 `11월 13일` 검증 범위 |
 | [기술 회고 6편 (Wiki)](https://github.com/majung-team/majung/wiki#7-%EB%AC%B8%EC%A0%9C-%ED%95%B4%EA%B2%B0%EA%B3%BC-%EA%B8%B0%EC%88%A0-%ED%9A%8C%EA%B3%A0) | 경유지 0 우회, 세션 복구, Blue-Green, 실시간 동기화 |
 | [초기 운영 전환 기록](runtime-2026-10-29.md) | 10월 29일 최초 Blue-Green 전환 및 배포 기준 |
 | [기본 내비 초기화 실패](navigation-environment.md) | 11월 12일 관찰한 환경 오류 및 공식 업데이트 문의 |
@@ -60,7 +60,7 @@
 
 기능 구현, 코드 병합, 운영 배포, 에뮬레이터 검증, 실제 휴대전화 검증 및 실차 검증은 각각 구분해 기록한다.
 
-날짜가 포함된 운영 문서는 해당 시점의 기록이다. 현재 배포 버전은 [공개 서버 health](https://majung.cloud/api/v1/health)와 [웹 release.json](https://majung.cloud/release.json)에서 확인할 수 있으며, 최신 차량 APK는 **[0.2.33-preview](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.33-preview.20261112)**(버전 코드 35)다.
+날짜가 포함된 운영 문서는 해당 시점의 기록이다. 현재 배포 버전은 [공개 서버 health](https://majung.cloud/api/v1/health)와 [웹 release.json](https://majung.cloud/release.json)에서 확인할 수 있으며, 최신 차량 APK는 **[0.2.34-preview](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.34-preview.20261113)**(버전 코드 36)다.
 
 ---
 
@@ -70,7 +70,7 @@
 | --- | --- |
 | [시연 영상 및 촬영 조건](pickup-demo.md) | 내비 연동 및 기본 픽업 흐름 영상 (`0.2.29-preview` 기준 촬영), 시험 환경 및 재현 방법 |
 | [시연 진행 순서](demo-script.md) | 기능별 시연 절차와 촬영 기록 |
-| [제출 자료 안내](submission-guide.md) | 프로젝트 소개 및 최신 개발 결과물(`0.2.33-preview` 등) 링크 |
+| [제출 자료 안내](submission-guide.md) | 프로젝트 소개 및 최신 개발 결과물(`0.2.34-preview` 등) 링크 |
 | [제출 점검표](submission-checklist.md) | 제출 전 파일·링크·접근 권한 확인 |
 
 ### 픽업 및 내비 연동 시연 (2026.11.10)

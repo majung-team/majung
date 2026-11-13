@@ -104,3 +104,9 @@
 - [경유지 좌표 누락 처리 기록 (`docs/waypoint-coordinates.md`)](https://github.com/majung-team/majung-vehicle-app/blob/main/docs/waypoint-coordinates.md) · [제공 측 확인 요청 자료 (`docs/waypoint-provider-report.md`)](https://github.com/majung-team/majung-vehicle-app/blob/main/docs/waypoint-provider-report.md)
 - [PR #113: 내비 경로 불일치 시 최종 목적지 재선택 복구 (`2d340c0`)](https://github.com/majung-team/majung-vehicle-app/commit/2d340c08e59ee67f51a0016f828d8cada76c0c83)
 - [내비 연결 루프 방지 및 UX 보완 (`f39e51b`)](https://github.com/majung-team/majung-vehicle-app/commit/f39e51b86ba8ed58d7db18c713bab87a2bd423f3) · [`2e1060d`](https://github.com/majung-team/majung-vehicle-app/commit/2e1060db70e1412147b2041b8f8e7f8f309ac2db)
+
+## 11월 부분 회신 이후의 상태
+
+11월 4일·9일·11일 회신에서 개발용 내비의 좌표 전달 오류와 공개 API 지원 범위를 안내받았다. 세부 버전의 원본 응답 수정·좌표 완전성·별도 우회 조회까지 보장받은 것은 아니다. [회신 요약](https://github.com/majung-team/majung-vehicle-app/blob/main/docs/waypoint-provider-report.md#11월-공식-부분-회신과-미해결-범위)을 기준으로 앱 측 방어와 제공 측 수정을 분리한다.
+
+11월 12일 별도로 관찰한 `profile` 처리·지도 초기화 실패는 경유지 좌표 0 문제와 구분해 [환경 오류 안내](https://github.com/majung-team/majung-vehicle-app/blob/main/docs/navigation-environment.md)에서 추적한다.

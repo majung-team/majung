@@ -13,6 +13,9 @@
 
 ### 첫 사용과 복구 확인
 
+> [!IMPORTANT]
+> **기본 내비 실행 제한 · 2026년 11월 12일 관찰**: Pleos Connect 2.1.0의 Navi42 `3.3.2-rc5-hotfix.3`이 지도 인증 응답의 `profile` 항목을 처리하지 못해 지도 초기화에 실패하는 현상을 확인했다. 마중을 실행하지 않은 콜드부팅에서도 재현됐다. 마중 APK 재설치나 NaviHelper 버전 변경으로 해결됐다고 확인한 상태는 아니며, 수정된 내비 APK·에뮬레이터 이미지와 적용 방법을 운영사무국에 문의했다. 11월 10일 정상 시연 기록과 이후 관찰한 환경 오류를 구분한다. [증상과 확인 범위](https://github.com/majung-team/majung-vehicle-app/blob/main/docs/navigation-environment.md).
+
 차량 앱은 [최신 서명 APK](https://github.com/majung-team/majung-vehicle-app/releases/latest)를 사용한다. 기존 앱에 덮어 설치하려면 `adb install -r Majung_Majung_release.apk`를 실행한다.
 
 1. 탑승자 휴대전화에서 초대를 열어 약속 장소를 확인하고 참여한다. 같은 브라우저 탭에서 다시 열면 현재 픽업으로 돌아가는지 본다.

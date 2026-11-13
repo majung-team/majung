@@ -54,6 +54,9 @@ flowchart LR
 ## 3. 실행 방법 · 테스트 환경 · 검증 범위
 
 > [!IMPORTANT]
+> **기본 내비 실행 제한 · 2026년 11월 12일 관찰**: Pleos Connect 2.1.0의 Navi42 `3.3.2-rc5-hotfix.3`이 지도 인증 응답의 `profile` 항목을 처리하지 못해 지도 초기화에 실패하는 현상을 확인했다. 마중을 실행하지 않은 콜드부팅에서도 재현됐다. 마중 APK 재설치나 NaviHelper 버전 변경으로 해결됐다고 확인한 상태는 아니며, 수정된 내비 APK·에뮬레이터 이미지와 적용 방법을 운영사무국에 문의했다. 11월 10일 정상 시연 기록과 이후 관찰한 환경 오류를 구분한다. [증상과 확인 범위](https://github.com/majung-team/majung-vehicle-app/blob/main/docs/navigation-environment.md).
+
+> [!IMPORTANT]
 > **기준일: 2026년 11월 12일** — 별도 서버 키 설정 없이 공개 운영 서버(`https://majung.cloud`)로 바로 연결해 테스트할 수 있습니다.
 
 1. Pleos Connect 에뮬레이터에 `adb install -r 마중_마중_release.apk` 명령으로 차량 앱(`0.2.33-preview`)을 설치·실행합니다.

@@ -177,12 +177,12 @@
 
 | 기술 회고 문서 | 다룬 장애 · 해결과 검증 |
 | --- | --- |
-| [Pleos 내비가 경유지 좌표 0을 돌려줄 때 경로는 어떻게 지킬까?](https://github.com/majung-team/majung/wiki/Pleos-내비가-경유지-좌표-0을-돌려줄-때-경로는-어떻게-지킬까) | `WaypointCoordinates` 대조<br>재선택(`#113`) · 연결 루프 차단 |
-| [앱이 꺼지거나 내비에서 돌아와도 픽업은 이어질까?](https://github.com/majung-team/majung/wiki/앱이-꺼지거나-내비에서-돌아와도-픽업은-이어질까) | Keystore `AES-GCM` 저장소<br>운전자 재개 확인 · 복귀(`#132`) |
-| [내비 화면만 보고 있어도 요청과 메시지를 알릴 수 있을까?](https://github.com/majung-team/majung/wiki/내비-화면만-보고-있어도-요청과-메시지를-알릴-수-있을까) | 헤드업 알림 · Pleos TTS<br>주행 요약 · 기기 시험 실패(`#117`) |
-| [픽업이 끝나거나 연결을 끊으면 위치 공유는 바로 멈출까?](https://github.com/majung-team/majung/wiki/픽업이-끝나거나-연결을-끊으면-위치-공유는-바로-멈출까) | 해제 시 제안·푸시 차단(`#64`)<br>초대 검증 · ETA 계약 검증 |
-| [단일 VM Blue-Green 배포와 예약 백업은 왜 중간에 멈췄을까?](https://github.com/majung-team/majung/wiki/단일-VM-Blue-Green-배포와-예약-백업은-왜-중간에-멈췄을까) | 슬롯 권한(`#66`) · 75초 대기(`#75`)<br>백업 SSH·WIF 복구(`#56`, `#62`) |
-| [휴대전화 QR 연결과 웹·iOS 실시간 상태는 왜 어긋났을까?](https://github.com/majung-team/majung/wiki/휴대전화-QR-연결과-웹-iOS-실시간-상태는-왜-어긋났을까) | QR 확인 팝업(`ad3ffd6`)<br>웹 SSE · iOS UI 분리(`#29`) |
+| [Pleos 내비가 경유지 좌표 0을 돌려줄 때 경로는 어떻게 지킬까?](https://github.com/majung-team/majung/wiki/Pleos-내비가-경유지-좌표-0을-돌려줄-때-경로는-어떻게-지킬까%3F) | `WaypointCoordinates` 대조<br>재선택(`#113`) · 연결 루프 차단 |
+| [앱이 꺼지거나 내비에서 돌아와도 픽업은 이어질까?](https://github.com/majung-team/majung/wiki/앱이-꺼지거나-내비에서-돌아와도-픽업은-이어질까%3F) | Keystore `AES-GCM` 저장소<br>운전자 재개 확인 · 복귀(`#132`) |
+| [내비 화면만 보고 있어도 요청과 메시지를 알릴 수 있을까?](https://github.com/majung-team/majung/wiki/내비-화면만-보고-있어도-요청과-메시지를-알릴-수-있을까%3F) | 헤드업 알림 · Pleos TTS<br>주행 요약 · 기기 시험 실패(`#117`) |
+| [픽업이 끝나거나 연결을 끊으면 위치 공유는 바로 멈출까?](https://github.com/majung-team/majung/wiki/픽업이-끝나거나-연결을-끊으면-위치-공유는-바로-멈출까%3F) | 해제 시 제안·푸시 차단(`#64`)<br>초대 검증 · ETA 계약 검증 |
+| [단일 VM Blue-Green 배포와 예약 백업은 왜 중간에 멈췄을까?](https://github.com/majung-team/majung/wiki/단일-VM-Blue-Green-배포와-예약-백업은-왜-중간에-멈췄을까%3F) | 슬롯 권한(`#66`) · 75초 대기(`#75`)<br>백업 SSH·WIF 복구(`#56`, `#62`) |
+| [휴대전화 QR 연결과 웹·iOS 실시간 상태는 왜 어긋났을까?](https://github.com/majung-team/majung/wiki/휴대전화-QR-연결과-웹-iOS-실시간-상태는-왜-어긋났을까%3F) | QR 확인 팝업(`ad3ffd6`)<br>웹 SSE · iOS UI 분리(`#29`) |
 
 ---
 

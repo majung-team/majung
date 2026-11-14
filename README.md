@@ -4,7 +4,7 @@
   <p>차량 내비게이션의 픽업 장소·위치·예상 도착 시간(ETA)과 탑승자의 준비 상태를 연결해 반복 연락을 줄이는 픽업 지원 서비스입니다.</p>
   <p>
     <a href="https://majung.cloud/account">모바일 웹</a> ·
-    <a href="https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.34-preview.20261113">차량 APK</a> ·
+    <a href="https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.35-preview.20261114">차량 APK</a> ·
     <a href="https://github.com/majung-team/majung/raw/main/docs/media/pickup-demo.mp4">시연 영상</a> ·
     <a href="https://majung.cloud/api/swagger-ui/index.html">Swagger UI</a> ·
     <a href="https://github.com/majung-team/majung/wiki">Wiki</a> ·
@@ -18,7 +18,7 @@
 
 > [!TIP]
 > **내비 연동 시연 영상 (1분 36초 · TTS 음성 포함)**: [영상 바로 보기](https://github.com/majung-team/majung/raw/main/docs/media/pickup-demo.mp4) · [촬영 환경 및 장면 안내](docs/pickup-demo.md)  
-> *(차량 앱 `0.2.29-preview` + 운영 서버 `majung.cloud` 기준 Pleos 에뮬레이터 시연 · 최신 배포 `0.2.34-preview`)*
+> *(차량 앱 `0.2.29-preview` + 운영 서버 `majung.cloud` 기준 Pleos 에뮬레이터 시연 · 최신 배포 `0.2.35-preview`)*
 
 | 단계 | 운전자 (차량 앱) | 탑승자 (웹 · iOS) |
 | --- | --- | --- |
@@ -59,13 +59,13 @@ flowchart LR
 > [!IMPORTANT]
 > **기준일: 2026년 11월 13일** — 별도 서버 키 설정 없이 공개 운영 서버(`https://majung.cloud`)로 바로 연결해 테스트할 수 있습니다.
 
-1. Pleos Connect 에뮬레이터에 `adb install -r 마중_마중_release.apk` 명령으로 차량 앱(`0.2.34-preview`)을 설치·실행합니다.
+1. Pleos Connect 에뮬레이터에 `adb install -r 마중_마중_release.apk` 명령으로 차량 앱(`0.2.35-preview`)을 설치·실행합니다.
 2. 휴대전화로 차량 QR을 스캔해 [`https://majung.cloud/account`](https://majung.cloud/account) 페이지에서 운전자 카카오 계정을 연결합니다.
 3. 다른 카카오 계정(탑승자)이나 차량 초대 링크로 참여해 픽업 요청·수락·내비 연동·메시지 전달 흐름을 확인합니다.
 
 | 항목 | 기준 사양 및 확인 범위 |
 | --- | --- |
-| **APK** | [`majung-vehicle-app/apk/마중_마중_release.apk`](https://github.com/majung-team/majung-vehicle-app/blob/main/apk/%EB%A7%88%EC%A4%91_%EB%A7%88%EC%A4%91_release.apk)<br>[GitHub Releases (0.2.34-preview · versionCode 36)](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.34-preview.20261113) |
+| **APK** | [`majung-vehicle-app/apk/마중_마중_release.apk`](https://github.com/majung-team/majung-vehicle-app/blob/main/apk/%EB%A7%88%EC%A4%91_%EB%A7%88%EC%A4%91_release.apk)<br>[GitHub Releases (0.2.35-preview · versionCode 37)](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.35-preview.20261114) |
 | **에뮬레이터** | `Pleos Connect v2.1.0` (`Android 14 / API 34`, `arm64-v8a`)<br>프로파일 `Pleos_Connect_v2_0` · **`2560 × 1440 px` (`160 dpi`)** |
 | **실행 조건** | `minSdk 28` / `targetSdk 34` · JDK 25 · `NaviHelper 3.0.5`<br>`TextToSpeech 3.3.1` · `majung.cloud` · 계정 2개 · 위치 권한 |
 | **검증 범위** | 백엔드·웹·iOS(38) 자동화, 에뮬레이터(`0.2.29`·`0.2.34`)<br>*(실차 주행·LTE·실기기 푸시 별도)* |

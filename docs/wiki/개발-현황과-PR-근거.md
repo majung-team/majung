@@ -21,8 +21,8 @@
 | **향후 작업** | [남은 개발 및 검증](https://github.com/majung-team/majung/blob/main/docs/remaining-work.md) | 미완료 기능 및 실기기 검증 |
 | **역할 분담** | [노션 역할표](https://app.notion.com/p/10-4026da9ae26a80c6bb08c5550c5d02be) | 초기 역할 분담 및 개발 계획 |
 
-- 백엔드(`ee836dd` 운영 `UP`): 카카오 로컬 키워드·도로명/지번 주소 통합 검색 프록시(`GET /api/v1/places/search`), 회원 탈퇴(`DELETE /api/v1/accounts/me`), 게스트 대기 이탈(`POST /api/v1/pickups/{id}/leave`), 요청·초대 목록 실시간 SSE(`GET /api/v1/ride-requests/events`), 폐기 차량 코드 NOT NULL 해제 및 백업 복원 검사 보완 반영 (JUnit `126 passed, 0 failed, 1 skipped` + `deploy` `29 tests` + 실제 백업 복원 통과)
-- 웹(`b2970b4`, `npm test` `115 passed`) · iOS(`2a1fe46`, 완료 화면 통일·입력 경고 제거·종료 알림 정리·다이나믹 아일랜드 실시간 현황 표시, `MajungTests` 37 · `MajungUITests` 7 및 운영 연동 2) 운영·저장소 반영 및 차량 APK [`0.2.35-preview`](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.35-preview.20261114)(버전 코드 37, 소스 `8ccb84b`, SHA-256 `5ca24074...` · 참여 후 초대 안내 정리·빠른 메시지 알림 내비 유지 `9983272` 및 QR 자동 연결 확인 팝업·3초 폴링 포함) Pleos 에뮬레이터(`Majung_Pleos_2_1`) 업데이트·운영 양방향 검증 확인 (11/10 시연 영상 `374169dc...`은 직전 `0.2.29-preview` 기준 촬영본으로 유지)
+- 백엔드(`7437a5d` 운영 `UP`): 카카오 로컬 키워드·도로명/지번 주소 통합 검색(`GET /api/v1/places/search`, `ff1d9c2` 반경 20km 밖 광역 결과 보강 및 `7437a5d` 공항·터미널 등 광역 교통거점 우선순위 유지), 회원 탈퇴(`DELETE /api/v1/accounts/me`), 게스트 대기 이탈(`POST /api/v1/pickups/{id}/leave`), 요청·초대 목록 실시간 SSE(`GET /api/v1/ride-requests/events`), 폐기 차량 코드 NOT NULL 해제 및 백업 복원 검사 보완 반영 (JUnit `129 passed, 0 failed, 1 skipped` + `deploy` `29 tests` + 실제 백업 복원 통과)
+- 웹(`b2970b4`, `npm test` `115 passed`) · iOS(`2b7e359`, [#47](https://github.com/majung-team/majung-ios/pull/47) 만료·STALE 도착 정보 및 갱신 안내 보완, 직전 `2a1fe46` 다이나믹 아일랜드·종료 알림 정리) 운영·저장소 반영 및 차량 APK [`0.2.36-preview`](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.36-preview.20261115)(버전 코드 38, 소스 `7750922`, SHA-256 `0ea73655...` · 내비 중 자동 공유·알림 `720c95c`, 첫 사용 권한·차량 연결 정리 `#127`, 메시지 내비 유지 `9983272`, QR 자동 확인 팝업 포함) Pleos 에뮬레이터(`Majung_Pleos_2_1`) 덮어쓰기 업데이트·내비 중 운영 양방향 E2E 확인 (11/10 시연 영상 `374169dc...`은 직전 `0.2.29-preview` 기준 촬영본으로 유지)
 
 ### 2026년 11월 9일 ~ 11월 10일
 
@@ -105,13 +105,13 @@
 
 기능 구현, 테스트 수행, 실제 차량 검증은 서로 다른 단계로 구분한다.
 
-| 대상 영역 | 현재 상태 (2026.11.14 기준) |
+| 대상 영역 | 현재 상태 (2026.11.15 기준) |
 | --- | --- |
 | **주요 픽업 기능** | 구현 및 운영(`majung.cloud`)·시험 서버 검증 |
-| **차량 앱 (`0.2.35-preview`)** | Pleos 공식 에뮬레이터 설치·운영 양방향·내비 유지 검증 |
+| **차량 앱 (`0.2.36-preview`)** | Pleos 공식 에뮬레이터 설치·내비 중 자동 공유/알림·단위 72·Lint 통과 (직전 `0.2.35` 회귀 14) |
 | **모바일 웹 (`b2970b4`)** | `npm test` 115건 · 운영 차량 연동·iPhone Chrome 확인 |
-| **iOS 앱 (`2a1fe46`)** | `MajungTests` 37 · `MajungUITests` 7 · 운영 연동 2 통과 |
-| **백엔드 서버 (`ee836dd`)** | 단일 VM Blue-Green 운영(`UP`) · 126/127 · 복원 검사 통과 |
+| **iOS 앱 (`2b7e359`)** | 만료·STALE 갱신 안내(`#47`) · 다이나믹 아일랜드 · 운영 연동 통과 |
+| **백엔드 서버 (`7437a5d`)** | 단일 VM Blue-Green 운영(`UP`) · 129/130 · 광역 검색 우선순위·복원 검사 통과 |
 | **시연 영상 (11/10)** | `0.2.29-preview` 기준 내비 연동 1분 36초 촬영 |
 | **실차 · 실기기 E2E** | 실제 휴대전화 2계정·푸시 배너·LTE·실차 미완료 |
 | **익명 서비스 지표** | 후속 구현 예정 (미구현) |

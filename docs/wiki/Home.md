@@ -177,12 +177,12 @@
 
 | 기술 회고 문서 | 다룬 장애 · 해결과 검증 |
 | --- | --- |
-| [Pleos 내비가 경유지 좌표 0을 돌려줄 때 경로는 어떻게 지킬까?](https://github.com/majung-team/majung/wiki/Pleos-내비가-경유지-좌표-0을-돌려줄-때-경로는-어떻게-지킬까%3F) | `WaypointCoordinates` 대조<br>재선택(`#113`) · 연결 루프 차단 |
-| [앱이 꺼지거나 내비에서 돌아와도 픽업은 이어질까?](https://github.com/majung-team/majung/wiki/앱이-꺼지거나-내비에서-돌아와도-픽업은-이어질까%3F) | Keystore `AES-GCM` 저장소<br>운전자 재개 확인 · 복귀(`#132`) |
-| [내비 화면만 보고 있어도 요청과 메시지를 알릴 수 있을까?](https://github.com/majung-team/majung/wiki/내비-화면만-보고-있어도-요청과-메시지를-알릴-수-있을까%3F) | 헤드업 알림 · Pleos TTS<br>주행 요약 · 기기 시험 실패(`#117`) |
-| [픽업이 끝나거나 연결을 끊으면 위치 공유는 바로 멈출까?](https://github.com/majung-team/majung/wiki/픽업이-끝나거나-연결을-끊으면-위치-공유는-바로-멈출까%3F) | 해제 시 제안·푸시 차단(`#64`)<br>초대 검증 · ETA 계약 검증 |
-| [단일 VM Blue-Green 배포와 예약 백업은 왜 중간에 멈췄을까?](https://github.com/majung-team/majung/wiki/단일-VM-Blue-Green-배포와-예약-백업은-왜-중간에-멈췄을까%3F) | 슬롯 권한(`#66`) · 75초 대기(`#75`)<br>백업 SSH·WIF 복구(`#56`, `#62`) |
-| [휴대전화 QR 연결과 웹·iOS 실시간 상태는 왜 어긋났을까?](https://github.com/majung-team/majung/wiki/휴대전화-QR-연결과-웹-iOS-실시간-상태는-왜-어긋났을까%3F) | QR 확인 팝업(`ad3ffd6`)<br>웹 SSE · iOS UI 분리(`#29`) |
+| [Pleos 내비가 경유지 좌표 0을 돌려줄 때 경로는 어떻게 지킬까?](https://github.com/majung-team/majung/wiki/Pleos-내비가-경유지-좌표-0을-돌려줄-때-경로는-어떻게-지킬까%3F) | 좌표가 빠진 응답을 대조하고, 확인할 수 없는 경유지는 다시 선택 |
+| [앱이 꺼지거나 내비에서 돌아와도 픽업은 이어질까?](https://github.com/majung-team/majung/wiki/앱이-꺼지거나-내비에서-돌아와도-픽업은-이어질까%3F) | 화면 전환과 강제 종료를 구분하고, 서버 확인 후 픽업 복구 |
+| [내비 화면만 보고 있어도 요청과 메시지를 알릴 수 있을까?](https://github.com/majung-team/majung/wiki/내비-화면만-보고-있어도-요청과-메시지를-알릴-수-있을까%3F) | 내비를 보면서 알림·음성으로 상태 확인, 주행 중 앱 조작 제한 |
+| [픽업이 끝나거나 연결을 끊으면 위치 공유는 바로 멈출까?](https://github.com/majung-team/majung/wiki/픽업이-끝나거나-연결을-끊으면-위치-공유는-바로-멈출까%3F) | 종료 후 위치 조회·알림 차단, 서버와 웹의 도착 시간 계산 대조 |
+| [단일 VM Blue-Green 배포와 예약 백업은 왜 중간에 멈췄을까?](https://github.com/majung-team/majung/wiki/단일-VM-Blue-Green-배포와-예약-백업은-왜-중간에-멈췄을까%3F) | 앱 실행 권한·기동 대기 시간·백업 파일과 예약 인증 오류 수정 |
+| [휴대전화 QR 연결과 웹·iOS 실시간 상태는 왜 어긋났을까?](https://github.com/majung-team/majung/wiki/휴대전화-QR-연결과-웹-iOS-실시간-상태는-왜-어긋났을까%3F) | QR 확인 단계, 늦은 조회 응답과 화면 전환·시험 오류 정리 |
 
 ---
 

@@ -722,7 +722,7 @@ GitHub Actions는 GCP 단기 인증과 제한된 배포 권한을 사용한다.
 ### 수행한 검증
 
 - 공식 에뮬레이터(`0.2.29-preview`)와 운영 서버(`majung.cloud`)·로컬 API에서 픽업 생성부터 탑승 완료, 내비 복귀·장소 제안 확정·앱 강제 종료 후 공유 재개까지 확인 (11/10 1분 36초 내비 연동 시연 영상 촬영) 및 최신 [`0.2.35-preview`](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.35-preview.20261114)(버전 코드 37 · `8ccb84b`) 참여 후 초대 안내 정리·빠른 메시지 알림 내비 이탈 방지(`9983272`)·QR 자동 연결 팝업 반영·덮어쓰기 설치 확인 (단위 테스트 72개·기기 회귀 14개·Lint 통과)
-- 백엔드 Gradle 단위·통합 테스트(총 127건 중 `126 passed, 1 skipped`)·배포 스크립트(`29 tests`) 및 웹 테스트(`115 passed`), iOS `main`(`71491f7`) 테스트(`MajungTests` 35 · `MajungUITests` 7 및 운영 연동 2) 통과, 운영 서버(`ee836dd` `UP`) 및 웹(`b2970b4`) 공개 동작 확인
+- 백엔드 Gradle 단위·통합 테스트(총 127건 중 `126 passed, 1 skipped`)·배포 스크립트(`29 tests`) 및 웹 테스트(`115 passed`), iOS `main`(`2a1fe46`) 테스트(`MajungTests` 37 · `MajungUITests` 7 및 운영 연동 2) 통과, 운영 서버(`ee836dd` `UP`) 및 웹(`b2970b4`) 공개 동작 확인
 - 화면이 내려간 상태에서 약 310초 동안 최신 차량 정보 유지 확인
 - 서버 취소 후 백그라운드 공유 서비스 종료 확인
 - 앱 재실행 및 복구 흐름 확인

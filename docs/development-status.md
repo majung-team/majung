@@ -18,7 +18,7 @@
 - 차량: `0.2.35-preview` / versionCode 37 / 소스 `8ccb84b36f35b7112a51e22950cfc423edeed3c8` (테스트 보강 포함 저장소 `500a61c`). [릴리스와 체크섬](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.35-preview.20261114), APK SHA-256 `5ca24074f37558ba097246bfe74a6fac4cc3fc5664496aa17d253cd0798812c1`.
 - 탑승자 참여 뒤 남던 초대 생성 안내를 정리했다. 기존 서명과 같은 인증서로 업데이트 설치하고 최종 APK의 운영 차량↔웹 SDK ETA·준비·도착·완료 검사 1개 통과(93.83초).
 - 운영 차량↔iOS 시뮬레이터 연동(`test11LiveCancellationWhileTypingAndExpiredInvite` 취소 43.835초/53.658초 → 같은 차량의 새 픽업 `test10LiveVehicleRoundTrip` 완료 74.246초/81.711초)까지 통과했다(내부 시험용 일회용 등록 코드 사용, 일반 QR·카카오 최초 연결 검사와 구분).
-- 후속 수정: [iOS #41](https://github.com/majung-team/majung-ios/pull/41)·[#43](https://github.com/majung-team/majung-ios/pull/43)(`71491f7`, 초대 입력 키보드 툴바 경고 제거 및 종료 후 도착 알림 정리·포그라운드 소리 안내 전환, 단위 35개·로컬 UI 7개 통과, `runtimeWarnings` 0건), [웹 #119](https://github.com/majung-team/majung-web/pull/119)·[#121](https://github.com/majung-team/majung-web/pull/121)(`b2970b4`, 종료 후 새 탭 안내 숨김·지난 요청 접기·검색 장소명 보존, `115 passed`), [서버 #81](https://github.com/majung-team/majung-backend/pull/81)·[#83](https://github.com/majung-team/majung-backend/pull/83)(`ee836dd`, 폐기 필드 `vehicle_code` NOT NULL 해제 및 백업 복원 검사 경로 수정, `126 passed, 1 skipped`·`deploy` 29개·실제 백업 복원 검사 통과).
+- 후속 수정: [iOS #41](https://github.com/majung-team/majung-ios/pull/41)·[#43](https://github.com/majung-team/majung-ios/pull/43)·[#45](https://github.com/majung-team/majung-ios/pull/45)(`2a1fe46`, 초대 입력 키보드 툴바 경고 제거·종료 후 도착 알림 정리·포그라운드 소리 안내 전환 및 다이나믹 아일랜드·잠금화면 실시간 현황 표시 추가, 단위 37개·로컬 UI 7개 통과, `runtimeWarnings` 0건), [웹 #119](https://github.com/majung-team/majung-web/pull/119)·[#121](https://github.com/majung-team/majung-web/pull/121)(`b2970b4`, 종료 후 새 탭 안내 숨김·지난 요청 접기·검색 장소명 보존, `115 passed`), [서버 #81](https://github.com/majung-team/majung-backend/pull/81)·[#83](https://github.com/majung-team/majung-backend/pull/83)(`ee836dd`, 폐기 필드 `vehicle_code` NOT NULL 해제 및 백업 복원 검사 경로 수정, `126 passed, 1 skipped`·`deploy` 29개·실제 백업 복원 검사 통과).
 - 별도 차량 앱 회귀 14개·단위 72개·Lint 통과. 같은 운영 픽업에서 웹·iOS 메시지와 장소 제안의 차량 수신·제안 철회, 준비 전달, 도착 배너를 확인했고 차량 프로세스 종료·복귀 뒤 완료와 저장된 접근 정보 제거도 확인했다.
 - 기존 0.2.29 촬영 영상은 당시 기록이다. 이번에 재촬영한 영상으로 표시하지 않는다. 실제 iPhone 최초 인증·카메라 QR·실차·최초 Android 권한 창 거절 후 설정 허용 조작은 미확인이다.
 - [상세 점검 결과](rehearsal-2026-11-13.md)
@@ -517,7 +517,7 @@ Notion의 초기 역할 분담 및 진행 자료도 기존 기록과 대조하�
 
 ## 8. 현재 개발 단계 요약
 
-2026년 11월 14일 기준, 마중은 차량용 애플리케이션(`0.2.35-preview`, 버전 코드 37 · 시연 영상 촬영본 `0.2.29-preview`)과 모바일 웹(`b2970b4`), iOS 앱(`71491f7`), 백엔드 서버(`ee836dd` 운영 `UP`)의 주요 기능을 구현하고 공식 Pleos 에뮬레이터와 운영 서버(`majung.cloud`)를 연결한 내비 연동 시연 영상(약 1분 36초)과 서명 APK, 개발 저장소를 제공하고 있다.
+2026년 11월 14일 기준, 마중은 차량용 애플리케이션(`0.2.35-preview`, 버전 코드 37 · 시연 영상 촬영본 `0.2.29-preview`)과 모바일 웹(`b2970b4`), iOS 앱(`2a1fe46`), 백엔드 서버(`ee836dd` 운영 `UP`)의 주요 기능을 구현하고 공식 Pleos 에뮬레이터와 운영 서버(`majung.cloud`)를 연결한 내비 연동 시연 영상(약 1분 36초)과 서명 APK, 개발 저장소를 제공하고 있다.
 
 실제 iPhone Chrome에서 일부 기능을 확인했지만, 실제 두 대의 휴대전화를 이용한 전체 픽업 흐름과 푸시 알림 배너, 네트워크 전환 및 실차 검증은 완료되지 않았다.
 

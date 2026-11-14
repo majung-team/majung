@@ -50,7 +50,7 @@ iOS 동반 앱 쪽에서는 실제 iPhone 사용 흐름과 UI 테스트에서 �
 - **초대 링크 여러 줄 입력과 키보드 닫기 실패 (`9bbcf43`)**: 홈 화면 초대 링크 입력창이 `axis: .vertical`로 열려 여러 줄 붙여넣기나 줄바꿈 시 입력칸이 커지고, Return 키나 바깥 영역 스크롤로 키보드가 잘 닫히지 않았다. 한 줄 입력, 지우기 버튼, `.submitLabel(.go)`, `.scrollDismissesKeyboard(.interactively)`, 키보드 상단 `"키보드 닫기"` 툴바를 추가했고, 로그인 온보딩 재확인 및 QR 재스캔 재시도도 보강했다(`e88cbb8`).
 - **차량 연결 UI 테스트의 자동 폴링 vs 수동 확인 경합 (PR [#29](https://github.com/majung-team/majung-ios/pull/29), `fadb31d`)**: 설정 탭에서 백그라운드로 돌던 `2초` 간격 자동 폴링(`pollPendingVehicleUntilDone`)과 수동 `"상태 확인"` 버튼을 검증하는 UI 테스트가 동시에 돌면서 상태 확인 시점이 엇갈렸다. 게다가 UI 테스트용 `LocalE2EServer`도 `GET /api/v1/vehicle-links/requests/{id}`가 `LINKED`를 반환하자마자 `pendingChallenge = nil`로 지워버리고, `expiresAt`을 `"2026-11-11T10:15:00Z"` 고정 문자열로 내려주고 있었다. PR `#29`에서는 자동 폴링 완료 테스트와 수동 확인 테스트(`-UITestManualVehiclePairing` 인자)를 분리하고, 목 서버가 `LINKED` 상태를 유지하며 실행 시점 기준(`Date().addingTimeInterval(600)`) 만료 시각을 만들도록 고쳤다.
 - **초대 참여 직후 화면 전환 레이아웃 보정·상시 이용 가이드 전환 (`bea016f`, `1b48ec3`)**: 초대 참여(`PickupViewModel.join()`) 시 초기 스냅샷·차량 정보를 먼저 조회한 뒤 `.pickup` 화면으로 넘기고, `.inline` 타이틀·중앙 `MajungCard` 로딩/재시도 화면으로 통일해 참여 순간 레이아웃 어긋남을 막았다. 또한 재설치·로그아웃마다 첫 화면을 가리던 강제 `OnboardingStore` 게이트를 제거하고 로그인·홈 우측 상단(`?`)과 설정에서 언제든 여는 상시 **마중 이용 가이드**(`MajungGuideView`)로 전환했다.
-- **픽업 완료 화면 카드·버튼 톤 통일 및 종료 후 도착 알림 정리 (`c46907d`, `9315ef8`, `71491f7`)**: 완료·취소·만료 화면(`finished`)에만 남아 있던 초록 틴트 배경·외곽선과 `.tint(.green)` 버튼을 걷어내고 도착 화면(`arrival`)과 같은 `MajungCard`, `statusHeroHeader`, `placeSummaryBox`, 기본 강조 버튼으로 통일했다. 또한 초대 입력 키보드 툴바를 하단 안전 영역 바로 옮겨 프레임 경고를 없앴고(`9315ef8`), 픽업 종료·알림 비활성화·등록 경합 시 이전 도착 알림을 즉시 제거하며 포그라운드에서는 소리(`[.sound]`)만 사용하도록 정리했다(`71491f7`).
+- **픽업 완료 화면 카드·버튼 톤 통일, 종료 후 도착 알림 정리 및 다이나믹 아일랜드 실시간 현황 표시 (`c46907d`, `9315ef8`, `71491f7`, `2a1fe46`)**: 완료·취소·만료 화면(`finished`)에만 남아 있던 초록 틴트 배경·외곽선과 `.tint(.green)` 버튼을 걷어내고 도착 화면(`arrival`)과 같은 `MajungCard`, `statusHeroHeader`, `placeSummaryBox`, 기본 강조 버튼으로 통일했다. 초대 입력 키보드 툴바를 하단 안전 영역 바로 옮겨 프레임 경고를 없앴고(`9315ef8`), 픽업 종료·알림 비활성화·등록 경합 시 이전 도착 알림을 즉시 제거하며 포그라운드에서는 소리(`[.sound]`)만 사용하도록 정리했다(`71491f7`). 또한 로컬 `ActivityKit`(`pushType: nil`) 기반 다이나믹 아일랜드·잠금화면 실시간 현황(`MajungLiveActivityExtension`)을 추가해 앱을 내려도 예상 도착 시각 카운트다운이 유지되고 터치 시 활성 픽업 화면으로 즉시 복귀하도록 구성했다(`2a1fe46`).
 
 ---
 
@@ -61,7 +61,7 @@ iOS 동반 앱 쪽에서는 실제 iPhone 사용 흐름과 UI 테스트에서 �
 | **차량**<br>`ad3ffd6` | 3틱 QR 폴링<br>계정 확인 팝업 자동화 | `AWAITING_VEHICLE`<br>`_CONFIRMATION` 트리거 |
 | **모바일&nbsp;웹**<br>`#88` | 요청 지도 `304px` · 상태 보호<br>`linkedAt` 차량 구분 | `npm test` 115건 통과<br>(`b2970b4`) |
 | **백엔드**<br>`102a9a4` | 목록 SSE 신호 +<br>`verifyActiveSession()` 철회 차단 | JUnit `126/127`<br>(`0 failures, 1 skipped`) |
-| **iOS**<br>`71491f7` | QR·UI 경합 분리 · 입력 경고 제거<br>완료 톤 통일 · 종료 알림 정리 | `MajungTests` 35 · `MajungUITests` 7<br>(+ 운영 연동 2 시뮬레이터) |
+| **iOS**<br>`2a1fe46` | QR·UI 경합 분리 · 입력 경고 제거<br>완료 톤 통일 · 종료 알림 정리 · 다이나믹 아일랜드 | `MajungTests` 37 · `MajungUITests` 7<br>(+ 운영 연동 2 시뮬레이터) |
 
 **확인하지 못한 점**
 

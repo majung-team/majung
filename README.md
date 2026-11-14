@@ -68,7 +68,7 @@ flowchart LR
 | **APK** | [`majung-vehicle-app/apk/마중_마중_release.apk`](https://github.com/majung-team/majung-vehicle-app/blob/main/apk/%EB%A7%88%EC%A4%91_%EB%A7%88%EC%A4%91_release.apk)<br>[GitHub Releases (0.2.35-preview · versionCode 37)](https://github.com/majung-team/majung-vehicle-app/releases/tag/v0.2.35-preview.20261114) |
 | **에뮬레이터** | `Pleos Connect v2.1.0` (`Android 14 / API 34`, `arm64-v8a`)<br>프로파일 `Pleos_Connect_v2_0` · **`2560 × 1440 px` (`160 dpi`)** |
 | **실행 조건** | `minSdk 28` / `targetSdk 34` · JDK 25 · `NaviHelper 3.0.5`<br>`TextToSpeech 3.3.1` · `majung.cloud` · 계정 2개 · 위치 권한 |
-| **검증 범위** | 백엔드·웹·iOS(38) 자동화, 에뮬레이터(`0.2.29`·`0.2.34`)<br>*(실차 주행·LTE·실기기 푸시 별도)* |
+| **검증 범위** | 백엔드(126/127)·웹(115)·iOS(42) 자동화, 에뮬레이터(`0.2.29`·`0.2.35`)<br>*(실차 주행·LTE·실기기 푸시 별도)* |
 
 ---
 

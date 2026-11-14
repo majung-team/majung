@@ -2,7 +2,7 @@
 
 [전체 글](https://github.com/majung-team/majung/wiki)
 
-### 문제 해결 · 기술 회고
+### 기술 회고
 - **내비**: [경유지 좌표가 없을 때 경로 복구](https://github.com/majung-team/majung/wiki/Pleos-내비가-경유지-좌표-0을-돌려줄-때-경로는-어떻게-지킬까%3F)
 - **복구**: [내비 복귀와 앱 재실행 후 픽업 복구](https://github.com/majung-team/majung/wiki/앱이-꺼지거나-내비에서-돌아와도-픽업은-이어질까%3F)
 - **주행**: [내비 위 알림과 음성 안내](https://github.com/majung-team/majung/wiki/내비-화면만-보고-있어도-요청과-메시지를-알릴-수-있을까%3F)
